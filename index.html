@@ -3,413 +3,752 @@
 <head>
 <!-- v-final -->
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, viewport-fit=cover">
 <title>Greece April 2026</title>
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#1c1a16">
+<meta name="theme-color" content="#1a3a5c">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Greece 2026">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231c1a16' rx='20'/><text y='.9em' font-size='80' x='10'>🏛️</text></svg>">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Syne:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --ink:#1c1a16;--ink2:#3e3b34;--ink3:#8a8478;
-  --paper:#faf8f3;--paper2:#f3f0e8;--paper3:#e8e3d5;
-  --gold:#a07c1e;--gold-l:#f7efc8;
-  --teal:#1a6355;--teal-l:#d5ece7;
-  --olive:#4a5c2a;--olive-l:#e3ead4;
-  --terra:#8c3a1e;--terra-l:#f5e0d8;
-  --azure:#1a4e8a;--azure-l:#dce8f5;
-  --plum:#5c3680;--plum-l:#ede4f5;
-  --sea:#1565a0;--sea-l:#ddeeff;
-  --border:rgba(28,26,22,.1);
-  --serif:'Cormorant Garamond',Georgia,serif;
-  --sans:'DM Sans','Segoe UI',sans-serif;
+/* ═══════════════════════════════════════════════════════
+   MEDITERRANEAN ITINERARY — complete design system
+   Palette: Aegean blue · whitewash · terracotta · olive
+   ═══════════════════════════════════════════════════════ */
+:root {
+  /* ── Core palette ── */
+  --sky:      #1a3a5c;   /* deep Aegean */
+  --sky-mid:  #2c5f8a;   /* mid-blue */
+  --sky-l:    #d6e8f5;   /* pale sky */
+  --sky-xl:   #eef5fb;   /* near-white sky */
+
+  --wash:     #f5f2ec;   /* whitewashed wall */
+  --wash2:    #ebe6dc;   /* slightly deeper plaster */
+  --wash3:    #ddd6c8;   /* stone */
+
+  --terra:    #b54a1e;   /* terracotta */
+  --terra-l:  #f5e0d4;
+  --olive:    #5a6e2a;   /* dusty olive */
+  --olive-l:  #e2eacc;
+  --sand:     #c49a3c;   /* warm sand/gold */
+  --sand-l:   #f7edcc;
+  --sea:      #0f7b6c;   /* Aegean teal */
+  --sea-l:    #ceeae5;
+  --grape:    #6b3fa0;   /* purple/grape */
+  --grape-l:  #ead6f7;
+  --coral:    #d4562a;   /* bright coral accent */
+
+  /* ── Text ── */
+  --ink:      #1a1714;
+  --ink2:     #3d3830;
+  --ink3:     #6e6558;   /* AA-compliant on wash */
+
+  /* ── Semantic aliases (keep JS working) ── */
+  --paper:    var(--wash);
+  --paper2:   var(--wash2);
+  --paper3:   var(--wash3);
+  --gold:     var(--sand);
+  --gold-l:   var(--sand-l);
+  --teal:     var(--sea);
+  --teal-l:   var(--sea-l);
+  --azure:    var(--sky-mid);
+  --azure-l:  var(--sky-l);
+  --plum:     var(--grape);
+  --plum-l:   var(--grape-l);
+  --border:   rgba(26,23,20,.11);
+
+  /* ── Typography ── */
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans:  'DM Sans', 'Segoe UI', sans-serif;
+  --ui:    'Syne', 'DM Sans', sans-serif;
+
+  /* ── Sizing ── */
+  --r:    10px;   /* standard radius */
+  --r-lg: 16px;
 }
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:var(--sans);background:var(--paper);color:var(--ink);font-size:14px;line-height:1.6;
-  padding-bottom:calc(56px + env(safe-area-inset-bottom))}
 
-/* MASTHEAD */
-.mast{background:var(--ink);color:var(--paper);padding:calc(28px + env(safe-area-inset-top)) 24px 20px;padding-left:calc(24px + env(safe-area-inset-left));padding-right:calc(24px + env(safe-area-inset-right));position:relative;overflow:hidden}
-.mast::before{content:'';position:absolute;top:-50px;right:-50px;width:260px;height:260px;border-radius:50%;background:rgba(160,124,30,.1)}
-.mast-eyebrow{font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
-.mast h1{font-family:var(--serif);font-size:28px;font-weight:700;line-height:1.2;margin-bottom:4px}
-.mast-sub{font-size:13px;color:rgba(250,248,243,.6);margin-bottom:16px}
-.pills{display:flex;gap:7px;flex-wrap:wrap}
-.pill{background:rgba(250,248,243,.1);border:1px solid rgba(250,248,243,.15);border-radius:20px;padding:4px 11px;font-size:11px;color:rgba(250,248,243,.8);white-space:nowrap}
-.pill.g{background:rgba(160,124,30,.2);border-color:rgba(160,124,30,.4);color:#e8c94a}
+/* ── Reset ──────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--wash2);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.6;
+  padding-bottom: calc(60px + env(safe-area-inset-bottom));
+  /* allow pinch zoom */
+  -webkit-text-size-adjust: 100%;
+}
 
-/* NAV */
-.nav{display:flex;background:#fff;border-bottom:1px solid var(--border);overflow-x:auto;position:sticky;top:0;z-index:100;scrollbar-width:none}
-.nav::-webkit-scrollbar{display:none}
-.nav-i{padding:12px 16px;font-size:12px;font-weight:500;letter-spacing:.3px;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;color:var(--ink3);transition:all .15s;user-select:none}
-.nav-i.active{color:var(--gold);border-bottom-color:var(--gold)}
-.nav-i:hover:not(.active){color:var(--ink2)}
+/* ── Skip link (a11y) ────────────────────────────────── */
+.skip-link {
+  position: absolute; top: -100%; left: 0; z-index: 99999;
+  background: var(--sky); color: #fff;
+  padding: 12px 20px; font-size: 14px; font-weight: 600;
+  text-decoration: none; border-radius: 0 0 8px 0;
+}
+.skip-link:focus { top: 0; }
 
-/* PANELS */
-.panel{display:none;padding:22px 18px;max-width:880px;margin:0 auto}
-.panel.active{display:block}
+/* ── Focus ring ─────────────────────────────────────── */
+:focus-visible {
+  outline: 3px solid var(--sand);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+:focus:not(:focus-visible) { outline: none; }
 
-/* DAY TABS */
-.dtabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
-.dtab{font-size:11px;font-weight:500;padding:5px 13px;border:1px solid var(--border);border-radius:20px;cursor:pointer;background:#fff;color:var(--ink2);transition:all .15s;user-select:none}
-.dtab.active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-.dtab.athens{--c:var(--gold)}
-.dtab.pelo{--c:var(--terra)}
-.dtab.ferry{--c:var(--sea)}
-.dtab.crete{--c:var(--teal)}
-.dtab.athens2{--c:var(--olive)}
-.dtab.active{background:var(--ink)}
+/* ── SR-only ─────────────────────────────────────────── */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0;
+  margin: -1px; overflow: hidden; clip: rect(0,0,0,0);
+  white-space: nowrap; border: 0;
+}
 
-/* DAY HEADER */
-.day-hd{display:flex;align-items:center;gap:14px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--border)}
-.day-badge{font-family:var(--serif);font-size:13px;font-weight:700;padding:7px 14px;border-radius:3px;white-space:nowrap;flex-shrink:0}
-.day-title{font-family:var(--serif);font-size:22px;font-weight:700;line-height:1.2}
-.day-meta{font-size:12px;color:var(--ink3);margin-top:3px}
+/* ═══════════════════════════════════════════════════════
+   MASTHEAD — deep Aegean with wave shimmer
+   ═══════════════════════════════════════════════════════ */
+.mast {
+  background: linear-gradient(165deg, #0d2b45 0%, #1a3a5c 55%, #1e5078 100%);
+  color: #fff;
+  padding: calc(24px + env(safe-area-inset-top)) 20px 22px;
+  padding-left:  calc(20px + env(safe-area-inset-left));
+  padding-right: calc(20px + env(safe-area-inset-right));
+  position: relative; overflow: hidden; text-align: center;
+}
+/* Subtle wave circles */
+.mast::before {
+  content: '';
+  position: absolute; top: -50px; right: -70px;
+  width: 200px; height: 200px; border-radius: 50%;
+  background: rgba(255,255,255,.06); pointer-events: none;
+}
+.mast::after {
+  content: '';
+  position: absolute; bottom: -60px; left: -40px;
+  width: 180px; height: 180px; border-radius: 50%;
+  background: rgba(100,180,255,.07); pointer-events: none;
+}
+.mast-icons {
+  font-size: 26px; letter-spacing: 5px;
+  margin-bottom: 8px; display: block; line-height: 1;
+  opacity: .85;
+}
+.mast h1 {
+  font-family: var(--serif);
+  font-size: 30px; font-weight: 700;
+  line-height: 1.15; margin-bottom: 5px;
+  letter-spacing: .3px; color: #fff;
+}
+.mast-sub {
+  font-family: var(--ui);
+  font-size: 11px; font-weight: 600;
+  color: rgba(255,255,255,.6);
+  letter-spacing: 2.5px; text-transform: uppercase;
+}
+.pills, .pill { display: none; }
 
-/* ALERT BOXES */
-.alert{border-left:3px solid var(--gold);background:var(--gold-l);padding:12px 14px;border-radius:0 4px 4px 0;margin-bottom:14px;font-size:13px}
-.alert.teal{border-left-color:var(--teal);background:var(--teal-l)}
-.alert.terra{border-left-color:var(--terra);background:var(--terra-l)}
-.alert.azure{border-left-color:var(--azure);background:var(--azure-l)}
-.alert.sea{border-left-color:var(--sea);background:var(--sea-l)}
-.alert.plum{border-left-color:var(--plum);background:var(--plum-l)}
-.alert b{display:block;font-size:11px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;margin-bottom:4px}
+/* ═══════════════════════════════════════════════════════
+   NAV BAR — white pill, scrollable, 48 px tap targets
+   ═══════════════════════════════════════════════════════ */
+.nav {
+  display: flex;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto; scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 2px 10px rgba(26,58,92,.08);
+}
+.nav::-webkit-scrollbar { display: none; }
+.nav-i {
+  padding: 0 16px;
+  height: 48px;
+  display: inline-flex; align-items: center;
+  font-family: var(--ui);
+  font-size: 12px; font-weight: 600; letter-spacing: .4px;
+  cursor: pointer; white-space: nowrap;
+  border: none; border-bottom: 3px solid transparent;
+  color: var(--ink3); background: none;
+  transition: color .15s, border-color .15s, background .15s;
+  flex-shrink: 0; user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.nav-i.active {
+  color: var(--sky);
+  border-bottom-color: var(--sky);
+  font-weight: 700;
+}
+.nav-i:hover:not(.active) { color: var(--ink); background: var(--sky-xl); }
+.nav-i:focus-visible { outline: 3px solid var(--sand); outline-offset: -2px; border-radius: 0; }
 
-/* STOP CARD */
-.stop{background:#fff;border:1px solid var(--border);border-radius:6px;margin-bottom:9px;overflow:hidden;transition:box-shadow .15s}
-.stop:hover{box-shadow:0 2px 12px rgba(28,26,22,.06)}
-.stop-hd{display:flex;align-items:center;gap:11px;padding:12px 14px;cursor:pointer;user-select:none}
-.snum{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
-.ng{background:var(--gold-l);color:var(--gold)}
-.nt{background:var(--teal-l);color:var(--teal)}
-.nr{background:var(--terra-l);color:var(--terra)}
-.na{background:var(--azure-l);color:var(--azure)}
-.no{background:var(--olive-l);color:var(--olive)}
-.nk{background:var(--paper2);color:var(--ink2)}
-.ns{background:var(--sea-l);color:var(--sea)}
-.np{background:var(--plum-l);color:var(--plum)}
-.stop-info{flex:1;min-width:0}
-.stop-name{font-weight:600;font-size:14px;line-height:1.3}
-.stop-sub{font-size:11px;color:var(--ink3);margin-top:2px}
-.stag{font-size:11px;font-weight:600;padding:3px 9px;border-radius:20px;white-space:nowrap;flex-shrink:0}
-.sf{background:var(--olive-l);color:var(--olive)}
-.sp{background:var(--teal-l);color:var(--teal)}
-.sb{background:var(--gold-l);color:var(--gold)}
-.si{background:var(--azure-l);color:var(--azure)}
-.chev{color:var(--ink3);font-size:10px;margin-left:5px;transition:transform .2s;flex-shrink:0}
-.stop.open .chev{transform:rotate(180deg)}
-/* DONE / COMPLETED STATE */
-.stop-done{border-left:4px solid #4caf50 !important;background:#f7fdf7}
-.stop-done .stop-name{text-decoration:line-through;color:var(--ink3)}
-.stop-done .stop-sub{opacity:.55}
-.stop-done .stag{opacity:.4}
-.stop-done .stop-body{opacity:.6}
-.stop-done .drag-handle{opacity:.2}
+/* ═══════════════════════════════════════════════════════
+   PANELS
+   ═══════════════════════════════════════════════════════ */
+.panel { display: none; padding: 16px 14px 24px; max-width: 880px; margin: 0 auto; }
+.panel.active { display: block; }
 
-/* CHECKBOX */
-.stop-check{width:22px;height:22px;flex-shrink:0;cursor:pointer;accent-color:#4caf50;margin:0}
-.stop-check:focus{outline:2px solid #4caf50;border-radius:3px}
+/* ═══════════════════════════════════════════════════════
+   DAY TABS — single scrolling row
+   ═══════════════════════════════════════════════════════ */
+.dtabs {
+  display: flex; gap: 6px;
+  flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 16px; padding-bottom: 2px;
+}
+.dtabs::-webkit-scrollbar { display: none; }
+.dtab {
+  font-family: var(--ui);
+  font-size: 12px; font-weight: 600;
+  padding: 7px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 24px;
+  cursor: pointer; white-space: nowrap; flex-shrink: 0;
+  background: #fff; color: var(--ink2);
+  min-height: 36px;
+  transition: all .15s;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.dtab.active {
+  background: var(--sky);
+  color: #fff;
+  border-color: var(--sky);
+  box-shadow: 0 2px 8px rgba(26,58,92,.25);
+}
+.dtab:hover:not(.active) { background: var(--sky-xl); border-color: var(--sky-mid); color: var(--sky); }
+/* region colour hints */
+.dtab.athens  { --hint: var(--sand); }
+.dtab.pelo    { --hint: var(--terra); }
+.dtab.ferry   { --hint: var(--sky-mid); }
+.dtab.crete   { --hint: var(--sea); }
+.dtab.athens2 { --hint: var(--olive); }
 
-.stop-body{display:none;padding:0 14px 13px;border-top:1px solid var(--paper2)}
-.stop.open .stop-body{display:block;padding-top:11px}
-.sdesc{font-size:13px;color:var(--ink2);line-height:1.65;margin-bottom:10px}
-.acts{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
-.btn-sm{font-size:11px;font-weight:500;padding:5px 11px;border-radius:3px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:4px;transition:opacity .15s;border:1px solid var(--border);background:var(--paper2);color:var(--ink2)}
-.btn-sm:hover{opacity:.75}
-.btn-maps{background:#e8f5e9;color:#2e7d32;border-color:#b8dbb9}
+/* ═══════════════════════════════════════════════════════
+   DAY HEADER
+   ═══════════════════════════════════════════════════════ */
+.day-hd {
+  display: flex; align-items: flex-start; gap: 12px;
+  margin-bottom: 14px; padding-bottom: 13px;
+  border-bottom: 1px solid var(--border);
+}
+.day-badge {
+  font-family: var(--ui);
+  font-size: 10px; font-weight: 700; letter-spacing: .6px;
+  text-transform: uppercase;
+  padding: 5px 11px; border-radius: 6px;
+  white-space: nowrap; flex-shrink: 0; margin-top: 4px;
+}
+.day-title {
+  font-family: var(--serif);
+  font-size: 21px; font-weight: 700; line-height: 1.2;
+}
+.day-meta { font-size: 13px; color: var(--ink2); margin-top: 3px; line-height: 1.45; }
 
-/* DRAG HANDLE */
-.drag-handle{width:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:grab;flex-shrink:0;opacity:.35;padding:4px 2px;touch-action:none}
-.drag-handle:active{cursor:grabbing}
-.drag-handle span{display:block;width:14px;height:2px;background:var(--ink3);border-radius:2px}
-.stop.dragging{opacity:.4;border:2px dashed var(--gold);background:var(--gold-l)}
-.stop.drag-over{border-top:3px solid var(--gold);margin-top:-2px}
-.stop.drag-over-below{border-bottom:3px solid var(--gold)}
+/* ═══════════════════════════════════════════════════════
+   ALERT BOXES
+   ═══════════════════════════════════════════════════════ */
+.alert {
+  border-left: 4px solid var(--sand);
+  background: var(--sand-l);
+  padding: 12px 14px; border-radius: 0 var(--r) var(--r) 0;
+  margin-bottom: 13px; font-size: 14px;
+}
+.alert.teal  { border-left-color: var(--sea);   background: var(--sea-l); }
+.alert.terra { border-left-color: var(--terra); background: var(--terra-l); }
+.alert.azure { border-left-color: var(--sky-mid); background: var(--sky-l); }
+.alert.sea   { border-left-color: var(--sky-mid); background: var(--sky-l); }
+.alert.plum  { border-left-color: var(--grape); background: var(--grape-l); }
+.alert b {
+  display: block;
+  font-family: var(--ui);
+  font-size: 10px; font-weight: 700; letter-spacing: .6px;
+  text-transform: uppercase; margin-bottom: 4px;
+}
 
-/* DELETE CONFIRM */
-.btn-delete{background:#fff0f0;color:#c0392b;border-color:#f5c6c6}
+/* ═══════════════════════════════════════════════════════
+   STOP CARDS — the main list item
+   ═══════════════════════════════════════════════════════ */
+.stop {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  margin-bottom: 8px; overflow: hidden;
+  transition: box-shadow .15s;
+}
+.stop:hover { box-shadow: 0 3px 14px rgba(26,58,92,.09); }
 
-/* SHUFFLE */
-.btn-shuffle{background:#f0f4ff;color:#1a4e8a;border-color:#c5d3f5;font-weight:600}
-.btn-shuffle:disabled{opacity:.5;cursor:not-allowed}
-.shuffle-panel{display:none;margin-top:10px;border:1px solid #c5d3f5;border-radius:6px;overflow:hidden;background:#fff}
-.shuffle-panel.show{display:block}
-.shuffle-loading{padding:14px;font-size:13px;color:var(--ink3);display:flex;align-items:center;gap:8px}
-.shuffle-loading .spin{display:inline-block;animation:spin .8s linear infinite;font-size:16px}
-@keyframes spin{to{transform:rotate(360deg)}}
-.shuffle-result{padding:0}
-.shuffle-result-hd{background:#f0f4ff;padding:10px 14px;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#1a4e8a;border-bottom:1px solid #c5d3f5}
-.shuffle-result-name{padding:10px 14px 4px;font-size:14px;font-weight:700;color:var(--ink)}
-.shuffle-result-meta{padding:0 14px 6px;font-size:11px;color:var(--ink3)}
-.shuffle-result-desc{padding:0 14px 12px;font-size:13px;color:var(--ink2);line-height:1.65}
-.shuffle-result-acts{padding:8px 14px 12px;display:flex;gap:8px;border-top:1px solid var(--paper2);flex-wrap:wrap;align-items:center}
-.shuf-pills{display:flex;flex-wrap:wrap;gap:5px;padding:6px 14px 0}
-.shuf-pill{font-size:11px;background:var(--paper2);border:1px solid var(--border);border-radius:20px;padding:3px 9px;color:var(--ink2);white-space:nowrap}
-.shuf-pill-dist{background:#e8f5e9;border-color:#b8dbb9;color:#2e7d32;font-weight:600}
-.shuf-tip{margin:0 14px 10px;padding:8px 11px;background:var(--gold-l);border-left:3px solid var(--gold);border-radius:0 4px 4px 0;font-size:12px;color:var(--ink2);line-height:1.5}
-.btn-shuffle-accept{background:var(--teal);color:#fff;border:none;border-radius:3px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer}
-.btn-shuffle-again{background:var(--paper2);color:var(--ink2);border:1px solid var(--border);border-radius:3px;padding:7px 12px;font-size:12px;cursor:pointer}
-.btn-shuffle-dismiss{background:none;border:none;color:var(--ink3);font-size:12px;cursor:pointer;padding:7px 4px}
+/* Header row — full-width tap zone */
+.stop-hd {
+  display: flex; align-items: center; gap: 10px;
+  padding: 13px 14px;
+  cursor: pointer; user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
 
-.del-confirm{display:none;margin-top:8px;padding:10px 12px;background:#fff0f0;border-radius:4px;border:1px solid #f5c6c6;font-size:12px}
-.del-confirm.show{display:block}
-.del-confirm p{margin-bottom:8px;font-weight:600;color:#c0392b}
-.del-confirm .del-btns{display:flex;gap:8px}
-.btn-del-yes{background:#c0392b;color:#fff;border:none;border-radius:3px;padding:6px 14px;font-size:12px;font-weight:700;cursor:pointer}
-.btn-del-no{background:var(--paper2);color:var(--ink2);border:1px solid var(--border);border-radius:3px;padding:6px 12px;font-size:12px;cursor:pointer}
+/* Step number badge */
+.snum {
+  width: 30px; height: 30px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--ui);
+  font-size: 12px; font-weight: 700; flex-shrink: 0;
+}
+.ng { background: var(--sand-l); color: var(--sand); }
+.nt { background: var(--sea-l);  color: var(--sea); }
+.nr { background: var(--terra-l);color: var(--terra); }
+.na { background: var(--sky-l);  color: var(--sky-mid); }
+.no { background: var(--olive-l);color: var(--olive); }
+.nk { background: var(--wash2);  color: var(--ink2); }
+.ns { background: var(--sky-xl); color: var(--sky); }
+.np { background: var(--grape-l);color: var(--grape); }
 
-/* MOVE BUTTONS */
+.stop-info { flex: 1; min-width: 0; }
+.stop-name { font-weight: 600; font-size: 15px; line-height: 1.3; }
+.stop-sub  { font-size: 13px; color: var(--ink2); margin-top: 2px; }
 
+/* Price/type tag */
+.stag {
+  font-family: var(--ui);
+  font-size: 11px; font-weight: 700;
+  padding: 3px 9px; border-radius: 20px;
+  white-space: nowrap; flex-shrink: 0;
+}
+.sf { background: var(--olive-l); color: var(--olive); }
+.sp { background: var(--sea-l);   color: var(--sea); }
+.sb { background: var(--sand-l);  color: var(--sand); }
+.si { background: var(--sky-l);   color: var(--sky-mid); }
 
-/* EDIT FORM */
-.eform{background:var(--paper2);border-radius:4px;padding:12px;margin-top:10px}
-.erow{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:8px}
-.ef{flex:1;min-width:130px}
-.ef label{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:3px}
-.ef input,.ef textarea,.ef select{width:100%;font-family:var(--sans);font-size:13px;padding:6px 9px;border:1px solid var(--border);border-radius:3px;background:#fff;color:var(--ink)}
-.ef textarea{resize:vertical;min-height:62px}
-.btn-save{font-size:12px;font-weight:600;background:var(--ink);color:var(--paper);border:none;border-radius:3px;padding:7px 15px;cursor:pointer}
-.save-ok{font-size:11px;color:var(--teal);font-weight:600;margin-left:8px;display:none}
+.chev {
+  color: var(--ink3); font-size: 10px; margin-left: 3px;
+  transition: transform .2s; flex-shrink: 0; opacity: .6;
+}
+.stop.open .chev { transform: rotate(180deg); }
 
-/* RULE */
-.rule{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--ink3);padding-bottom:8px;margin:20px 0 10px;border-bottom:1px solid var(--border)}
-.rule:first-child{margin-top:0}
+/* ── Done / completed state ── */
+.stop-done { border-left: 4px solid #4caf50 !important; background: #f6fcf5; }
+.stop-done .stop-name { text-decoration: line-through; color: var(--ink3); }
+.stop-done .stop-sub  { opacity: .55; }
+.stop-done .stag      { opacity: .4; }
+.stop-done .stop-body { opacity: .6; }
+.stop-done .drag-handle { opacity: .2; }
 
-/* BUNDLE */
-.bundle{border:1px solid var(--gold);border-radius:6px;padding:14px 16px;margin-bottom:13px;background:#fff}
-.bundle-hd{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:7px}
-.bundle-name{font-family:var(--serif);font-size:16px;font-weight:700}
-.bundle-amt{font-size:18px;font-weight:700;color:var(--gold);white-space:nowrap}
-.bundle-amt small{font-size:11px;font-weight:400;color:var(--ink3)}
-.bundle-sites{font-size:12px;color:var(--ink2);line-height:1.6;margin-bottom:7px}
-.bundle-warn{font-size:11px;color:var(--terra);font-style:italic}
-.btn-book{display:inline-block;margin-top:9px;font-size:11px;font-weight:600;padding:6px 14px;background:var(--gold);color:#fff;border-radius:3px;text-decoration:none;cursor:pointer;border:none;letter-spacing:.3px}
+/* ── Checkbox ── */
+.stop-check {
+  width: 22px; height: 22px; flex-shrink: 0;
+  cursor: pointer; accent-color: #4caf50; margin: 0;
+}
+.stop-check:focus { outline: 2px solid var(--sand); border-radius: 3px; }
 
-/* COST TABLE */
-.ctbl{width:100%;border-collapse:collapse;font-size:13px}
-.ctbl th{font-size:10px;text-transform:uppercase;letter-spacing:1px;font-weight:600;color:var(--ink3);padding:8px 11px;background:var(--paper2);text-align:left}
-.ctbl td{padding:9px 11px;border-bottom:1px solid var(--border);vertical-align:top}
-.ctbl tr:last-child td{border-bottom:none}
-.ctbl tr.tot{background:var(--gold-l);font-weight:700}
-.ctbl .n{font-size:11px;color:var(--ink3)}
+/* ── Body (expanded) ── */
+.stop-body {
+  display: none;
+  padding: 0 14px 13px;
+  border-top: 1px solid var(--wash2);
+  background: #fdfcfa;
+}
+.stop.open .stop-body { display: block; padding-top: 11px; }
 
-/* MAP TAB */
-.mcard{background:#fff;border:1px solid var(--border);border-radius:6px;padding:16px;margin-bottom:13px}
-.mcard h3{font-family:var(--serif);font-size:16px;margin-bottom:6px}
-.mcard p{font-size:12px;color:var(--ink2);margin-bottom:10px;line-height:1.6}
-.btn-g{display:inline-flex;align-items:center;gap:6px;background:#1a6b2a;color:#fff;border:none;border-radius:4px;padding:9px 15px;font-size:13px;font-weight:600;cursor:pointer;margin-bottom:5px}
-.btn-b{display:inline-flex;align-items:center;gap:6px;background:var(--azure);color:#fff;border:none;border-radius:4px;padding:9px 15px;font-size:13px;font-weight:600;cursor:pointer;margin-bottom:5px}
-.codebox{font-family:monospace;font-size:11px;background:var(--paper2);border:1px solid var(--border);padding:10px;border-radius:3px;max-height:120px;overflow-y:auto;white-space:pre-wrap;word-break:break-all;color:var(--ink2)}
-.btn-copy{font-size:11px;background:var(--ink);color:var(--paper);border:none;border-radius:3px;padding:5px 12px;cursor:pointer;margin-top:6px;display:inline-block}
+.sdesc {
+  font-size: 14px; color: var(--ink2);
+  line-height: 1.7; margin-bottom: 11px;
+}
 
-/* TRAVEL INFO */
-.icard{background:#fff;border:1px solid var(--border);border-radius:6px;padding:16px;margin-bottom:13px}
-.icard-t{font-family:var(--serif);font-size:16px;font-weight:700;margin-bottom:11px;display:flex;align-items:center;gap:8px}
-.igrid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.ii label{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:3px}
-.ii input{width:100%;font-family:var(--sans);font-size:13px;padding:6px 9px;border:1px solid var(--border);border-radius:3px;background:var(--paper)}
-.btn-is{margin-top:11px;font-size:12px;font-weight:600;background:var(--ink);color:var(--paper);border:none;border-radius:3px;padding:7px 15px;cursor:pointer}
-.is-ok{font-size:11px;color:var(--teal);font-weight:600;margin-left:8px;display:none}
+/* ── Action buttons row ── */
+.acts { display: flex; gap: 7px; flex-wrap: wrap; align-items: center; }
+.btn-sm {
+  font-family: var(--ui);
+  font-size: 12px; font-weight: 600;
+  padding: 6px 12px; border-radius: 6px;
+  cursor: pointer; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 4px;
+  transition: opacity .15s;
+  border: 1px solid var(--border);
+  background: var(--wash2); color: var(--ink2);
+  min-height: 36px;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn-sm:hover { opacity: .78; }
+.btn-maps  { background: #e8f5e9; color: #2e7d32; border-color: #b8dbb9; }
+.btn-delete{ background: #ffeee9; color: var(--terra); border-color: #f5c8b8; }
 
-/* TIPS */
-.tip{border-left:3px solid var(--border);padding:10px 13px;margin-bottom:9px;background:#fff;border-radius:0 4px 4px 0}
-.tip.g{border-left-color:var(--gold)}
-.tip.t{border-left-color:var(--teal)}
-.tip.r{border-left-color:var(--terra)}
-.tip.a{border-left-color:var(--azure)}
-.tip.s{border-left-color:var(--sea)}
-.tip h4{font-size:13px;font-weight:600;margin-bottom:3px}
-.tip p{font-size:12px;color:var(--ink2);line-height:1.6}
+/* ── Drag handle ── */
+.drag-handle {
+  width: 28px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 3px; cursor: grab; flex-shrink: 0;
+  opacity: .3; padding: 4px 2px; touch-action: none;
+}
+.drag-handle:active { cursor: grabbing; }
+.drag-handle span { display: block; width: 14px; height: 2px; background: var(--ink3); border-radius: 2px; }
+.stop.dragging  { opacity: .4; border: 2px dashed var(--sand); background: var(--sand-l); }
+.stop.drag-over { border-top: 3px solid var(--sky); margin-top: -2px; }
+.stop.drag-over-below { border-bottom: 3px solid var(--sky); }
 
-/* LOGISTICS */
-.lgx{background:#fff;border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-bottom:13px}
-.lgx-row{display:flex;align-items:center;gap:12px;padding:11px 14px;border-bottom:1px solid var(--border);font-size:13px}
-.lgx-row:last-child{border-bottom:none}
-.lgx-icon{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;background:var(--paper2)}
-.lgx-label{font-weight:600;font-size:13px}
-.lgx-detail{font-size:11px;color:var(--ink3);margin-top:1px}
-.lgx-val{font-size:12px;font-weight:600;color:var(--teal);margin-left:auto;white-space:nowrap}
+/* ── Delete confirm ── */
+.del-confirm {
+  display: none; margin-top: 8px; padding: 11px 12px;
+  background: #ffeee9; border-radius: 8px;
+  border: 1px solid #f5c8b8; font-size: 13px;
+}
+.del-confirm.show { display: block; }
+.del-confirm p { margin-bottom: 8px; font-weight: 600; color: var(--terra); }
+.del-confirm .del-btns { display: flex; gap: 8px; }
+.btn-del-yes {
+  background: var(--terra); color: #fff; border: none;
+  border-radius: 6px; padding: 7px 15px;
+  font-size: 13px; font-weight: 700; cursor: pointer; min-height: 36px;
+}
+.btn-del-no {
+  background: var(--wash2); color: var(--ink2);
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: 7px 12px; font-size: 13px; cursor: pointer; min-height: 36px;
+}
 
+/* ── Shuffle ── */
+.btn-shuffle { background: var(--sky-xl); color: var(--sky); border-color: var(--sky-l); font-weight: 600; }
+.btn-shuffle:disabled { opacity: .5; cursor: not-allowed; }
+.shuffle-panel {
+  display: none; margin-top: 10px;
+  border: 1px solid var(--sky-l); border-radius: var(--r);
+  overflow: hidden; background: #fff;
+}
+.shuffle-panel.show { display: block; }
+.shuffle-loading { padding: 14px; font-size: 13px; color: var(--ink3); display: flex; align-items: center; gap: 8px; }
+.shuffle-loading .spin { display: inline-block; animation: spin .8s linear infinite; font-size: 16px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.shuffle-result { padding: 0; }
+.shuffle-result-hd {
+  background: var(--sky-xl); padding: 10px 14px;
+  font-family: var(--ui); font-size: 10px; font-weight: 700;
+  letter-spacing: .6px; text-transform: uppercase;
+  color: var(--sky); border-bottom: 1px solid var(--sky-l);
+}
+.shuffle-result-name  { padding: 10px 14px 4px; font-size: 15px; font-weight: 700; color: var(--ink); }
+.shuffle-result-meta  { padding: 0 14px 6px; font-size: 12px; color: var(--ink3); }
+.shuffle-result-desc  { padding: 0 14px 12px; font-size: 13px; color: var(--ink2); line-height: 1.65; }
+.shuffle-result-acts  { padding: 8px 14px 12px; display: flex; gap: 8px; border-top: 1px solid var(--wash2); flex-wrap: wrap; align-items: center; }
+.shuf-pills { display: flex; flex-wrap: wrap; gap: 5px; padding: 6px 14px 0; }
+.shuf-pill  { font-size: 11px; background: var(--wash2); border: 1px solid var(--border); border-radius: 20px; padding: 3px 9px; color: var(--ink2); white-space: nowrap; }
+.shuf-pill-dist { background: #e8f5e9; border-color: #b8dbb9; color: #2e7d32; font-weight: 600; }
+.shuf-tip { margin: 0 14px 10px; padding: 8px 11px; background: var(--sand-l); border-left: 3px solid var(--sand); border-radius: 0 6px 6px 0; font-size: 12px; color: var(--ink2); line-height: 1.5; }
+.btn-shuffle-accept  { background: var(--sea); color: #fff; border: none; border-radius: 6px; padding: 7px 14px; font-size: 12px; font-weight: 700; cursor: pointer; min-height: 36px; }
+.btn-shuffle-again   { background: var(--wash2); color: var(--ink2); border: 1px solid var(--border); border-radius: 6px; padding: 7px 12px; font-size: 12px; cursor: pointer; min-height: 36px; }
+.btn-shuffle-dismiss { background: none; border: none; color: var(--ink3); font-size: 12px; cursor: pointer; padding: 7px 4px; min-height: 36px; }
+
+/* ── Edit form ── */
+.eform { background: var(--wash2); border-radius: 8px; padding: 12px; margin-top: 10px; }
+.erow  { display: flex; gap: 9px; flex-wrap: wrap; margin-bottom: 8px; }
+.ef    { flex: 1; min-width: 130px; }
+.ef label {
+  font-family: var(--ui);
+  font-size: 10px; font-weight: 700; letter-spacing: .5px;
+  text-transform: uppercase; color: var(--ink3);
+  display: block; margin-bottom: 4px;
+}
+.ef input, .ef textarea, .ef select {
+  width: 100%; font-family: var(--sans); font-size: 14px;
+  padding: 8px 10px; border: 1.5px solid var(--border);
+  border-radius: 6px; background: #fff; color: var(--ink);
+}
+.ef input:focus, .ef textarea:focus, .ef select:focus {
+  outline: none; border-color: var(--sky-mid);
+  box-shadow: 0 0 0 3px rgba(44,95,138,.15);
+}
+.ef textarea { resize: vertical; min-height: 64px; }
+.btn-save { font-size: 13px; font-weight: 600; background: var(--sky); color: #fff; border: none; border-radius: 6px; padding: 8px 16px; cursor: pointer; min-height: 36px; }
+.save-ok  { font-size: 11px; color: var(--sea); font-weight: 600; margin-left: 8px; display: none; }
+
+/* ═══════════════════════════════════════════════════════
+   SECTION RULE
+   ═══════════════════════════════════════════════════════ */
+.rule {
+  font-family: var(--ui);
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--sky); padding-bottom: 8px;
+  margin: 20px 0 11px;
+  border-bottom: 2px solid var(--sky-l);
+}
+.rule:first-child { margin-top: 0; }
+
+/* ═══════════════════════════════════════════════════════
+   BUNDLE (ticket packages)
+   ═══════════════════════════════════════════════════════ */
+.bundle {
+  border: 1.5px solid var(--sand-l);
+  border-top: 3px solid var(--sand);
+  border-radius: var(--r); padding: 14px 16px;
+  margin-bottom: 13px; background: #fff;
+}
+.bundle-hd   { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 7px; }
+.bundle-name { font-family: var(--serif); font-size: 16px; font-weight: 700; }
+.bundle-amt  { font-size: 18px; font-weight: 700; color: var(--sand); white-space: nowrap; }
+.bundle-amt small { font-size: 11px; font-weight: 400; color: var(--ink3); }
+.bundle-sites{ font-size: 13px; color: var(--ink2); line-height: 1.6; margin-bottom: 7px; }
+.bundle-warn { font-size: 11px; color: var(--terra); font-style: italic; }
+.btn-book {
+  display: inline-block; margin-top: 9px;
+  font-family: var(--ui); font-size: 12px; font-weight: 700;
+  padding: 8px 16px; background: var(--sand); color: #fff;
+  border-radius: 6px; text-decoration: none; cursor: pointer; border: none;
+  min-height: 36px; letter-spacing: .3px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   COST TABLE
+   ═══════════════════════════════════════════════════════ */
+.ctbl { width: 100%; border-collapse: collapse; font-size: 13px; }
+.ctbl th {
+  font-family: var(--ui);
+  font-size: 10px; text-transform: uppercase; letter-spacing: 1px;
+  font-weight: 700; color: var(--sky);
+  padding: 8px 11px; background: var(--sky-xl); text-align: left;
+}
+.ctbl td { padding: 9px 11px; border-bottom: 1px solid var(--border); vertical-align: top; }
+.ctbl tr:last-child td { border-bottom: none; }
+.ctbl tr.tot { background: var(--sand-l); font-weight: 700; }
+.ctbl .n { font-size: 11px; color: var(--ink3); }
+
+/* ═══════════════════════════════════════════════════════
+   MAP CARDS
+   ═══════════════════════════════════════════════════════ */
+.mcard {
+  background: #fff; border: 1px solid var(--border);
+  border-radius: var(--r); padding: 16px; margin-bottom: 13px;
+}
+.mcard h3  { font-family: var(--serif); font-size: 17px; margin-bottom: 6px; }
+.mcard p   { font-size: 13px; color: var(--ink2); margin-bottom: 10px; line-height: 1.6; }
+.btn-g { display:inline-flex;align-items:center;gap:6px;background:#1a6b2a;color:#fff;border:none;border-radius:6px;padding:9px 15px;font-size:13px;font-weight:600;cursor:pointer;margin-bottom:5px;min-height:44px; }
+.btn-b { display:inline-flex;align-items:center;gap:6px;background:var(--sky-mid);color:#fff;border:none;border-radius:6px;padding:9px 15px;font-size:13px;font-weight:600;cursor:pointer;margin-bottom:5px;min-height:44px; }
+.codebox { font-family:monospace;font-size:11px;background:var(--wash2);border:1px solid var(--border);padding:10px;border-radius:6px;max-height:120px;overflow-y:auto;white-space:pre-wrap;word-break:break-all;color:var(--ink2); }
+.btn-copy { font-size:12px;background:var(--sky);color:#fff;border:none;border-radius:6px;padding:6px 13px;cursor:pointer;margin-top:6px;display:inline-block;min-height:34px; }
+
+/* ═══════════════════════════════════════════════════════
+   TRAVEL INFO CARD
+   ═══════════════════════════════════════════════════════ */
+.icard { background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:13px; }
+.icard-t { font-family:var(--serif);font-size:17px;font-weight:700;margin-bottom:11px;display:flex;align-items:center;gap:8px; }
+.igrid { display:grid;grid-template-columns:1fr 1fr;gap:9px; }
+.ii label { font-family:var(--ui);font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:3px; }
+.ii input { width:100%;font-family:var(--sans);font-size:14px;padding:7px 9px;border:1.5px solid var(--border);border-radius:6px;background:var(--wash); }
+.ii input:focus { outline:none;border-color:var(--sky-mid);box-shadow:0 0 0 3px rgba(44,95,138,.15); }
+.btn-is { margin-top:11px;font-size:13px;font-weight:600;background:var(--sky);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;min-height:36px; }
+.is-ok { font-size:11px;color:var(--sea);font-weight:600;margin-left:8px;display:none; }
+
+/* ═══════════════════════════════════════════════════════
+   TIPS
+   ═══════════════════════════════════════════════════════ */
+.tip { border-left:3px solid var(--border);padding:10px 13px;margin-bottom:9px;background:#fff;border-radius:0 var(--r) var(--r) 0; }
+.tip.g { border-left-color:var(--sand); }
+.tip.t { border-left-color:var(--sea); }
+.tip.r { border-left-color:var(--terra); }
+.tip.a { border-left-color:var(--sky-mid); }
+.tip.s { border-left-color:var(--sky); }
+.tip h4 { font-size:14px;font-weight:600;margin-bottom:3px; }
+.tip p  { font-size:13px;color:var(--ink2);line-height:1.6; }
+
+/* ═══════════════════════════════════════════════════════
+   LOGISTICS ROWS
+   ═══════════════════════════════════════════════════════ */
+.lgx { background:#fff;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:13px; }
+.lgx-row { display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid var(--border);font-size:14px; }
+.lgx-row:last-child { border-bottom:none; }
+.lgx-icon  { width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;background:var(--sky-xl); }
+.lgx-label { font-weight:600;font-size:14px; }
+.lgx-detail{ font-size:12px;color:var(--ink3);margin-top:1px; }
+.lgx-val   { font-size:13px;font-weight:700;color:var(--sky);margin-left:auto;white-space:nowrap; }
+
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE — mobile-first adjustments
+   ═══════════════════════════════════════════════════════ */
 @media(max-width:640px){
-  /* MASTHEAD */
-  .mast{padding:20px 16px 16px}
-  .mast h1{font-size:21px}
-  .mast-sub{font-size:12px}
-  .pills{gap:5px}
-  .pill{font-size:10px;padding:3px 9px}
-
-  /* NAV */
-  .nav-i{padding:10px 12px;font-size:11px}
-
-  /* PANELS */
-  .panel{padding:16px 14px}
-
-  /* DAY TABS */
-  .dtabs{gap:5px}
-  .dtab{font-size:10px;padding:4px 10px}
-
-  /* DAY HEADER */
-  .day-hd{flex-direction:column;align-items:flex-start;gap:6px}
-  .day-badge{font-size:12px;padding:5px 11px}
-  .day-title{font-size:18px}
-
-  /* STOP CARDS */
-  .stop-hd{gap:8px;padding:10px 12px}
-  .stop-name{font-size:13px}
-  .stag{display:none} /* hide price tag on header; still visible inside expanded body */
-  .stop-body{padding:0 12px 11px}
-
-  /* EDIT FORM */
-  .eform{padding:10px}
-  .erow{flex-direction:column;gap:6px}
-  .ef{min-width:100%}
-
-  /* BUNDLE */
-  .bundle{padding:12px 13px}
-  .bundle-hd{flex-direction:column;gap:4px}
-  .bundle-amt{font-size:16px}
-
-  /* COST TABLES — make them scroll horizontally */
-  .ctbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:14px}
-  .ctbl{min-width:420px;font-size:12px}
-  .ctbl th,.ctbl td{padding:7px 9px}
-
-  /* Table wrapper divs: allow horizontal scroll instead of clipping */
-  div[style*="overflow:hidden"]{overflow:visible !important}
-
-  /* All cost tables become horizontally scrollable blocks */
-  .ctbl{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;min-width:380px;width:100%}
-
-  /* TWO-COLUMN GRIDS → single column */
+  body { font-size: 15px; } /* keep readable on mobile */
+  .mast { padding: calc(18px + env(safe-area-inset-top)) 16px 20px; }
+  .mast h1 { font-size: 26px; }
+  .mast-icons { font-size: 22px; letter-spacing: 4px; }
+  .nav-i { padding: 0 13px; font-size: 11px; height: 46px; }
+  .panel { padding: 13px 12px 20px; }
+  .dtabs { gap: 5px; }
+  .dtab  { font-size: 11px; padding: 6px 12px; }
+  .day-hd { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .day-badge { font-size: 10px; padding: 4px 10px; }
+  .day-title { font-size: 19px; }
+  .stop-hd { gap: 8px; padding: 12px; }
+  .stop-name { font-size: 14px; }
+  .stag { display: none; } /* shown inside expanded body */
+  .stop-body { padding: 0 12px 11px; }
+  .eform { padding: 10px; }
+  .erow  { flex-direction: column; gap: 6px; }
+  .ef    { min-width: 100%; }
+  .bundle { padding: 12px 13px; }
+  .bundle-hd { flex-direction: column; gap: 4px; }
+  .bundle-amt { font-size: 16px; }
+  .ctbl-wrap { overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:14px; }
+  .ctbl  { min-width:420px;font-size:12px;display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;width:100%; }
+  .ctbl th,.ctbl td { padding:7px 9px; }
+  div[style*="overflow:hidden"]{ overflow:visible !important; }
+  .ctbl  { display:block;overflow-x:auto;min-width:380px;width:100%; }
   div[style*="grid-template-columns:1fr 1fr"],
-  div[style*="grid-template-columns: 1fr 1fr"]{
-    display:block !important;
-  }
+  div[style*="grid-template-columns: 1fr 1fr"]{ display:block !important; }
   div[style*="grid-template-columns:1fr 1fr"] > div,
-  div[style*="grid-template-columns: 1fr 1fr"] > div{
-    margin-bottom:10px;
-  }
-
-  /* IGRID */
-  .igrid{grid-template-columns:1fr}
-
-  /* LOGISTICS ROWS */
-  .lgx-row{flex-wrap:wrap}
-  .lgx-val{margin-left:0;margin-top:3px;width:100%}
-
-  /* MAP TAB */
-  .codebox{font-size:10px}
-
-  /* TIPS */
-  .tip{padding:9px 11px}
-  .tip h4{font-size:12px}
-  .tip p{font-size:11px}
-
-  /* ALERT BOXES */
-  .alert{font-size:12px;padding:10px 12px}
-
-  /* RULE */
-  .rule{font-size:9px;letter-spacing:1.5px}
-
-  /* FERRY vs FLIGHT inline grids */
-  div[style*="display:grid"]{
-    display:block !important;
-  }
-  div[style*="display:grid"] > div{
-    margin-bottom:12px;
-  }
-
-  /* Full-trip table wrapper */
-  .ctbl-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
-
-  /* Buttons row in stop body */
-  .acts{flex-wrap:wrap;gap:5px}
-  .btn-sm{font-size:10px;padding:4px 9px}
+  div[style*="grid-template-columns: 1fr 1fr"] > div{ margin-bottom:10px; }
+  .igrid { grid-template-columns:1fr; }
+  .lgx-row { flex-wrap:wrap; }
+  .lgx-val { margin-left:0;margin-top:3px;width:100%; }
+  .codebox { font-size:10px; }
+  .tip { padding:9px 11px; }
+  .tip h4 { font-size:13px; }
+  .tip p  { font-size:12px; }
+  .alert  { font-size:13px;padding:10px 12px; }
+  .rule   { font-size:9px;letter-spacing:1.5px; }
+  div[style*="display:grid"]{ display:block !important; }
+  div[style*="display:grid"] > div{ margin-bottom:12px; }
+  .ctbl-scroll { overflow-x:auto;-webkit-overflow-scrolling:touch; }
+  .acts { flex-wrap:wrap;gap:5px; }
+  .btn-sm { font-size:12px;padding:6px 10px; }
 }
 
-/* PWA INSTALL BANNER */
-#install-banner{display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;
-  background:var(--ink);color:var(--paper);padding:14px 18px calc(14px + env(safe-area-inset-bottom));
-  flex-direction:row;align-items:center;gap:12px;box-shadow:0 -4px 20px rgba(0,0,0,.25)}
-#install-banner.show{display:flex}
-#install-banner .ib-text{flex:1;font-size:13px;line-height:1.4}
-#install-banner .ib-text strong{display:block;font-size:14px;margin-bottom:2px;color:var(--gold)}
-#install-banner button{font-size:12px;font-weight:700;border:none;border-radius:4px;padding:8px 14px;cursor:pointer;white-space:nowrap}
-#install-banner .ib-yes{background:var(--gold);color:#fff}
-#install-banner .ib-no{background:rgba(255,255,255,.1);color:rgba(255,255,255,.6)}
-#offline-toast{display:none;position:fixed;top:60px;left:50%;transform:translateX(-50%);
-  background:#333;color:#fff;padding:8px 16px;border-radius:20px;font-size:12px;z-index:9998;
-  white-space:nowrap;box-shadow:0 2px 12px rgba(0,0,0,.3)}
-#offline-toast.show{display:block}
-/* ── SYNC / EDITOR MODE ── */
-#sync-bar{position:fixed;bottom:0;left:0;right:0;z-index:9990;
-  display:flex;align-items:center;gap:10px;padding:9px 16px calc(9px + env(safe-area-inset-bottom));
-  background:#fff;border-top:1px solid var(--border);font-size:12px;box-shadow:0 -2px 12px rgba(0,0,0,.07)}
-#sync-status{display:flex;align-items:center;gap:6px;flex:1;font-size:12px;color:var(--ink3)}
-.sync-dot{width:8px;height:8px;border-radius:50%;background:#ccc;flex-shrink:0;transition:background .3s}
-.sync-dot.live{background:#4caf50;box-shadow:0 0 0 2px #c8e6c9}
-.sync-dot.error{background:#f44336}
-.sync-dot.pending{background:#ff9800;animation:pulse-dot .8s infinite}
-@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}
-#btn-editor-mode{font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;cursor:pointer;border:none;
-  background:var(--paper2);color:var(--ink3);transition:all .2s}
-#btn-editor-mode.active{background:var(--gold);color:#fff}
-body.is-editor .stop-check{pointer-events:auto}
-body:not(.is-editor) .stop-check{pointer-events:none}
+/* ═══════════════════════════════════════════════════════
+   PWA INSTALL BANNER
+   ═══════════════════════════════════════════════════════ */
+#install-banner {
+  display:none; position:fixed; bottom:0; left:0; right:0; z-index:9999;
+  background: linear-gradient(135deg, #0d2b45, #1a3a5c);
+  color:#fff; padding:14px 18px calc(14px + env(safe-area-inset-bottom));
+  flex-direction:row; align-items:center; gap:12px;
+  box-shadow:0 -4px 20px rgba(0,0,0,.25);
+}
+#install-banner.show { display:flex; }
+#install-banner .ib-text { flex:1; font-size:13px; line-height:1.4; }
+#install-banner .ib-text strong { display:block; font-size:14px; margin-bottom:2px; color: #ffd97d; }
+#install-banner button { font-size:13px;font-weight:700;border:none;border-radius:8px;padding:9px 14px;cursor:pointer;white-space:nowrap;min-height:44px; }
+#install-banner .ib-yes { background:var(--sand); color:#fff; }
+#install-banner .ib-no  { background:rgba(255,255,255,.12); color:rgba(255,255,255,.75); }
+
+/* ── Offline toast ── */
+#offline-toast {
+  display:none; position:fixed; top:58px; left:50%; transform:translateX(-50%);
+  background: rgba(13,43,69,.92); color:#fff;
+  padding:9px 18px; border-radius:24px; font-size:13px; z-index:9998;
+  white-space:nowrap; box-shadow:0 3px 14px rgba(0,0,0,.3);
+}
+#offline-toast.show { display:block; }
+
+/* ── Toast msg (a11y) ── */
+#toast-msg {
+  display:none; position:fixed; top:58px; left:50%; transform:translateX(-50%);
+  background: rgba(13,43,69,.92); color:#fff;
+  padding:9px 18px; border-radius:24px; font-size:13px; z-index:9997;
+  white-space:nowrap; box-shadow:0 3px 14px rgba(0,0,0,.3);
+}
+#toast-msg.show { display:block; }
+
+/* ═══════════════════════════════════════════════════════
+   SYNC BAR (bottom fixed)
+   ═══════════════════════════════════════════════════════ */
+#sync-bar {
+  position:fixed; bottom:0; left:0; right:0; z-index:9990;
+  display:flex; align-items:center; gap:10px;
+  padding:9px 14px calc(9px + env(safe-area-inset-bottom));
+  background:#fff; border-top:1px solid var(--border);
+  font-size:12px;
+  box-shadow: 0 -1px 0 var(--border), 0 -4px 16px rgba(26,58,92,.07);
+}
+#sync-status { display:flex;align-items:center;gap:6px;flex:1;font-size:12px;color:var(--ink3); }
+.sync-dot { width:8px;height:8px;border-radius:50%;background:#ccc;flex-shrink:0;transition:background .3s; }
+.sync-dot.live    { background:#4caf50; box-shadow:0 0 0 2px #c8e6c9; }
+.sync-dot.error   { background:#e53935; }
+.sync-dot.pending { background:#fb8c00; animation:pulse-dot .8s infinite; }
+@keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:.4} }
+#btn-editor-mode {
+  font-family:var(--ui); font-size:11px;font-weight:700;
+  padding:6px 12px; border-radius:20px; cursor:pointer; border:none;
+  background:var(--wash2); color:var(--ink3); transition:all .2s; min-height:34px;
+}
+#btn-editor-mode.active { background:var(--sky); color:#fff; }
+body.is-editor .stop-check { pointer-events:auto; }
+body:not(.is-editor) .stop-check { pointer-events:none; }
 body:not(.is-editor) .btn-edit,
 body:not(.is-editor) .btn-delete,
 body:not(.is-editor) .btn-shuffle,
 body:not(.is-editor) .drag-handle,
-body:not(.is-editor) .btn-save{opacity:.35;pointer-events:none;cursor:default}
-body:not(.is-editor) .eform{display:none !important}
+body:not(.is-editor) .btn-save { opacity:.35;pointer-events:none;cursor:default; }
+body:not(.is-editor) .eform { display:none !important; }
 
-/* PIN modal */
-#pin-modal{display:none;position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.55);
-  align-items:center;justify-content:center}
-#pin-modal.show{display:flex}
-#pin-box{background:#fff;border-radius:12px;padding:28px 24px;width:280px;text-align:center;
-  box-shadow:0 8px 40px rgba(0,0,0,.25)}
-#pin-box h3{font-family:var(--serif);font-size:20px;margin-bottom:6px}
-#pin-box p{font-size:12px;color:var(--ink3);margin-bottom:16px}
-#pin-input{width:100%;font-size:24px;letter-spacing:8px;text-align:center;padding:10px;
-  border:2px solid var(--border);border-radius:6px;font-family:monospace;margin-bottom:12px}
-#pin-input:focus{outline:none;border-color:var(--gold)}
-#pin-error{font-size:12px;color:var(--terra);min-height:18px;margin-bottom:8px}
-#pin-submit{width:100%;padding:10px;background:var(--ink);color:#fff;border:none;
-  border-radius:6px;font-size:14px;font-weight:700;cursor:pointer;margin-bottom:8px}
-#pin-cancel{font-size:12px;color:var(--ink3);background:none;border:none;cursor:pointer}
+/* ═══════════════════════════════════════════════════════
+   PIN MODAL
+   ═══════════════════════════════════════════════════════ */
+#pin-modal {
+  display:none; position:fixed; inset:0; z-index:99999;
+  background:rgba(13,43,69,.6);
+  align-items:center; justify-content:center;
+}
+#pin-modal.show { display:flex; }
+#pin-box {
+  background:#fff; border-radius:var(--r-lg);
+  padding:28px 24px; width:min(300px,90vw);
+  text-align:center; box-shadow:0 12px 48px rgba(0,0,0,.25);
+}
+#pin-box h3 { font-family:var(--serif);font-size:22px;margin-bottom:6px; }
+#pin-box p  { font-size:13px;color:var(--ink3);margin-bottom:16px; }
+#pin-input  {
+  width:100%;font-size:26px;letter-spacing:8px;text-align:center;
+  padding:10px;border:2px solid var(--border);border-radius:8px;
+  font-family:monospace;margin-bottom:12px;min-height:52px;
+}
+#pin-input:focus { outline:none;border-color:var(--sky-mid);box-shadow:0 0 0 3px rgba(44,95,138,.2); }
+#pin-error  { font-size:13px;color:var(--terra);min-height:18px;margin-bottom:8px;font-weight:600; }
+#pin-submit {
+  width:100%;padding:12px;background:var(--sky);color:#fff;border:none;
+  border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;
+  margin-bottom:8px;min-height:48px;
+}
+#pin-cancel { font-size:13px;color:var(--ink3);background:none;border:1px solid var(--border);border-radius:8px;cursor:pointer;padding:8px;width:100%;min-height:40px; }
 
-/* Setup guide modal */
-#setup-modal{display:none;position:fixed;inset:0;z-index:99998;background:rgba(0,0,0,.6);
-  align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto}
-#setup-modal.show{display:flex}
-#setup-box{background:#fff;border-radius:12px;padding:24px;max-width:500px;width:100%;margin:auto}
-#setup-box h2{font-family:var(--serif);font-size:22px;margin-bottom:4px}
-#setup-box .setup-sub{font-size:12px;color:var(--ink3);margin-bottom:18px}
-.setup-step{display:flex;gap:12px;margin-bottom:16px;align-items:flex-start}
-.setup-num{width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;
-  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
-.setup-step-body{flex:1}
-.setup-step-body strong{display:block;font-size:13px;margin-bottom:3px}
-.setup-step-body p{font-size:12px;color:var(--ink2);line-height:1.5}
-.setup-step-body a{color:var(--azure)}
-.cfg-input{width:100%;font-size:12px;font-family:monospace;padding:8px;border:1px solid var(--border);
-  border-radius:4px;margin-top:6px;background:var(--paper2)}
-#btn-save-cfg{margin-top:16px;padding:10px 20px;background:var(--teal);color:#fff;border:none;
-  border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;width:100%}
-#btn-close-setup{margin-top:8px;width:100%;padding:8px;background:none;border:1px solid var(--border);
-  border-radius:6px;font-size:12px;cursor:pointer;color:var(--ink3)}
-.cfg-saved{font-size:11px;color:var(--teal);font-weight:600;margin-top:6px;display:none}
+/* ═══════════════════════════════════════════════════════
+   SETUP MODAL
+   ═══════════════════════════════════════════════════════ */
+#setup-modal {
+  display:none;position:fixed;inset:0;z-index:99998;
+  background:rgba(13,43,69,.6);
+  align-items:flex-start;justify-content:center;
+  padding:20px;overflow-y:auto;
+}
+#setup-modal.show { display:flex; }
+#setup-box { background:#fff;border-radius:var(--r-lg);padding:24px;max-width:500px;width:100%;margin:auto; }
+#setup-box h2 { font-family:var(--serif);font-size:22px;margin-bottom:4px; }
+#setup-box .setup-sub { font-size:12px;color:var(--ink3);margin-bottom:18px; }
+.setup-step { display:flex;gap:12px;margin-bottom:16px;align-items:flex-start; }
+.setup-num  { width:26px;height:26px;border-radius:50%;background:var(--sky);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px; }
+.setup-step-body { flex:1; }
+.setup-step-body strong { display:block;font-size:13px;margin-bottom:3px; }
+.setup-step-body p      { font-size:12px;color:var(--ink2);line-height:1.5; }
+.setup-step-body a      { color:var(--sky-mid); }
+.cfg-input  { width:100%;font-size:12px;font-family:monospace;padding:8px;border:1.5px solid var(--border);border-radius:6px;margin-top:6px;background:var(--wash2); }
+.cfg-input:focus { outline:none;border-color:var(--sky-mid); }
+#btn-save-cfg   { margin-top:16px;padding:11px 20px;background:var(--sea);color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;width:100%;min-height:48px; }
+#btn-close-setup{ margin-top:8px;width:100%;padding:9px;background:none;border:1.5px solid var(--border);border-radius:8px;font-size:13px;cursor:pointer;color:var(--ink3);min-height:44px; }
+.cfg-saved { font-size:11px;color:var(--sea);font-weight:600;margin-top:6px;display:none; }
 
+/* ── Skip link ── */
+.skip-link { position:absolute;top:-100%;left:0;z-index:99999;background:var(--sky);color:#fff;padding:12px 20px;font-size:14px;font-weight:600;text-decoration:none;border-radius:0 0 8px 0; }
+.skip-link:focus { top:0; }
+
+/* ── Reduced motion ── */
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
+}
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
 
+<div id="main-content" style="display:contents">
 <div id="install-banner">
   <div class="ib-text"><strong>🏛️ Add to Home Screen</strong>Install for offline access & app icon</div>
   <button class="ib-yes" onclick="installPWA()">Install</button>
@@ -485,16 +824,15 @@ body:not(.is-editor) .eform{display:none !important}
     ".write": "auth.uid != null || query.orderBy == 'token'"
   }
 }</textarea>
-      <p style="margin-top:6px">Actually use this simpler rule that works with REST token auth:</p>
-      <textarea class="cfg-input" rows="4" readonly style="color:#2e7d32;background:#f1f8f1">{
+      <p style="margin-top:8px;font-size:12px;color:var(--ink2)">In Firebase → Realtime Database → Rules, set your rules to:</p>
+      <textarea class="cfg-input" rows="6" readonly style="color:#2e7d32;background:#f1f8f1;margin-top:4px">{
   "rules": {
     ".read": true,
-    ".write": false
+    ".write": "newData.child('pw').val() === 'YOUR_PASSWORD_HERE'"
   }
 }</textarea>
-      <p style="margin-top:6px;color:var(--terra);font-size:11px">Set rules to the above (write: false) in Firebase, then enter your write token below. The app will use a database secret to authenticate writes — only your device can push changes.</p>
-      <input id="token-set-input" class="cfg-input" type="password" placeholder="e.g. Greece2026!Fam" style="height:38px;resize:none;margin-top:6px">
-      <p style="margin-top:6px;font-size:11px;color:var(--ink3)">To get your database secret: Firebase Console → Project Settings → Service accounts → Database secrets → Show → copy it.</p>
+      <p style="margin-top:6px;font-size:11px;color:var(--ink3)">Replace <strong>YOUR_PASSWORD_HERE</strong> with a password you choose. Then enter that same password below. The app includes it with every save so only your device can write.</p>
+      <input id="token-set-input" class="cfg-input" type="password" placeholder="Your chosen write password" style="height:38px;resize:none;margin-top:6px">
     </div></div>
 
     <button id="btn-save-cfg" onclick="saveConfig()">Save &amp; Connect</button>
@@ -504,20 +842,12 @@ body:not(.is-editor) .eform{display:none !important}
 </div>
 
 <div id="offline-toast">📵 You're offline — itinerary still works!</div>
+<div id="toast-msg" role="status" aria-live="polite" aria-atomic="true"></div>
 
 <div class="mast">
-  <div class="mast-eyebrow">Family of 4 · Rental Car · 12 Days</div>
+  <span class="mast-icons">🏛️✈️🌊</span>
   <h1>Greece, April 2026</h1>
-  <p class="mast-sub">Athens · Delphi · Peloponnese · Piraeus Night Ferry · Crete / Chania</p>
-  <div class="pills">
-    <span class="pill">✈️ Fly Apr 15 · Land Apr 16</span>
-    <span class="pill">🏠 Neos Kosmos, Athens</span>
-    <span class="pill">🚗 Rental Car Apr 21</span>
-    <span class="pill">⛴️ Piraeus → Heraklion Night Ferry Apr 23</span>
-    <span class="pill">🏝️ Chania Apr 24–27</span>
-    <span class="pill">✈️ Fly home Apr 29</span>
-    <span class="pill g" id="total-stops-pill">Loading…</span>
-  </div>
+  <p class="mast-sub">Athens · Peloponnese · Crete</p>
 </div>
 
 <nav class="nav">
@@ -527,7 +857,6 @@ body:not(.is-editor) .eform{display:none !important}
   <div class="nav-i" onclick="showTab('maps',this)">🗺️ Maps Export</div>
   <div class="nav-i" onclick="showTab('travel',this)">✈️ Travel Info</div>
   <div class="nav-i" onclick="showTab('tips',this)">💡 Tips</div>
-  <div class="nav-i" onclick="showTab('ferrvfly',this)">⚖️ Ferry vs. Flight</div>
 </nav>
 
 <!-- ===== DAY-BY-DAY ===== -->
@@ -795,173 +1124,9 @@ body:not(.is-editor) .eform{display:none !important}
 </div>
 
 <!-- ===== FERRY vs FLIGHT ===== -->
-<div id="tab-ferrvfly" class="panel" style="max-width:880px;margin:0 auto;padding:22px 18px">
 
-  <div style="background:var(--ink);color:var(--paper);border-radius:6px;padding:16px 18px;margin-bottom:18px">
-    <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold-b);margin-bottom:6px">Bottom Line Up Front</div>
-    <div style="font-family:var(--serif);font-size:18px;font-weight:700;line-height:1.3;margin-bottom:8px">Flying is cheaper for 4 people. The ferry is a richer experience — and solves the rental car problem.</div>
-    <div style="font-size:13px;color:rgba(250,248,243,.75);line-height:1.6">The flight wins on pure cost (~€240–360 total vs. ~€470–680 ferry). But the ferry keeps your rental car with you the whole trip, eliminates the need to return and re-rent a car in Crete, and adds a genuinely memorable overnight crossing as part of the adventure. Your call comes down to budget vs. convenience vs. experience.</div>
-  </div>
 
-  <div class="rule">Cost Comparison — Party of 4 · One Direction (Mainland → Crete)</div>
-
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px">
-
-    <!-- FERRY CARD -->
-    <div style="background:#fff;border:2px solid var(--sea);border-radius:8px;overflow:hidden">
-      <div style="background:var(--sea);color:#fff;padding:10px 14px">
-        <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;opacity:.8;margin-bottom:2px">Option A</div>
-        <div style="font-family:var(--serif);font-size:17px;font-weight:700">⛴️ Overnight Ferry</div>
-        <div style="font-size:11px;opacity:.8;margin-top:2px">Piraeus → Heraklion · ~9.5 hrs</div>
-      </div>
-      <div style="padding:14px">
-        <table class="ctbl" style="font-size:12px">
-          <thead><tr><th>Item</th><th>Cost</th></tr></thead>
-          <tbody>
-            <tr><td>4 × economy deck seat</td><td>€200–260</td></tr>
-            <tr><td><strong>— OR —</strong> 4-berth private cabin</td><td>€100–180 <span style="font-size:10px;color:var(--ink3)">total</span></td></tr>
-            <tr><td>Vehicle transport (standard car)</td><td>€120–200</td></tr>
-            <tr style="background:var(--sea-l);font-weight:700"><td>Total (cabin + car)</td><td>€220–380</td></tr>
-            <tr style="background:var(--sea-l);font-weight:700"><td>Total (deck seats + car)</td><td>€320–460</td></tr>
-          </tbody>
-        </table>
-        <div style="font-size:11px;color:var(--ink3);margin-top:10px;line-height:1.6">
-          <strong>Cabin strongly recommended</strong> for a family — private room, real beds, private bathroom. Deck seats are airplane recliners and workable but tiring over 9.5 hrs.<br><br>
-          <strong>Book at:</strong> <a href="https://ferryhopper.com" target="_blank" style="color:var(--sea)">ferryhopper.com</a> or directly at <a href="https://www.minoan.gr" target="_blank" style="color:var(--sea)">minoan.gr</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- FLIGHT CARD -->
-    <div style="background:#fff;border:2px solid var(--teal);border-radius:8px;overflow:hidden">
-      <div style="background:var(--teal);color:#fff;padding:10px 14px">
-        <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;opacity:.8;margin-bottom:2px">Option B</div>
-        <div style="font-family:var(--serif);font-size:17px;font-weight:700">✈️ Direct Flight</div>
-        <div style="font-size:11px;opacity:.8;margin-top:2px">ATH → HER · ~50 minutes</div>
-      </div>
-      <div style="padding:14px">
-        <table class="ctbl" style="font-size:12px">
-          <thead><tr><th>Item</th><th>Cost</th></tr></thead>
-          <tbody>
-            <tr><td>4 × one-way flight (budget fare)</td><td>€160–280</td></tr>
-            <tr><td>4 × one-way (average April fare)</td><td>€280–400</td></tr>
-            <tr><td>Checked bags (1 per person, if needed)</td><td>€60–80</td></tr>
-            <tr><td>ATH airport taxi/transfer to terminal</td><td>€0 <span style="font-size:10px;color:var(--ink3)">(you're already in Athens)</span></td></tr>
-            <tr style="background:var(--teal-l);font-weight:700"><td>Total (budget, carry-on only)</td><td>~€160–280</td></tr>
-            <tr style="background:var(--teal-l);font-weight:700"><td>Total (avg fare + bags)</td><td>~€340–480</td></tr>
-          </tbody>
-        </table>
-        <div style="font-size:11px;color:var(--ink3);margin-top:10px;line-height:1.6">
-          <strong>Airlines:</strong> Aegean Airlines (most flights, most reliable) and Sky Express (often cheapest). Both fly direct ATH→HER ~15x/day.<br><br>
-          <strong>Book at:</strong> <a href="https://www.aegeanair.com" target="_blank" style="color:var(--teal)">aegeanair.com</a> or <a href="https://www.skyexpress.gr" target="_blank" style="color:var(--teal)">skyexpress.gr</a> — or compare on Google Flights
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="rule">The Hidden Cost: Rental Car Logistics</div>
-  <div class="alert terra"><b>⚠️ This is the most important factor in your decision</b>Your rental car is reserved from April 21. If you fly to Crete, you must either (A) return the car in Athens before flying and pick up a NEW rental in Heraklion, or (B) arrange a one-way rental drop-off in Piraeus and pick-up in Heraklion. Both options add cost and complexity. The ferry eliminates this entirely — your car travels with you.</div>
-
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px">
-    <div style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:14px">
-      <div style="font-weight:700;font-size:13px;color:var(--sea);margin-bottom:8px">⛴️ Ferry — Car Logistics</div>
-      <div style="font-size:12px;color:var(--ink2);line-height:1.7">
-        ✅ Drive your Peloponnese rental car onto the ferry in Piraeus<br>
-        ✅ Drive it off in Heraklion the next morning<br>
-        ✅ Same car, same company, no additional pickup<br>
-        ✅ Drop it at Heraklion Airport on Apr 28–29<br>
-        ✅ <strong>Zero extra rental car steps</strong>
-      </div>
-    </div>
-    <div style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:14px">
-      <div style="font-weight:700;font-size:13px;color:var(--teal);margin-bottom:8px">✈️ Flight — Car Logistics (3 options)</div>
-      <div style="font-size:12px;color:var(--ink2);line-height:1.7">
-        <strong>Option 1:</strong> Return car in Athens Apr 23 · Pick up new rental in Heraklion Apr 24<br>
-        → Extra rental cost: €60–120 for 4 days in Crete<br><br>
-        <strong>Option 2:</strong> One-way rental Athens→Piraeus, one-way Heraklion→Heraklion Airport<br>
-        → One-way drop fee: €50–150 extra<br><br>
-        <strong>Option 3:</strong> No car in Crete — use taxis/buses<br>
-        → Limits Elafonissi, Balos, Falassarna access significantly
-      </div>
-    </div>
-  </div>
-
-  <div class="rule">Full Trip Cost Comparison — Both Legs (To + From Crete, Party of 4)</div>
-  <div style="background:#fff;border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-bottom:20px">
-    <table class="ctbl">
-      <thead><tr><th>Scenario</th><th>To Crete (Apr 23)</th><th>From Crete (Apr 28–29)</th><th>Extra Car Cost</th><th style="color:var(--gold)">Total Est.</th></tr></thead>
-      <tbody>
-        <tr style="background:var(--sea-l)">
-          <td><strong>⛴️ Ferry both ways</strong><br><span class="n">Cabin + car each direction</span></td>
-          <td>€220–380</td>
-          <td>€220–380<br><span class="n">Return ferry HER→PIR</span></td>
-          <td>€0<br><span class="n">Same car throughout</span></td>
-          <td><strong>€440–760</strong></td>
-        </tr>
-        <tr>
-          <td><strong>⛴️ Ferry in / ✈️ Fly out</strong><br><span class="n">Most popular combo</span></td>
-          <td>€220–380<br><span class="n">Cabin + car</span></td>
-          <td>€160–280<br><span class="n">4x HER→ATH flights</span></td>
-          <td>€0–50<br><span class="n">Drop car at HER airport</span></td>
-          <td><strong>€380–710</strong></td>
-        </tr>
-        <tr style="background:var(--teal-l)">
-          <td><strong>✈️ Fly both ways</strong><br><span class="n">Cheapest transport, most complex car logistics</span></td>
-          <td>€160–280<br><span class="n">4x ATH→HER flights</span></td>
-          <td>€160–280<br><span class="n">4x HER→ATH flights</span></td>
-          <td>€60–150<br><span class="n">New Crete rental car</span></td>
-          <td><strong>€380–710</strong></td>
-        </tr>
-        <tr style="background:var(--gold-l)">
-          <td><strong>✈️ Fly in / ⛴️ Ferry out</strong><br><span class="n">Gets you there fast, relaxed return overnight</span></td>
-          <td>€160–280<br><span class="n">4x ATH→HER flights</span></td>
-          <td>€220–380<br><span class="n">Cabin + car HER→PIR</span></td>
-          <td>€60–150<br><span class="n">New Crete rental</span></td>
-          <td><strong>€440–810</strong></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="rule">Pros & Cons at a Glance</div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px">
-    <div style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:14px">
-      <div style="font-weight:700;font-size:13px;color:var(--sea);margin-bottom:10px">⛴️ Ferry — Pros & Cons</div>
-      <div style="font-size:12px;line-height:1.8">
-        <span style="color:var(--olive)">✅</span> Car travels with you — no re-rental needed<br>
-        <span style="color:var(--olive)">✅</span> Saves a hotel night (overnight crossing)<br>
-        <span style="color:var(--olive)">✅</span> No luggage limits, no bag fees<br>
-        <span style="color:var(--olive)">✅</span> A memorable experience in itself<br>
-        <span style="color:var(--olive)">✅</span> No airport hassle, no security queues<br>
-        <span style="color:var(--olive)">✅</span> Arrive in Crete rested with a full day ahead<br>
-        <span style="color:var(--terra)">❌</span> 9.5 hours vs. 50 minutes<br>
-        <span style="color:var(--terra)">❌</span> Can be rough in bad weather (April is generally calm)<br>
-        <span style="color:var(--terra)">❌</span> Must drive to Piraeus from Peloponnese first<br>
-        <span style="color:var(--terra)">❌</span> More expensive if you price just transport (no car)
-      </div>
-    </div>
-    <div style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:14px">
-      <div style="font-weight:700;font-size:13px;color:var(--teal);margin-bottom:10px">✈️ Flight — Pros & Cons</div>
-      <div style="font-size:12px;line-height:1.8">
-        <span style="color:var(--olive)">✅</span> 50 minutes door to door (once at airport)<br>
-        <span style="color:var(--olive)">✅</span> Cheaper for pure transport (4 people, no car)<br>
-        <span style="color:var(--olive)">✅</span> Many daily departures — flexible timing<br>
-        <span style="color:var(--olive)">✅</span> Arrive in Crete with a full afternoon<br>
-        <span style="color:var(--terra)">❌</span> Must return rental car + pick up new one in Crete<br>
-        <span style="color:var(--terra)">❌</span> Checked bag fees add up for 4 people<br>
-        <span style="color:var(--terra)">❌</span> Airport check-in + security + wait time (~2.5 hrs total)<br>
-        <span style="color:var(--terra)">❌</span> Weight/size limits — harder with full vacation luggage<br>
-        <span style="color:var(--terra)">❌</span> April 23 flight after a full Peloponnese driving day is tiring
-      </div>
-    </div>
-  </div>
-
-  <div class="rule">Our Recommendation</div>
-  <div class="alert teal"><b>💡 Best value combo: Ferry in (Apr 23 night) → Fly out (Apr 28–29)</b>Take the overnight ferry from Piraeus to Heraklion with your car — it solves every car logistics problem, saves a hotel night, and is genuinely one of the best travel experiences in Greece. On the way back, fly HER→ATH (50 min, ~€40–70/person) and return your car at Heraklion Airport before the flight. This is the most popular itinerary structure among travelers doing exactly your route. Total transport cost estimate: €380–660 for the party of 4 both directions.</div>
-  <div class="alert"><b>📱 Book these NOW — don't wait</b>The 4-berth cabin on the Piraeus→Heraklion overnight ferry is the most important thing to book first. <a href="https://ferryhopper.com" target="_blank" style="color:var(--gold)">ferryhopper.com</a> shows real-time availability. April is shoulder season so it won't sell out tomorrow, but good cabin categories go fast. Flights for the return can be booked on <a href="https://www.aegeanair.com" target="_blank" style="color:var(--gold)">aegeanair.com</a> or Google Flights — April fares are currently ~€77–87/person one-way.</div>
-
-</div>
-
+</div><!-- /main-content -->
 <script>
 // ================================================================
 // ALL DAYS DATA
@@ -1715,6 +1880,8 @@ function dismissShuffle(dayIdx, si) {
 }
 
 function showToast(msg){
+  const tm=document.getElementById('toast-msg');
+  if(tm){tm.textContent=msg;tm.classList.add('show');setTimeout(()=>tm.classList.remove('show'),2500);return;}
   const t=document.getElementById('offline-toast');
   t.textContent=msg;
   t.classList.add('show');
@@ -1841,7 +2008,8 @@ function initDragAndDrop(dayIdx){
 function updatePill(){
   let total=0;
   DAYS.forEach(d=>total+=d.stops.length);
-  document.getElementById('total-stops-pill').textContent=`${total} total stops`;
+  const pill = document.getElementById('total-stops-pill');
+  if (pill) pill.textContent=`${total} total stops`;
 }
 
 // ================================================================
@@ -2073,7 +2241,9 @@ function initFirebase() {
     return;
   }
   fbDbUrl = saved.config.databaseURL.replace(/\/$/, '');
-  fbWriteToken = saved.token || '';
+  // Use explicitly set token, or fall back to the Firebase apiKey
+  // Firebase REST accepts apiKey as ?auth= for databases still in legacy mode
+  fbWriteToken = saved.token || saved.config.apiKey || '';
   syncConfigured = true;
   setSyncLabel('connecting');
   startPolling();
@@ -2093,10 +2263,12 @@ async function fbGet() {
 }
 
 async function fbSet(data) {
-  const res = await fetch(writeUrl(), {
+  // Inject write password into payload so Firebase rule can validate it
+  const payload = fbWriteToken ? Object.assign({}, data, { pw: fbWriteToken }) : data;
+  const res = await fetch(readUrl(), {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data)
+    body: JSON.stringify(payload)
   });
   if (!res.ok) throw new Error('PUT failed: ' + res.status);
   return res.json();
@@ -2151,6 +2323,8 @@ async function pushState() {
 // ── APPLY REMOTE STATE ──────────────────────────────────────────
 function applyRemoteState(data) {
   if (!data || !data.days) return;
+  // Strip internal write-auth field before applying
+  if (data.pw) delete data.pw;
   data.days.forEach((remoteDay, i) => {
     if (!DAYS[i]) return;
     DAYS[i].stops = remoteDay.stops || DAYS[i].stops;
