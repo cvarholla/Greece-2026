@@ -1771,7 +1771,14 @@ async function shuffleStop(dayIdx, si) {
   const prompt = buildShufflePrompt(d, s, si, kind, region, s.lat, s.lng, history);
 
   try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
+    // PROXY_URL points to your Cloudflare Worker (see setup instructions)
+    const PROXY_URL = window.SHUFFLE_PROXY_URL || 'https://greece-shuffle.cvarholla.workers.dev';
+    if (!PROXY_URL) {
+      panel.innerHTML = `<div class="shuffle-loading" style="color:var(--terra)">⚙️ Shuffle needs a proxy URL configured.<br><small style="color:var(--ink3)">See the setup instructions in the README or ask the trip organiser.</small></div>`;
+      btn.disabled = false;
+      return;
+    }
+    const res = await fetch(PROXY_URL, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -2222,6 +2229,12 @@ let pollTimer = null;
 let lastEtag = null;
 const SYNC_PATH = 'itinerary/v1.json';
 const SENS_PATH = 'sensitive/v1.json';
+
+// ── SHUFFLE PROXY ────────────────────────────────────────────────
+// Set this to your Cloudflare Worker URL after deploying the worker.
+// e.g. 'https://greece-shuffle.YOUR-SUBDOMAIN.workers.dev'
+// Leave empty ('') to disable shuffle until configured.
+window.SHUFFLE_PROXY_URL = '';
 
 function loadSyncConfig() {
   try {
