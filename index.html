@@ -2277,27 +2277,96 @@ async function fbSet(data) {
 }
 
 // ── POLLING (every 4s for family, paused while editor is active) ─
+// ── SSE STREAMING (replaces polling) ────────────────────────────
+// Firebase Realtime Database supports Server-Sent Events natively.
+// Changes pushed by the editor arrive on all devices instantly —
+// no polling interval, no delay.
+
+let sseItinerary = null;  // EventSource for itinerary path
+let sseSensitive  = null;  // EventSource for sensitive path
+let sseReconnectTimer = null;
+
 function startPolling() {
   stopPolling();
-  poll(); // immediate first check
-  pollTimer = setInterval(poll, 4000);
+  startStreaming();
 }
 
 function stopPolling() {
-  if (pollTimer) { clearInterval(pollTimer); pollTimer = null; }
+  if (sseItinerary) { sseItinerary.close(); sseItinerary = null; }
+  if (sseSensitive)  { sseSensitive.close();  sseSensitive  = null; }
+  if (sseReconnectTimer) { clearTimeout(sseReconnectTimer); sseReconnectTimer = null; }
 }
 
-async function poll() {
-  if (isEditor) return; // editor drives state, don't overwrite mid-edit
-  try {
-    const data = await fbGet();
-    if (!data) { setSyncLabel('live'); return; }
-    applyRemoteState(data);
-    setSyncLabel('live');
-  } catch(e) {
-    setSyncLabel(navigator.onLine ? 'error' : 'offline');
-  }
+function startStreaming() {
+  if (!fbDbUrl) return;
+  if (isEditor) return; // editor drives state; don't overwrite
+
+  // ── Itinerary stream ──────────────────────────────────────────
+  const itinUrl = `${fbDbUrl}/${SYNC_PATH}`;
+  sseItinerary = new EventSource(itinUrl);
+
+  sseItinerary.addEventListener('put', e => {
+    try {
+      const msg = JSON.parse(e.data);
+      if (!msg || !msg.data) return;
+      applyRemoteState(msg.data);
+      setSyncLabel('live');
+    } catch(err) {}
+  });
+
+  sseItinerary.addEventListener('patch', e => {
+    try {
+      const msg = JSON.parse(e.data);
+      if (!msg || !msg.data) return;
+      applyRemoteState(msg.data);
+      setSyncLabel('live');
+    } catch(err) {}
+  });
+
+  sseItinerary.onerror = () => {
+    setSyncLabel(navigator.onLine ? 'connecting' : 'offline');
+    // EventSource auto-reconnects, but give it a nudge after 5s if still broken
+    sseReconnectTimer = setTimeout(() => {
+      if (sseItinerary && sseItinerary.readyState === EventSource.CLOSED) {
+        stopPolling();
+        startStreaming();
+      }
+    }, 5000);
+  };
+
+  sseItinerary.onopen = () => setSyncLabel('live');
+
+  // ── Sensitive stream ──────────────────────────────────────────
+  const sensUrl = `${fbDbUrl}/${SENS_PATH}`;
+  sseSensitive = new EventSource(sensUrl);
+
+  sseSensitive.addEventListener('put', e => {
+    try {
+      const msg = JSON.parse(e.data);
+      if (!msg || !msg.data) return;
+      applySensitive(msg.data);
+    } catch(err) {}
+  });
+
+  sseSensitive.addEventListener('patch', e => {
+    try {
+      const msg = JSON.parse(e.data);
+      if (!msg || !msg.data) return;
+      applySensitive(msg.data);
+    } catch(err) {}
+  });
 }
+
+// Keep a lightweight heartbeat so we can detect stale connections
+// and show the right status in the sync bar
+setInterval(() => {
+  if (!fbDbUrl || isEditor) return;
+  if (!sseItinerary || sseItinerary.readyState === EventSource.CLOSED) {
+    setSyncLabel(navigator.onLine ? 'connecting' : 'offline');
+    stopPolling();
+    startStreaming();
+  }
+}, 8000);
 
 // ── PUSH STATE ─────────────────────────────────────────────────
 async function pushState() {
@@ -2411,7 +2480,7 @@ function setSyncLabel(state) {
   const states = {
     'not-configured': [''        , '⚙️ Tap Setup to enable live sync'],
     'connecting':     ['pending' , '🔄 Connecting…'],
-    'live':           ['live'    , '🟢 Live — syncing with family'],
+    'live':           ['live'    , '⚡ Live — updates instantly'],
     'offline':        [''        , '📵 Offline — changes saved locally'],
     'error':          ['error'   , '⚠️ Sync error — check config'],
     'pushing':        ['pending' , '⬆️ Saving…'],
