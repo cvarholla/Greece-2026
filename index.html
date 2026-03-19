@@ -1772,7 +1772,7 @@ async function shuffleStop(dayIdx, si) {
 
   try {
     // PROXY_URL points to your Cloudflare Worker (see setup instructions)
-    const PROXY_URL = window.SHUFFLE_PROXY_URL || 'https://greece-shuffle.cvarholla.workers.dev';
+    const PROXY_URL = window.SHUFFLE_PROXY_URL || '';
     if (!PROXY_URL) {
       panel.innerHTML = `<div class="shuffle-loading" style="color:var(--terra)">⚙️ Shuffle needs a proxy URL configured.<br><small style="color:var(--ink3)">See the setup instructions in the README or ask the trip organiser.</small></div>`;
       btn.disabled = false;
@@ -1788,10 +1788,20 @@ async function shuffleStop(dayIdx, si) {
         messages: [{role: 'user', content: prompt}]
       })
     });
+    if (!res.ok) {
+      const errBody = await res.text().catch(() => '(unreadable)');
+      throw new Error(`Worker returned ${res.status}: ${errBody.slice(0,300)}`);
+    }
     const data = await res.json();
+    if (data.error) {
+      throw new Error(`API error ${data.error.type}: ${data.error.message}`);
+    }
     const raw = data.content?.find(b => b.type === 'text')?.text || '';
+    if (!raw) throw new Error('Empty response from API. Full response: ' + JSON.stringify(data).slice(0,200));
     const json = raw.replace(/```json|```/g, '').trim();
-    const alt = JSON.parse(json);
+    let alt;
+    try { alt = JSON.parse(json); }
+    catch(parseErr) { throw new Error('JSON parse failed. Raw text: ' + raw.slice(0,200)); }
     alt._kind = kind;
     // Record this suggestion so it won't be repeated
     history.add(alt.name);
@@ -1804,7 +1814,14 @@ async function shuffleStop(dayIdx, si) {
     }
     showShuffleResult(dayIdx, si, alt);
   } catch(err) {
-    panel.innerHTML = `<div class="shuffle-loading" style="color:var(--terra)">⚠️ Couldn't load a suggestion. Check your connection and try again.<br><button class="btn-shuffle-again" style="margin-top:8px" onclick="shuffleStop(${dayIdx},${si})">Retry</button></div>`;
+    // Show the real error so we can diagnose it
+    const errMsg = err && err.message ? err.message : String(err);
+    panel.innerHTML = `<div class="shuffle-loading" style="color:var(--terra)">
+      ⚠️ Shuffle error — details below:<br>
+      <code style="display:block;margin-top:6px;font-size:11px;background:var(--wash2);padding:6px 8px;border-radius:4px;word-break:break-all;color:var(--ink)">${errMsg}</code>
+      <button class="btn-shuffle-again" style="margin-top:8px" onclick="shuffleStop(${dayIdx},${si})">Retry</button>
+    </div>`;
+    console.error('Shuffle error:', err);
   } finally {
     btn.disabled = false;
   }
