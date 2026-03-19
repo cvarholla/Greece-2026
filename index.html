@@ -1,0 +1,2253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- v-final -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Greece April 2026</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1c1a16">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Greece 2026">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231c1a16' rx='20'/><text y='.9em' font-size='80' x='10'>🏛️</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1c1a16;--ink2:#3e3b34;--ink3:#8a8478;
+  --paper:#faf8f3;--paper2:#f3f0e8;--paper3:#e8e3d5;
+  --gold:#a07c1e;--gold-l:#f7efc8;
+  --teal:#1a6355;--teal-l:#d5ece7;
+  --olive:#4a5c2a;--olive-l:#e3ead4;
+  --terra:#8c3a1e;--terra-l:#f5e0d8;
+  --azure:#1a4e8a;--azure-l:#dce8f5;
+  --plum:#5c3680;--plum-l:#ede4f5;
+  --sea:#1565a0;--sea-l:#ddeeff;
+  --border:rgba(28,26,22,.1);
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans','Segoe UI',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);font-size:14px;line-height:1.6;
+  padding-bottom:env(safe-area-inset-bottom)}
+
+/* MASTHEAD */
+.mast{background:var(--ink);color:var(--paper);padding:calc(28px + env(safe-area-inset-top)) 24px 20px;padding-left:calc(24px + env(safe-area-inset-left));padding-right:calc(24px + env(safe-area-inset-right));position:relative;overflow:hidden}
+.mast::before{content:'';position:absolute;top:-50px;right:-50px;width:260px;height:260px;border-radius:50%;background:rgba(160,124,30,.1)}
+.mast-eyebrow{font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.mast h1{font-family:var(--serif);font-size:28px;font-weight:700;line-height:1.2;margin-bottom:4px}
+.mast-sub{font-size:13px;color:rgba(250,248,243,.6);margin-bottom:16px}
+.pills{display:flex;gap:7px;flex-wrap:wrap}
+.pill{background:rgba(250,248,243,.1);border:1px solid rgba(250,248,243,.15);border-radius:20px;padding:4px 11px;font-size:11px;color:rgba(250,248,243,.8);white-space:nowrap}
+.pill.g{background:rgba(160,124,30,.2);border-color:rgba(160,124,30,.4);color:#e8c94a}
+
+/* NAV */
+.nav{display:flex;background:#fff;border-bottom:1px solid var(--border);overflow-x:auto;position:sticky;top:0;z-index:100;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav-i{padding:12px 16px;font-size:12px;font-weight:500;letter-spacing:.3px;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;color:var(--ink3);transition:all .15s;user-select:none}
+.nav-i.active{color:var(--gold);border-bottom-color:var(--gold)}
+.nav-i:hover:not(.active){color:var(--ink2)}
+
+/* PANELS */
+.panel{display:none;padding:22px 18px;max-width:880px;margin:0 auto}
+.panel.active{display:block}
+
+/* DAY TABS */
+.dtabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+.dtab{font-size:11px;font-weight:500;padding:5px 13px;border:1px solid var(--border);border-radius:20px;cursor:pointer;background:#fff;color:var(--ink2);transition:all .15s;user-select:none}
+.dtab.active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.dtab.athens{--c:var(--gold)}
+.dtab.pelo{--c:var(--terra)}
+.dtab.ferry{--c:var(--sea)}
+.dtab.crete{--c:var(--teal)}
+.dtab.athens2{--c:var(--olive)}
+.dtab.active{background:var(--ink)}
+
+/* DAY HEADER */
+.day-hd{display:flex;align-items:center;gap:14px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.day-badge{font-family:var(--serif);font-size:13px;font-weight:700;padding:7px 14px;border-radius:3px;white-space:nowrap;flex-shrink:0}
+.day-title{font-family:var(--serif);font-size:22px;font-weight:700;line-height:1.2}
+.day-meta{font-size:12px;color:var(--ink3);margin-top:3px}
+
+/* ALERT BOXES */
+.alert{border-left:3px solid var(--gold);background:var(--gold-l);padding:12px 14px;border-radius:0 4px 4px 0;margin-bottom:14px;font-size:13px}
+.alert.teal{border-left-color:var(--teal);background:var(--teal-l)}
+.alert.terra{border-left-color:var(--terra);background:var(--terra-l)}
+.alert.azure{border-left-color:var(--azure);background:var(--azure-l)}
+.alert.sea{border-left-color:var(--sea);background:var(--sea-l)}
+.alert.plum{border-left-color:var(--plum);background:var(--plum-l)}
+.alert b{display:block;font-size:11px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;margin-bottom:4px}
+
+/* STOP CARD */
+.stop{background:#fff;border:1px solid var(--border);border-radius:6px;margin-bottom:9px;overflow:hidden;transition:box-shadow .15s}
+.stop:hover{box-shadow:0 2px 12px rgba(28,26,22,.06)}
+.stop-hd{display:flex;align-items:center;gap:11px;padding:12px 14px;cursor:pointer;user-select:none}
+.snum{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+.ng{background:var(--gold-l);color:var(--gold)}
+.nt{background:var(--teal-l);color:var(--teal)}
+.nr{background:var(--terra-l);color:var(--terra)}
+.na{background:var(--azure-l);color:var(--azure)}
+.no{background:var(--olive-l);color:var(--olive)}
+.nk{background:var(--paper2);color:var(--ink2)}
+.ns{background:var(--sea-l);color:var(--sea)}
+.np{background:var(--plum-l);color:var(--plum)}
+.stop-info{flex:1;min-width:0}
+.stop-name{font-weight:600;font-size:14px;line-height:1.3}
+.stop-sub{font-size:11px;color:var(--ink3);margin-top:2px}
+.stag{font-size:11px;font-weight:600;padding:3px 9px;border-radius:20px;white-space:nowrap;flex-shrink:0}
+.sf{background:var(--olive-l);color:var(--olive)}
+.sp{background:var(--teal-l);color:var(--teal)}
+.sb{background:var(--gold-l);color:var(--gold)}
+.si{background:var(--azure-l);color:var(--azure)}
+.chev{color:var(--ink3);font-size:10px;margin-left:5px;transition:transform .2s;flex-shrink:0}
+.stop.open .chev{transform:rotate(180deg)}
+/* DONE / COMPLETED STATE */
+.stop-done{border-left:4px solid #4caf50 !important;background:#f7fdf7}
+.stop-done .stop-name{text-decoration:line-through;color:var(--ink3)}
+.stop-done .stop-sub{opacity:.55}
+.stop-done .stag{opacity:.4}
+.stop-done .stop-body{opacity:.6}
+.stop-done .drag-handle{opacity:.2}
+
+/* CHECKBOX */
+.stop-check{width:22px;height:22px;flex-shrink:0;cursor:pointer;accent-color:#4caf50;margin:0}
+.stop-check:focus{outline:2px solid #4caf50;border-radius:3px}
+
+.stop-body{display:none;padding:0 14px 13px;border-top:1px solid var(--paper2)}
+.stop.open .stop-body{display:block;padding-top:11px}
+.sdesc{font-size:13px;color:var(--ink2);line-height:1.65;margin-bottom:10px}
+.acts{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
+.btn-sm{font-size:11px;font-weight:500;padding:5px 11px;border-radius:3px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:4px;transition:opacity .15s;border:1px solid var(--border);background:var(--paper2);color:var(--ink2)}
+.btn-sm:hover{opacity:.75}
+.btn-maps{background:#e8f5e9;color:#2e7d32;border-color:#b8dbb9}
+
+/* DRAG HANDLE */
+.drag-handle{width:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:grab;flex-shrink:0;opacity:.35;padding:4px 2px;touch-action:none}
+.drag-handle:active{cursor:grabbing}
+.drag-handle span{display:block;width:14px;height:2px;background:var(--ink3);border-radius:2px}
+.stop.dragging{opacity:.4;border:2px dashed var(--gold);background:var(--gold-l)}
+.stop.drag-over{border-top:3px solid var(--gold);margin-top:-2px}
+.stop.drag-over-below{border-bottom:3px solid var(--gold)}
+
+/* DELETE CONFIRM */
+.btn-delete{background:#fff0f0;color:#c0392b;border-color:#f5c6c6}
+
+/* SHUFFLE */
+.btn-shuffle{background:#f0f4ff;color:#1a4e8a;border-color:#c5d3f5;font-weight:600}
+.btn-shuffle:disabled{opacity:.5;cursor:not-allowed}
+.shuffle-panel{display:none;margin-top:10px;border:1px solid #c5d3f5;border-radius:6px;overflow:hidden;background:#fff}
+.shuffle-panel.show{display:block}
+.shuffle-loading{padding:14px;font-size:13px;color:var(--ink3);display:flex;align-items:center;gap:8px}
+.shuffle-loading .spin{display:inline-block;animation:spin .8s linear infinite;font-size:16px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.shuffle-result{padding:0}
+.shuffle-result-hd{background:#f0f4ff;padding:10px 14px;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#1a4e8a;border-bottom:1px solid #c5d3f5}
+.shuffle-result-name{padding:10px 14px 4px;font-size:14px;font-weight:700;color:var(--ink)}
+.shuffle-result-meta{padding:0 14px 6px;font-size:11px;color:var(--ink3)}
+.shuffle-result-desc{padding:0 14px 12px;font-size:13px;color:var(--ink2);line-height:1.65}
+.shuffle-result-acts{padding:8px 14px 12px;display:flex;gap:8px;border-top:1px solid var(--paper2);flex-wrap:wrap;align-items:center}
+.shuf-pills{display:flex;flex-wrap:wrap;gap:5px;padding:6px 14px 0}
+.shuf-pill{font-size:11px;background:var(--paper2);border:1px solid var(--border);border-radius:20px;padding:3px 9px;color:var(--ink2);white-space:nowrap}
+.shuf-pill-dist{background:#e8f5e9;border-color:#b8dbb9;color:#2e7d32;font-weight:600}
+.shuf-tip{margin:0 14px 10px;padding:8px 11px;background:var(--gold-l);border-left:3px solid var(--gold);border-radius:0 4px 4px 0;font-size:12px;color:var(--ink2);line-height:1.5}
+.btn-shuffle-accept{background:var(--teal);color:#fff;border:none;border-radius:3px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer}
+.btn-shuffle-again{background:var(--paper2);color:var(--ink2);border:1px solid var(--border);border-radius:3px;padding:7px 12px;font-size:12px;cursor:pointer}
+.btn-shuffle-dismiss{background:none;border:none;color:var(--ink3);font-size:12px;cursor:pointer;padding:7px 4px}
+
+.del-confirm{display:none;margin-top:8px;padding:10px 12px;background:#fff0f0;border-radius:4px;border:1px solid #f5c6c6;font-size:12px}
+.del-confirm.show{display:block}
+.del-confirm p{margin-bottom:8px;font-weight:600;color:#c0392b}
+.del-confirm .del-btns{display:flex;gap:8px}
+.btn-del-yes{background:#c0392b;color:#fff;border:none;border-radius:3px;padding:6px 14px;font-size:12px;font-weight:700;cursor:pointer}
+.btn-del-no{background:var(--paper2);color:var(--ink2);border:1px solid var(--border);border-radius:3px;padding:6px 12px;font-size:12px;cursor:pointer}
+
+/* MOVE BUTTONS */
+
+
+/* EDIT FORM */
+.eform{background:var(--paper2);border-radius:4px;padding:12px;margin-top:10px}
+.erow{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:8px}
+.ef{flex:1;min-width:130px}
+.ef label{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:3px}
+.ef input,.ef textarea,.ef select{width:100%;font-family:var(--sans);font-size:13px;padding:6px 9px;border:1px solid var(--border);border-radius:3px;background:#fff;color:var(--ink)}
+.ef textarea{resize:vertical;min-height:62px}
+.btn-save{font-size:12px;font-weight:600;background:var(--ink);color:var(--paper);border:none;border-radius:3px;padding:7px 15px;cursor:pointer}
+.save-ok{font-size:11px;color:var(--teal);font-weight:600;margin-left:8px;display:none}
+
+/* RULE */
+.rule{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--ink3);padding-bottom:8px;margin:20px 0 10px;border-bottom:1px solid var(--border)}
+.rule:first-child{margin-top:0}
+
+/* BUNDLE */
+.bundle{border:1px solid var(--gold);border-radius:6px;padding:14px 16px;margin-bottom:13px;background:#fff}
+.bundle-hd{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:7px}
+.bundle-name{font-family:var(--serif);font-size:16px;font-weight:700}
+.bundle-amt{font-size:18px;font-weight:700;color:var(--gold);white-space:nowrap}
+.bundle-amt small{font-size:11px;font-weight:400;color:var(--ink3)}
+.bundle-sites{font-size:12px;color:var(--ink2);line-height:1.6;margin-bottom:7px}
+.bundle-warn{font-size:11px;color:var(--terra);font-style:italic}
+.btn-book{display:inline-block;margin-top:9px;font-size:11px;font-weight:600;padding:6px 14px;background:var(--gold);color:#fff;border-radius:3px;text-decoration:none;cursor:pointer;border:none;letter-spacing:.3px}
+
+/* COST TABLE */
+.ctbl{width:100%;border-collapse:collapse;font-size:13px}
+.ctbl th{font-size:10px;text-transform:uppercase;letter-spacing:1px;font-weight:600;color:var(--ink3);padding:8px 11px;background:var(--paper2);text-align:left}
+.ctbl td{padding:9px 11px;border-bottom:1px solid var(--border);vertical-align:top}
+.ctbl tr:last-child td{border-bottom:none}
+.ctbl tr.tot{background:var(--gold-l);font-weight:700}
+.ctbl .n{font-size:11px;color:var(--ink3)}
+
+/* MAP TAB */
+.mcard{background:#fff;border:1px solid var(--border);border-radius:6px;padding:16px;margin-bottom:13px}
+.mcard h3{font-family:var(--serif);font-size:16px;margin-bottom:6px}
+.mcard p{font-size:12px;color:var(--ink2);margin-bottom:10px;line-height:1.6}
+.btn-g{display:inline-flex;align-items:center;gap:6px;background:#1a6b2a;color:#fff;border:none;border-radius:4px;padding:9px 15px;font-size:13px;font-weight:600;cursor:pointer;margin-bottom:5px}
+.btn-b{display:inline-flex;align-items:center;gap:6px;background:var(--azure);color:#fff;border:none;border-radius:4px;padding:9px 15px;font-size:13px;font-weight:600;cursor:pointer;margin-bottom:5px}
+.codebox{font-family:monospace;font-size:11px;background:var(--paper2);border:1px solid var(--border);padding:10px;border-radius:3px;max-height:120px;overflow-y:auto;white-space:pre-wrap;word-break:break-all;color:var(--ink2)}
+.btn-copy{font-size:11px;background:var(--ink);color:var(--paper);border:none;border-radius:3px;padding:5px 12px;cursor:pointer;margin-top:6px;display:inline-block}
+
+/* TRAVEL INFO */
+.icard{background:#fff;border:1px solid var(--border);border-radius:6px;padding:16px;margin-bottom:13px}
+.icard-t{font-family:var(--serif);font-size:16px;font-weight:700;margin-bottom:11px;display:flex;align-items:center;gap:8px}
+.igrid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.ii label{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:3px}
+.ii input{width:100%;font-family:var(--sans);font-size:13px;padding:6px 9px;border:1px solid var(--border);border-radius:3px;background:var(--paper)}
+.btn-is{margin-top:11px;font-size:12px;font-weight:600;background:var(--ink);color:var(--paper);border:none;border-radius:3px;padding:7px 15px;cursor:pointer}
+.is-ok{font-size:11px;color:var(--teal);font-weight:600;margin-left:8px;display:none}
+
+/* TIPS */
+.tip{border-left:3px solid var(--border);padding:10px 13px;margin-bottom:9px;background:#fff;border-radius:0 4px 4px 0}
+.tip.g{border-left-color:var(--gold)}
+.tip.t{border-left-color:var(--teal)}
+.tip.r{border-left-color:var(--terra)}
+.tip.a{border-left-color:var(--azure)}
+.tip.s{border-left-color:var(--sea)}
+.tip h4{font-size:13px;font-weight:600;margin-bottom:3px}
+.tip p{font-size:12px;color:var(--ink2);line-height:1.6}
+
+/* LOGISTICS */
+.lgx{background:#fff;border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-bottom:13px}
+.lgx-row{display:flex;align-items:center;gap:12px;padding:11px 14px;border-bottom:1px solid var(--border);font-size:13px}
+.lgx-row:last-child{border-bottom:none}
+.lgx-icon{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;background:var(--paper2)}
+.lgx-label{font-weight:600;font-size:13px}
+.lgx-detail{font-size:11px;color:var(--ink3);margin-top:1px}
+.lgx-val{font-size:12px;font-weight:600;color:var(--teal);margin-left:auto;white-space:nowrap}
+
+@media(max-width:640px){
+  /* MASTHEAD */
+  .mast{padding:20px 16px 16px}
+  .mast h1{font-size:21px}
+  .mast-sub{font-size:12px}
+  .pills{gap:5px}
+  .pill{font-size:10px;padding:3px 9px}
+
+  /* NAV */
+  .nav-i{padding:10px 12px;font-size:11px}
+
+  /* PANELS */
+  .panel{padding:16px 14px}
+
+  /* DAY TABS */
+  .dtabs{gap:5px}
+  .dtab{font-size:10px;padding:4px 10px}
+
+  /* DAY HEADER */
+  .day-hd{flex-direction:column;align-items:flex-start;gap:6px}
+  .day-badge{font-size:12px;padding:5px 11px}
+  .day-title{font-size:18px}
+
+  /* STOP CARDS */
+  .stop-hd{gap:8px;padding:10px 12px}
+  .stop-name{font-size:13px}
+  .stag{display:none} /* hide price tag on header; still visible inside expanded body */
+  .stop-body{padding:0 12px 11px}
+
+  /* EDIT FORM */
+  .eform{padding:10px}
+  .erow{flex-direction:column;gap:6px}
+  .ef{min-width:100%}
+
+  /* BUNDLE */
+  .bundle{padding:12px 13px}
+  .bundle-hd{flex-direction:column;gap:4px}
+  .bundle-amt{font-size:16px}
+
+  /* COST TABLES — make them scroll horizontally */
+  .ctbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:14px}
+  .ctbl{min-width:420px;font-size:12px}
+  .ctbl th,.ctbl td{padding:7px 9px}
+
+  /* Table wrapper divs: allow horizontal scroll instead of clipping */
+  div[style*="overflow:hidden"]{overflow:visible !important}
+
+  /* All cost tables become horizontally scrollable blocks */
+  .ctbl{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;min-width:380px;width:100%}
+
+  /* TWO-COLUMN GRIDS → single column */
+  div[style*="grid-template-columns:1fr 1fr"],
+  div[style*="grid-template-columns: 1fr 1fr"]{
+    display:block !important;
+  }
+  div[style*="grid-template-columns:1fr 1fr"] > div,
+  div[style*="grid-template-columns: 1fr 1fr"] > div{
+    margin-bottom:10px;
+  }
+
+  /* IGRID */
+  .igrid{grid-template-columns:1fr}
+
+  /* LOGISTICS ROWS */
+  .lgx-row{flex-wrap:wrap}
+  .lgx-val{margin-left:0;margin-top:3px;width:100%}
+
+  /* MAP TAB */
+  .codebox{font-size:10px}
+
+  /* TIPS */
+  .tip{padding:9px 11px}
+  .tip h4{font-size:12px}
+  .tip p{font-size:11px}
+
+  /* ALERT BOXES */
+  .alert{font-size:12px;padding:10px 12px}
+
+  /* RULE */
+  .rule{font-size:9px;letter-spacing:1.5px}
+
+  /* FERRY vs FLIGHT inline grids */
+  div[style*="display:grid"]{
+    display:block !important;
+  }
+  div[style*="display:grid"] > div{
+    margin-bottom:12px;
+  }
+
+  /* Full-trip table wrapper */
+  .ctbl-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+  /* Buttons row in stop body */
+  .acts{flex-wrap:wrap;gap:5px}
+  .btn-sm{font-size:10px;padding:4px 9px}
+}
+
+/* PWA INSTALL BANNER */
+#install-banner{display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;
+  background:var(--ink);color:var(--paper);padding:14px 18px calc(14px + env(safe-area-inset-bottom));
+  flex-direction:row;align-items:center;gap:12px;box-shadow:0 -4px 20px rgba(0,0,0,.25)}
+#install-banner.show{display:flex}
+#install-banner .ib-text{flex:1;font-size:13px;line-height:1.4}
+#install-banner .ib-text strong{display:block;font-size:14px;margin-bottom:2px;color:var(--gold)}
+#install-banner button{font-size:12px;font-weight:700;border:none;border-radius:4px;padding:8px 14px;cursor:pointer;white-space:nowrap}
+#install-banner .ib-yes{background:var(--gold);color:#fff}
+#install-banner .ib-no{background:rgba(255,255,255,.1);color:rgba(255,255,255,.6)}
+#offline-toast{display:none;position:fixed;top:60px;left:50%;transform:translateX(-50%);
+  background:#333;color:#fff;padding:8px 16px;border-radius:20px;font-size:12px;z-index:9998;
+  white-space:nowrap;box-shadow:0 2px 12px rgba(0,0,0,.3)}
+#offline-toast.show{display:block}
+/* ── SYNC / EDITOR MODE ── */
+#sync-bar{position:fixed;bottom:0;left:0;right:0;z-index:9990;
+  display:flex;align-items:center;gap:10px;padding:9px 16px calc(9px + env(safe-area-inset-bottom));
+  background:#fff;border-top:1px solid var(--border);font-size:12px;box-shadow:0 -2px 12px rgba(0,0,0,.07)}
+#sync-status{display:flex;align-items:center;gap:6px;flex:1;font-size:12px;color:var(--ink3)}
+.sync-dot{width:8px;height:8px;border-radius:50%;background:#ccc;flex-shrink:0;transition:background .3s}
+.sync-dot.live{background:#4caf50;box-shadow:0 0 0 2px #c8e6c9}
+.sync-dot.error{background:#f44336}
+.sync-dot.pending{background:#ff9800;animation:pulse-dot .8s infinite}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}
+#btn-editor-mode{font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;cursor:pointer;border:none;
+  background:var(--paper2);color:var(--ink3);transition:all .2s}
+#btn-editor-mode.active{background:var(--gold);color:#fff}
+body.is-editor .stop-check{pointer-events:auto}
+body:not(.is-editor) .stop-check{pointer-events:none}
+body:not(.is-editor) .btn-edit,
+body:not(.is-editor) .btn-delete,
+body:not(.is-editor) .btn-shuffle,
+body:not(.is-editor) .drag-handle,
+body:not(.is-editor) .btn-save{opacity:.35;pointer-events:none;cursor:default}
+body:not(.is-editor) .eform{display:none !important}
+
+/* PIN modal */
+#pin-modal{display:none;position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.55);
+  align-items:center;justify-content:center}
+#pin-modal.show{display:flex}
+#pin-box{background:#fff;border-radius:12px;padding:28px 24px;width:280px;text-align:center;
+  box-shadow:0 8px 40px rgba(0,0,0,.25)}
+#pin-box h3{font-family:var(--serif);font-size:20px;margin-bottom:6px}
+#pin-box p{font-size:12px;color:var(--ink3);margin-bottom:16px}
+#pin-input{width:100%;font-size:24px;letter-spacing:8px;text-align:center;padding:10px;
+  border:2px solid var(--border);border-radius:6px;font-family:monospace;margin-bottom:12px}
+#pin-input:focus{outline:none;border-color:var(--gold)}
+#pin-error{font-size:12px;color:var(--terra);min-height:18px;margin-bottom:8px}
+#pin-submit{width:100%;padding:10px;background:var(--ink);color:#fff;border:none;
+  border-radius:6px;font-size:14px;font-weight:700;cursor:pointer;margin-bottom:8px}
+#pin-cancel{font-size:12px;color:var(--ink3);background:none;border:none;cursor:pointer}
+
+/* Setup guide modal */
+#setup-modal{display:none;position:fixed;inset:0;z-index:99998;background:rgba(0,0,0,.6);
+  align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto}
+#setup-modal.show{display:flex}
+#setup-box{background:#fff;border-radius:12px;padding:24px;max-width:500px;width:100%;margin:auto}
+#setup-box h2{font-family:var(--serif);font-size:22px;margin-bottom:4px}
+#setup-box .setup-sub{font-size:12px;color:var(--ink3);margin-bottom:18px}
+.setup-step{display:flex;gap:12px;margin-bottom:16px;align-items:flex-start}
+.setup-num{width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;
+  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.setup-step-body{flex:1}
+.setup-step-body strong{display:block;font-size:13px;margin-bottom:3px}
+.setup-step-body p{font-size:12px;color:var(--ink2);line-height:1.5}
+.setup-step-body a{color:var(--azure)}
+.cfg-input{width:100%;font-size:12px;font-family:monospace;padding:8px;border:1px solid var(--border);
+  border-radius:4px;margin-top:6px;background:var(--paper2)}
+#btn-save-cfg{margin-top:16px;padding:10px 20px;background:var(--teal);color:#fff;border:none;
+  border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;width:100%}
+#btn-close-setup{margin-top:8px;width:100%;padding:8px;background:none;border:1px solid var(--border);
+  border-radius:6px;font-size:12px;cursor:pointer;color:var(--ink3)}
+.cfg-saved{font-size:11px;color:var(--teal);font-weight:600;margin-top:6px;display:none}
+
+</style>
+</head>
+<body>
+
+<div id="install-banner">
+  <div class="ib-text"><strong>🏛️ Add to Home Screen</strong>Install for offline access & app icon</div>
+  <button class="ib-yes" onclick="installPWA()">Install</button>
+  <button class="ib-no" onclick="dismissInstall()">✕</button>
+</div>
+
+<!-- SYNC BAR -->
+<div id="sync-bar">
+  <div id="sync-status"><div class="sync-dot" id="sync-dot"></div><span id="sync-label">Sync not configured</span></div>
+  <button id="btn-editor-mode">🔒 Editor</button>
+  <button id="btn-setup-sync" style="font-size:11px;padding:5px 10px;border-radius:20px;border:1px solid var(--border);background:none;color:var(--ink3);cursor:pointer">⚙️ Setup</button>
+</div>
+
+<!-- PIN MODAL -->
+<div id="pin-modal">
+  <div id="pin-box">
+    <h3>Editor Mode</h3>
+    <p>Enter your PIN to unlock editing</p>
+    <input id="pin-input" type="password" inputmode="numeric" maxlength="6" placeholder="••••">
+    <div id="pin-error"></div>
+    <button id="pin-submit" onclick="checkPin()">Unlock</button>
+    <button id="pin-cancel" onclick="closePinModal()">Cancel</button>
+  </div>
+</div>
+
+<!-- SETUP MODAL -->
+<div id="setup-modal">
+  <div id="setup-box">
+    <h2>🔥 Firebase Sync Setup</h2>
+    <p class="setup-sub">Free. One-time. ~5 minutes. Do this on desktop if possible — easier to copy the config.</p>
+
+    <div class="setup-step"><div class="setup-num">1</div><div class="setup-step-body">
+      <strong>Create a Firebase project</strong>
+      <p>Open <a href="https://console.firebase.google.com" target="_blank">console.firebase.google.com</a> and sign in with your Google account. Tap <strong>Create a project</strong> (or + Add project). Enter a name like <em>greece-trip</em>. When asked about Google Analytics, tap <strong>Not right now</strong> (you don't need it). Tap <strong>Create project</strong> and wait ~20 seconds for it to finish, then tap <strong>Continue</strong>.</p>
+    </div></div>
+
+    <div class="setup-step"><div class="setup-num">2</div><div class="setup-step-body">
+      <strong>Enable Realtime Database</strong>
+      <p>In the sidebar you just opened, tap <strong>Databases &amp; Storage</strong> — it will expand. Tap <strong>Realtime Database</strong>. Tap the blue <strong>Create Database</strong> button. Choose any location (United States is fine) and tap <strong>Next</strong>. On the following screen select <strong>Start in test mode</strong> then tap <strong>Enable</strong>. After a moment you'll land on the database page — copy the URL shown at the top (looks like <code>https://greece-trip-xxxxx-default-rtdb.firebaseio.com</code>). You'll need it in step 4.</p>
+    </div></div>
+
+    <div class="setup-step"><div class="setup-num">3</div><div class="setup-step-body">
+      <strong>Register a web app &amp; get your config</strong>
+      <p>Open the sidebar again (☰ top-left) and tap <strong>Settings</strong> → <strong>Project settings</strong>. Scroll down on that page until you see a section called <strong>Your apps</strong>. Tap the <strong>&lt;/&gt;</strong> web icon to add a web app. Give it any nickname (e.g. <em>greece-web</em>), leave "Also set up Firebase Hosting" unchecked, and tap <strong>Register app</strong>. You'll see a code block — scroll to find the lines with <code>apiKey</code>, <code>authDomain</code>, <code>databaseURL</code> etc. Copy everything from the <code>{</code> to the closing <code>}</code> and paste it in step 4. Tap <strong>Continue to console</strong> when done.</p>
+    </div></div>
+
+    <div class="setup-step"><div class="setup-num">4</div><div class="setup-step-body">
+      <strong>Paste your config here</strong>
+      <p>Paste the <code>firebaseConfig</code> object you copied. It should include a <code>databaseURL</code> line — if it doesn't, go back to the Realtime Database section, copy the URL shown at the top, and add it manually as <code>"databaseURL": "https://your-db-url"</code>.</p>
+      <textarea id="cfg-input" class="cfg-input" rows="8" placeholder='{
+  "apiKey": "AIza...",
+  "authDomain": "greece-trip-xxxxx.firebaseapp.com",
+  "databaseURL": "https://greece-trip-xxxxx-default-rtdb.firebaseio.com",
+  "projectId": "greece-trip-xxxxx",
+  "storageBucket": "greece-trip-xxxxx.appspot.com",
+  "messagingSenderId": "123456789",
+  "appId": "1:123...:web:abc..."
+}'></textarea>
+    </div></div>
+
+    <div class="setup-step"><div class="setup-num">5</div><div class="setup-step-body">
+      <strong>Set your editor PIN</strong>
+      <p>Pick a 4–6 digit PIN. Only you need to know it — family members open the same link but stay read-only unless they enter this PIN.</p>
+      <input id="pin-set-input" class="cfg-input" type="password" inputmode="numeric" maxlength="6" placeholder="e.g. 2604" style="height:38px;resize:none">
+    </div></div>
+
+    <button id="btn-save-cfg" onclick="saveConfig()">Save &amp; Connect</button>
+    <div class="cfg-saved" id="cfg-saved">✓ Saved — reloading now…</div>
+    <button id="btn-close-setup" onclick="closeSetup()">Close</button>
+  </div>
+</div>
+
+<div id="offline-toast">📵 You're offline — itinerary still works!</div>
+
+<div class="mast">
+  <div class="mast-eyebrow">Family of 4 · Rental Car · 12 Days</div>
+  <h1>Greece, April 2026</h1>
+  <p class="mast-sub">Athens · Delphi · Peloponnese · Piraeus Night Ferry · Crete / Chania</p>
+  <div class="pills">
+    <span class="pill">✈️ Fly Apr 15 · Land Apr 16</span>
+    <span class="pill">🏠 Neos Kosmos, Athens</span>
+    <span class="pill">🚗 Rental Car Apr 21</span>
+    <span class="pill">⛴️ Piraeus → Heraklion Night Ferry Apr 23</span>
+    <span class="pill">🏝️ Chania Apr 24–27</span>
+    <span class="pill">✈️ Fly home Apr 29</span>
+    <span class="pill g" id="total-stops-pill">Loading…</span>
+  </div>
+</div>
+
+<nav class="nav">
+  <div class="nav-i active" onclick="showTab('days',this)">📅 Day-by-Day</div>
+  <div class="nav-i" onclick="showTab('tickets',this)">🎟️ Tickets & Costs</div>
+  <div class="nav-i" onclick="showTab('logistics',this)">🚗⛴️ Logistics</div>
+  <div class="nav-i" onclick="showTab('maps',this)">🗺️ Maps Export</div>
+  <div class="nav-i" onclick="showTab('travel',this)">✈️ Travel Info</div>
+  <div class="nav-i" onclick="showTab('tips',this)">💡 Tips</div>
+  <div class="nav-i" onclick="showTab('ferrvfly',this)">⚖️ Ferry vs. Flight</div>
+</nav>
+
+<!-- ===== DAY-BY-DAY ===== -->
+<div id="tab-days" class="panel active">
+  <div class="dtabs" id="dtabs"></div>
+  <div id="day-content"></div>
+</div>
+
+<!-- ===== TICKETS ===== -->
+<div id="tab-tickets" class="panel">
+  <div class="rule">Important: 2025 Pricing Changes</div>
+  <div class="alert terra"><b>⚠️ Ticket prices increased significantly April 2025</b>The old €30 7-site Athens combo ticket was abolished April 1, 2025. All major sites now require individual tickets. Mycenae and Epidaurus both jumped from €12 to €20. Palamidi Fortress in Nafplio went from €8 to €20. Verify all prices at <a href="https://hhticket.gr" target="_blank" style="color:var(--terra)">hhticket.gr</a> before purchase — prices above are current as of early 2026 but can change seasonally.</div>
+
+  <div class="rule">Athens — Day 1 Site Tickets</div>
+  <div style="background:#fff;border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-bottom:16px">
+    <table class="ctbl">
+      <thead><tr><th>Site</th><th>Per Person</th><th>Party of 4</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Acropolis & Slopes (timed entry)</td><td>€30</td><td>€120</td><td class="n">Summer rate Apr–Oct · Book at hhticket.gr</td></tr>
+        <tr><td>National Archaeological Museum</td><td>€12</td><td>€48</td><td class="n">Independent pricing since 2023. Verify current rate.</td></tr>
+        <tr><td>Acropolis Museum</td><td>€15</td><td>€60</td><td class="n">High season rate</td></tr>
+        <tr><td>Temple of Olympian Zeus</td><td>€8</td><td>€32</td><td class="n">Individual ticket</td></tr>
+        <tr><td>Panathenaic Stadium</td><td>€12</td><td>€48</td><td class="n">Cash/card at gate ONLY — no online sales</td></tr>
+        <tr><td>Ancient Agora</td><td>€10</td><td>€40</td><td class="n">Includes Stoa of Attalos museum</td></tr>
+        <tr><td>Roman Agora</td><td>€8</td><td>€32</td><td class="n">Includes Tower of the Winds</td></tr>
+        <tr><td>Free sites (Areopagus, National Garden, Hadrian's Arch, Prison of Socrates)</td><td>€0</td><td>€0</td><td class="n">All permanently free</td></tr>
+        <tr class="tot"><td>Athens Day 1 Total (est.)</td><td>~€95</td><td>~€380</td><td class="n">Excluding meals &amp; funicular</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="rule">Delphi Day Trip</div>
+  <div style="background:#fff;border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-bottom:16px">
+    <table class="ctbl">
+      <thead><tr><th>Site</th><th>Per Person</th><th>Party of 4</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Delphi Archaeological Site + Museum (combined)</td><td><strong style="color:var(--olive)">FREE Apr 18</strong></td><td><strong style="color:var(--olive)">FREE</strong></td><td class="n">International Monuments Day — normally €12/person. Savings: €48 for party of 4.</td></tr>
+        <tr><td>Hosios Loukas Monastery (en route)</td><td>€4</td><td>€16</td><td class="n">Byzantine monastery, 45 min detour off E65 highway</td></tr>
+        <tr class="tot"><td>Delphi Day Total (est.)</td><td>~€16</td><td>~€64</td><td class="n">Plus fuel ~€30–40 round trip Athens–Delphi</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="rule">Peloponnese — Apr 21–23</div>
+  <div style="background:#fff;border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-bottom:16px">
+    <table class="ctbl">
+      <thead><tr><th>Site</th><th>Per Person</th><th>Party of 4</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Mycenae (site + museum combined)</td><td>€20</td><td>€80</td><td class="n">Increased April 2025. Book online to skip queue.</td></tr>
+        <tr><td>Epidaurus Theatre &amp; Sanctuary</td><td>€20</td><td>€80</td><td class="n">Increased April 2025. Perfect acoustics — whisper test is legendary.</td></tr>
+        <tr><td>Palamidi Fortress, Nafplio</td><td>€20</td><td>€80</td><td class="n">Increased April 2025 — was €8. Steep climb (999 steps) or drive/taxi up.</td></tr>
+        <tr><td>Nafplio Old Town &amp; Bourtzi Fort (view)</td><td>Free</td><td>Free</td><td class="n">Bourtzi only accessible by boat (€5–8 RT from harbor)</td></tr>
+        <tr><td>Loukou Monastery, near Astros</td><td>Free</td><td>Free</td><td class="n">12th-century convent with beautiful cloister garden — 5 min from your VRBO area</td></tr>
+        <tr class="tot"><td>Peloponnese Total (est.)</td><td>~€60</td><td>~€240</td><td class="n">For Mycenae + Epidaurus + Palamidi</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="rule">Crete — Apr 24–27</div>
+  <div style="background:#fff;border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-bottom:16px">
+    <table class="ctbl">
+      <thead><tr><th>Site / Beach</th><th>Per Person</th><th>Party of 4</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Chania Old Town &amp; Venetian Harbor</td><td>Free</td><td>Free</td><td class="n">Best explored on foot. Allow 2–3 hours.</td></tr>
+        <tr><td>Archaeological Museum of Chania</td><td>€15</td><td>€60</td><td class="n">Increased April 2025. In the old Monastery of Saint Francis.</td></tr>
+        <tr><td>Maritime/Nautical Museum of Crete</td><td>€6</td><td>€24</td><td class="n">In the Firka Tower at the harbor entrance</td></tr>
+        <tr><td>Samaria Gorge (if hiking)</td><td>€15</td><td>€60</td><td class="n">16km hike, opens early May for guided access. Mid-April: check if open (seasonal). Return ferry from Agia Roumeli ~€12.</td></tr>
+        <tr><td>Elafonissi Beach</td><td>Free</td><td>Free</td><td class="n">82km from Chania (~1.5 hr drive). Parking €3–5.</td></tr>
+        <tr><td>Balos Beach (boat from Kissamos)</td><td>Free beach; €16–18 RT boat</td><td>~€68</td><td class="n">60km NW of Chania. Boat from Kissamos port is the easiest approach. April — verify boat service is running.</td></tr>
+        <tr><td>Falassarna Beach</td><td>Free</td><td>Free</td><td class="n">58km west of Chania. Long sandy beach — great for families.</td></tr>
+        <tr class="tot"><td>Crete Total (est.)</td><td>~€50–80</td><td>~€200–320</td><td class="n">Depending on museum and activity choices</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ===== LOGISTICS ===== -->
+<div id="tab-logistics" class="panel">
+  <div class="rule">Car Rental — Apr 21 Morning</div>
+  <div class="alert azure"><b>📋 Rental Car Logistics</b>Reserve a rental car for the morning of Apr 21 from Athens (or airport). You'll drive Athens → Arkadiko Chorio area (~2.5 hrs via E94/A7). On Apr 23 evening, drive north to Piraeus for the night ferry. You'll need a car ferry ticket (vehicle transported on ferry to Heraklion). On Apr 27 or 28, drive Chania → Heraklion (2 hrs) and return the car before your flight Apr 29 morning.</div>
+  <div class="lgx">
+    <div class="lgx-row"><div class="lgx-icon">🚗</div><div class="lgx-info"><div class="lgx-label">Pick Up</div><div class="lgx-detail">Athens — morning of Apr 21</div></div><div class="lgx-val">Day 6</div></div>
+    <div class="lgx-row"><div class="lgx-icon">🛣️</div><div class="lgx-info"><div class="lgx-label">Athens → Arkadiko Chorio (Arcadia)</div><div class="lgx-detail">~2.5 hrs via A7 Corinth–Tripoli highway · Toll ~€8</div></div><div class="lgx-val">Apr 21</div></div>
+    <div class="lgx-row"><div class="lgx-icon">🛣️</div><div class="lgx-info"><div class="lgx-label">Day trip: Mycenae + Epidaurus + Nafplio</div><div class="lgx-detail">~2.5 hr loop from Arkadiko Chorio</div></div><div class="lgx-val">Apr 21–22</div></div>
+    <div class="lgx-row"><div class="lgx-icon">🛣️</div><div class="lgx-info"><div class="lgx-label">Arkadiko Chorio → Piraeus</div><div class="lgx-detail">~2 hrs via A7 · Depart by 7:00 PM for 9 PM ferry boarding</div></div><div class="lgx-val">Apr 23 eve</div></div>
+    <div class="lgx-row"><div class="lgx-icon">⛴️</div><div class="lgx-info"><div class="lgx-label">Piraeus night ferry → Heraklion</div><div class="lgx-detail">Departs ~9–10 PM · Arrives Heraklion ~6–7 AM · 9.5 hrs</div></div><div class="lgx-val">Apr 23–24</div></div>
+    <div class="lgx-row"><div class="lgx-icon">🛣️</div><div class="lgx-info"><div class="lgx-label">Heraklion → Chania</div><div class="lgx-detail">~2 hrs via E75 coastal highway</div></div><div class="lgx-val">Apr 24 AM</div></div>
+    <div class="lgx-row"><div class="lgx-icon">🛣️</div><div class="lgx-info"><div class="lgx-label">Chania → Heraklion Airport</div><div class="lgx-detail">~2 hrs — depart morning of Apr 28 or Apr 29</div></div><div class="lgx-val">Apr 28–29</div></div>
+    <div class="lgx-row"><div class="lgx-icon">✈️</div><div class="lgx-info"><div class="lgx-label">Drop rental car at Heraklion Airport → fly ATH</div><div class="lgx-detail">Return car · Catch flight home Apr 29 AM</div></div><div class="lgx-val">Apr 29</div></div>
+  </div>
+
+  <div class="rule">Piraeus to Heraklion — Night Ferry</div>
+  <div class="alert sea"><b>⛴️ Ferry Booking — Book ASAP for Apr 23</b>Overnight ferries depart Piraeus ~9–10 PM and arrive Heraklion ~6–7 AM (9.5 hrs). Your car travels with you on the vehicle deck. <strong>Book at ferryhopper.com or directly with Minoan Lines / ANEK-Blue Star Ferries.</strong> April is not peak season so availability should be fine, but book early to get a cabin.</div>
+  <div class="lgx">
+    <div class="lgx-row"><div class="lgx-icon">🛳️</div><div class="lgx-info"><div class="lgx-label">Operators: Minoan Lines / ANEK-Blue Star Ferries</div><div class="lgx-detail">Daily overnight departures year-round from Gate E2/E3, Piraeus</div></div><div class="lgx-val">Daily</div></div>
+    <div class="lgx-row"><div class="lgx-icon">🪑</div><div class="lgx-info"><div class="lgx-label">Deck/Economy seat</div><div class="lgx-detail">Airplane-style reclining seat</div></div><div class="lgx-val">€50–65/person</div></div>
+    <div class="lgx-row"><div class="lgx-icon">🛏️</div><div class="lgx-info"><div class="lgx-label">4-berth cabin (recommended for family of 4)</div><div class="lgx-detail">Private cabin with 4 beds — much more comfortable overnight</div></div><div class="lgx-val">€100–180 total</div></div>
+    <div class="lgx-row"><div class="lgx-icon">🚗</div><div class="lgx-info"><div class="lgx-label">Vehicle transport (standard car)</div><div class="lgx-detail">Car travels on vehicle deck — you access it after arrival</div></div><div class="lgx-val">€120–200</div></div>
+    <div class="lgx-row"><div class="lgx-icon">📍</div><div class="lgx-info"><div class="lgx-label">Port of Piraeus — Gates E2 or E3</div><div class="lgx-detail">25 min walk from metro station or take free port shuttle · Arrive 45+ min before departure</div></div><div class="lgx-val">Gates E2/E3</div></div>
+    <div class="lgx-row"><div class="lgx-icon">📱</div><div class="lgx-info"><div class="lgx-label">Book at ferryhopper.com</div><div class="lgx-detail">Best platform for comparison — digital boarding pass, no queues</div></div><div class="lgx-val"><a href="https://ferryhopper.com" target="_blank" style="color:var(--sea)">ferryhopper.com ↗</a></div></div>
+  </div>
+
+  <div class="rule">International Driver's Permit</div>
+  <div class="alert terra"><b>⚠️ Required by Greek Law</b>Greece legally requires an International Driving Permit (IDP) in addition to your US state driver's license. Get one before you leave: AAA issues them same-day for $20 with 2 passport photos. Your US license alone is technically not sufficient and could void your rental car insurance if you are in an accident.</div>
+
+  <div class="rule">Delphi Day Trip — Rental Car Optional</div>
+  <div class="alert teal"><b>🚗 Delphi Recommendation</b>For Delphi, you do NOT need the Apr 21 rental car — that's your Peloponnese car. For Delphi (Apr 18–20 window), either rent a car for the day (~€30–50) or book a private driver from Athens (~€120–180 for the day, stress-free). Delphi is 2.5 hrs each way. The E65 highway is modern and easy to drive. Stop at Hosios Loukas Monastery en route — it adds only 45 minutes.</div>
+</div>
+
+<!-- ===== MAPS EXPORT ===== -->
+<div id="tab-maps" class="panel">
+  <div class="rule">Export to Google Maps</div>
+  <p style="font-size:13px;color:var(--ink2);margin-bottom:16px;line-height:1.65">Three ways to navigate on the ground. KML files work best — upload to Google My Maps for a fully shareable pinned map all 4 family members can open.</p>
+
+  <div class="mcard">
+    <h3>Option 1 — Download KML for Google My Maps</h3>
+    <p>Upload the KML to <a href="https://mymaps.google.com" target="_blank" style="color:var(--azure)">mymaps.google.com</a> → Create New Map → Import → select the .kml file. Share the link with your family. Every pin is tappable for navigation.</p>
+    <div class="dtabs" id="kml-dtabs" style="margin-bottom:12px"></div>
+    <button class="btn-b" id="kml-btn">⬇ Download KML for Selected Day</button>
+    <p style="font-size:11px;color:var(--ink3);margin-top:6px">Tip: create one My Map per region (Athens, Peloponnese, Crete) for cleaner navigation.</p>
+  </div>
+
+  <div class="mcard">
+    <h3>Option 2 — Open Directions in Google Maps</h3>
+    <p>Opens a multi-stop walking/driving route in Google Maps. Works on phone and desktop. Google Maps supports up to 10 waypoints — key stops are pre-loaded, add the rest manually.</p>
+    <div class="dtabs" id="dir-dtabs" style="margin-bottom:12px"></div>
+    <button class="btn-g" id="dir-btn">📍 Open in Google Maps</button>
+  </div>
+
+  <div class="mcard">
+    <h3>Option 3 — Copy Stop Names for Google Maps Saved List</h3>
+    <p>In Google Maps → Saved → Lists → New List. Search each name and pin it. Works offline once downloaded.</p>
+    <div class="dtabs" id="copy-dtabs" style="margin-bottom:12px"></div>
+    <div class="codebox" id="copy-box"></div>
+    <button class="btn-copy" onclick="copyNames()">📋 Copy Stop Names</button>
+  </div>
+</div>
+
+<!-- ===== TRAVEL INFO ===== -->
+<div id="tab-travel" class="panel">
+  <div class="rule">Flights</div>
+  <div class="icard">
+    <div class="icard-t">✈️ Outbound Flight</div>
+    <div class="igrid">
+      <div class="ii"><label>Departure Date</label><input id="f1-date" value="April 15, 2026"></div>
+      <div class="ii"><label>Departure Airport</label><input id="f1-airport" placeholder="e.g. SEA – Seattle-Tacoma"></div>
+      <div class="ii"><label>Airline & Flight #</label><input id="f1-flight" placeholder="e.g. Delta DL 402"></div>
+      <div class="ii"><label>Departure Time</label><input id="f1-dtime" placeholder="e.g. 6:00 PM"></div>
+      <div class="ii"><label>Arrival Date</label><input id="f1-adate" value="April 16, 2026"></div>
+      <div class="ii"><label>Arrival Airport</label><input id="f1-aairport" value="ATH – Eleftherios Venizelos"></div>
+      <div class="ii"><label>Arrival Time</label><input id="f1-atime" placeholder="e.g. 2:30 PM local"></div>
+      <div class="ii"><label>Confirmation #</label><input id="f1-conf" placeholder="Booking reference"></div>
+    </div>
+    <button class="btn-is" onclick="saveInfo('f1',['f1-date','f1-airport','f1-flight','f1-dtime','f1-adate','f1-aairport','f1-atime','f1-conf'])">Save</button>
+    <span class="is-ok" id="ok-f1">✓ Saved</span>
+  </div>
+  <div class="icard">
+    <div class="icard-t">✈️ Return Flight</div>
+    <div class="igrid">
+      <div class="ii"><label>Departure Date</label><input id="f2-date" placeholder="April 29, 2026"></div>
+      <div class="ii"><label>Departure Airport</label><input id="f2-airport" placeholder="ATH or HER – Heraklion"></div>
+      <div class="ii"><label>Airline & Flight #</label><input id="f2-flight" placeholder="e.g. Delta DL 403"></div>
+      <div class="ii"><label>Departure Time</label><input id="f2-dtime" placeholder="e.g. 9:00 AM local"></div>
+      <div class="ii"><label>Connecting Flight</label><input id="f2-conn" placeholder="Any connections?"></div>
+      <div class="ii"><label>Confirmation #</label><input id="f2-conf" placeholder="Booking reference"></div>
+    </div>
+    <button class="btn-is" onclick="saveInfo('f2',['f2-date','f2-airport','f2-flight','f2-dtime','f2-conn','f2-conf'])">Save</button>
+    <span class="is-ok" id="ok-f2">✓ Saved</span>
+  </div>
+
+  <div class="rule">VRBO / Accommodations</div>
+  <div class="icard">
+    <div class="icard-t">🏠 Athens — Neos Kosmos</div>
+    <div class="igrid">
+      <div class="ii"><label>Property Name</label><input id="v1-name" placeholder="Listing name"></div>
+      <div class="ii"><label>VRBO Confirmation #</label><input id="v1-conf" placeholder="e.g. HA-XXXXXXX"></div>
+      <div class="ii"><label>Full Address</label><input id="v1-addr" placeholder="Street address"></div>
+      <div class="ii"><label>Check-In</label><input id="v1-ci" value="April 16, 2026 · 3:00 PM"></div>
+      <div class="ii"><label>Check-Out</label><input id="v1-co" value="April 21, 2026 · 11:00 AM"></div>
+      <div class="ii"><label>Host Name & Phone</label><input id="v1-host" placeholder="Host contact"></div>
+      <div class="ii"><label>WiFi Password</label><input id="v1-wifi" placeholder="Network / password"></div>
+      <div class="ii"><label>Entry Code / Key Info</label><input id="v1-door" placeholder="Access instructions"></div>
+    </div>
+    <button class="btn-is" onclick="saveInfo('v1',['v1-name','v1-conf','v1-addr','v1-ci','v1-co','v1-host','v1-wifi','v1-door'])">Save</button>
+    <span class="is-ok" id="ok-v1">✓ Saved</span>
+  </div>
+  <div class="icard">
+    <div class="icard-t">🏠 Arkadiko Chorio — Peloponnese</div>
+    <div class="igrid">
+      <div class="ii"><label>Property Name</label><input id="v2-name" placeholder="Listing name"></div>
+      <div class="ii"><label>Confirmation #</label><input id="v2-conf" placeholder="Booking reference"></div>
+      <div class="ii"><label>Full Address</label><input id="v2-addr" placeholder="Address near Astros, Arcadia"></div>
+      <div class="ii"><label>Check-In</label><input id="v2-ci" value="April 21, 2026 · 4:00 PM"></div>
+      <div class="ii"><label>Check-Out</label><input id="v2-co" value="April 23, 2026 · 10:00 AM"></div>
+      <div class="ii"><label>Host Name & Phone</label><input id="v2-host" placeholder="Host contact"></div>
+      <div class="ii"><label>WiFi Password</label><input id="v2-wifi" placeholder="Network / password"></div>
+      <div class="ii"><label>Entry Code / Key Info</label><input id="v2-door" placeholder="Access instructions"></div>
+    </div>
+    <button class="btn-is" onclick="saveInfo('v2',['v2-name','v2-conf','v2-addr','v2-ci','v2-co','v2-host','v2-wifi','v2-door'])">Save</button>
+    <span class="is-ok" id="ok-v2">✓ Saved</span>
+  </div>
+  <div class="icard">
+    <div class="icard-t">🏠 Chania — Crete</div>
+    <div class="igrid">
+      <div class="ii"><label>Property Name</label><input id="v3-name" placeholder="Listing name"></div>
+      <div class="ii"><label>Confirmation #</label><input id="v3-conf" placeholder="Booking reference"></div>
+      <div class="ii"><label>Full Address</label><input id="v3-addr" placeholder="Address in or near Chania Old Town"></div>
+      <div class="ii"><label>Check-In</label><input id="v3-ci" value="April 24, 2026 · 2:00 PM"></div>
+      <div class="ii"><label>Check-Out</label><input id="v3-co" value="April 28, 2026 · 11:00 AM"></div>
+      <div class="ii"><label>Host Name & Phone</label><input id="v3-host" placeholder="Host contact"></div>
+      <div class="ii"><label>WiFi Password</label><input id="v3-wifi" placeholder="Network / password"></div>
+      <div class="ii"><label>Entry Code / Key Info</label><input id="v3-door" placeholder="Access instructions"></div>
+    </div>
+    <button class="btn-is" onclick="saveInfo('v3',['v3-name','v3-conf','v3-addr','v3-ci','v3-co','v3-host','v3-wifi','v3-door'])">Save</button>
+    <span class="is-ok" id="ok-v3">✓ Saved</span>
+  </div>
+
+  <div class="rule">Ferry Booking</div>
+  <div class="icard">
+    <div class="icard-t">⛴️ Piraeus → Heraklion Night Ferry</div>
+    <div class="igrid">
+      <div class="ii"><label>Operator & Vessel</label><input id="fe-op" placeholder="e.g. Minoan Lines – Knossos Palace"></div>
+      <div class="ii"><label>Booking Confirmation #</label><input id="fe-conf" placeholder="Reference number"></div>
+      <div class="ii"><label>Departure Date</label><input id="fe-date" value="April 23, 2026"></div>
+      <div class="ii"><label>Departure Time</label><input id="fe-dtime" placeholder="e.g. 9:30 PM"></div>
+      <div class="ii"><label>Departure Gate</label><input id="fe-gate" placeholder="e.g. Gate E2 or E3, Piraeus"></div>
+      <div class="ii"><label>Arrival Time</label><input id="fe-atime" placeholder="e.g. 6:00 AM Heraklion"></div>
+      <div class="ii"><label>Cabin Number</label><input id="fe-cabin" placeholder="Cabin # if booked"></div>
+      <div class="ii"><label>Vehicle Deck Info</label><input id="fe-car" placeholder="Vehicle lane / deck level"></div>
+    </div>
+    <button class="btn-is" onclick="saveInfo('fe',['fe-op','fe-conf','fe-date','fe-dtime','fe-gate','fe-atime','fe-cabin','fe-car'])">Save</button>
+    <span class="is-ok" id="ok-fe">✓ Saved</span>
+  </div>
+</div>
+
+<!-- ===== TIPS ===== -->
+<div id="tab-tips" class="panel">
+  <div class="rule">Athens Tips</div>
+  <div class="tip g"><h4>Acropolis at 8:00 AM — arrive 5 minutes early</h4><p>Timed-entry is strict: your window is 15 min before/after the time on your ticket. The first slot is the best — cool, uncrowded, golden light on the marble. By 10 AM tour groups dominate the site.</p></div>
+  <div class="tip t"><h4>National Archaeological Museum — check current opening hours for Fridays</h4><p>Apr 17 is a Friday. The NAM opens at 8:30 AM with regular hours on Fridays. Schedule it for late morning (after the Acropolis descent) and be out by 3:00 PM. Tuesday the museum doesn't open until 1:00 PM — avoid that day.</p></div>
+  <div class="tip g"><h4>South Slope descent — plan your sequence before leaving the plateau</h4><p>You cannot re-enter the Acropolis main plateau after descending to the South Slope. See everything on top first (Parthenon, Erechtheion, Temple of Athena Nike, North Slope), then descend south toward the Theatre of Dionysus and Odeon.</p></div>
+  <div class="tip t"><h4>National Garden — your daughter's highlight in Athens</h4><p>Mid-April is peak bloom in Athens. The garden has koi ponds, exotic parrots, a small zoo, peacocks, and Roman mosaics in an oasis setting. Best visited in the late afternoon — combine with the Zappeion terrace for a cold drink and rest before the Panathenaic Stadium.</p></div>
+
+  <div class="rule">Delphi Tips</div>
+  <div class="tip g"><h4>April 18 = International Monuments Day — everything is FREE</h4><p>Every state-owned site and museum in Greece is free on April 18. This includes Ancient Delphi (site + museum, normally €12/person) and Hosios Loukas is the one exception as a privately managed monastery (€4/person still applies). Saves your party of 4 approximately €48 in Delphi entry fees alone.</p></div>
+  <div class="tip r"><h4>Depart Athens by 6:45 AM — 15 minutes earlier than normal</h4><p>Free days attract extra visitors, including locals who don't normally pay admission. Delphi being 2.5 hrs from Athens means most of the crowd surge hits the Athens sites, but get there at opening regardless. The Sacred Way and the Stadium at the top are dramatically better without crowds.</p></div>
+  <div class="tip t"><h4>Stop at Hosios Loukas monastery en route</h4><p>A 45-min detour off the E65 before Delphi, Hosios Loukas is one of the best-preserved Byzantine monasteries in Greece — 11th-century mosaics that will stop you in your tracks. Ticket is only €4. Best visited on the way to Delphi (not the return — you'll be tired).</p></div>
+  <div class="tip g"><h4>Don't miss the Tholos of Athena Pronaia</h4><p>This circular temple is 300m downhill from the main site on the opposite side of the road. Most visitors skip it entirely. It's the most-photographed ancient structure at Delphi and takes only 20 minutes to see. It is included on your combined ticket.</p></div>
+  <div class="tip r"><h4>Arachova village — stop on the way back</h4><p>The mountain village 10 minutes east of Delphi on the E65 is one of the most charming in mainland Greece. Stop for lunch at a taverna, browse the shops (local honey, wine, formaella cheese), and enjoy views over the Parnassus valley. Allow 45–60 minutes.</p></div>
+
+  <div class="rule">Peloponnese Tips</div>
+  <div class="tip g"><h4>Do Mycenae in the morning, Nafplio for lunch, Epidaurus in the afternoon</h4><p>This is the classic sequence for a reason. Mycenae opens at 8 AM and is best in morning light. Nafplio has the best lunch options in the Argolid and is genuinely one of the prettiest towns in mainland Greece. Epidaurus is magical in late afternoon when the light catches the marble seats.</p></div>
+  <div class="tip t"><h4>Mycenae Lion Gate — better than you expect</h4><p>The massive scale of the gate is impossible to appreciate in photos. The Cyclopean walls — built of stones so large the Greeks believed giants must have placed them — are extraordinary up close. Allow 2 hours for the site and museum combined. The Treasury of Atreus (Tomb of Agamemnon) is a separate 5-min walk down the road outside the main ticket.</p></div>
+  <div class="tip g"><h4>Epidaurus acoustics — the whisper test</h4><p>The 14,000-seat theatre from 360 BC has perfect acoustics — a coin dropped at the center of the orchestra can be heard in the highest row. Have one family member stand at the exact center of the circular stage (the orchestra) and whisper while the others climb to the top tier. It genuinely works and will be one of the most memorable moments of the trip.</p></div>
+  <div class="tip r"><h4>Loukou Monastery — 5 minutes from your VRBO</h4><p>The Monastery of Agios Ioannis Prodromos Loukou (John the Baptist) near Astros is built over the ruins of an ancient sanctuary and has a stunning cloister garden that's one of the most beautiful in the Peloponnese. It's free, quiet, and almost always uncrowded. Perfect for the morning before or after beach time near Arkadiko Chorio.</p></div>
+  <div class="tip t"><h4>Beaches near Arkadiko Chorio</h4><p>Kryoneri Beach (0.1 km away) is the closest — small, picturesque, free, pebbled. Tyros Beach (1.1 km) is slightly larger with beach bars. Paralio Astros (6 km north) has a long sandy beach and a pretty harbor with good fresh fish tavernas. For a family beach day, Paralio Astros is the best option in the area.</p></div>
+
+  <div class="rule">Ferry & Crete Tips</div>
+  <div class="tip s"><h4>Arrive at Piraeus at least 45 minutes before departure</h4><p>Gates E2 and E3 (for Crete ferries) are a 25-minute walk from the Piraeus metro station. There is a free port shuttle bus. Boarding typically starts 1 hour before departure. With a car, follow signs to the vehicle staging area — crew will direct you to your lane. Keep your car documents easily accessible.</p></div>
+  <div class="tip s"><h4>Book a 4-berth cabin — worth every euro</h4><p>A family cabin (~€100–180 total) means a real bed, privacy, and arriving in Chania rested instead of crumpled. The overnight crossing is 9.5 hours. Economy seats are airplane-style recliners and workable, but the cabin is dramatically better for a family with an overnight crossing and a full day of driving to Chania afterward.</p></div>
+  <div class="tip t"><h4>Elafonissi — go early and go on a weekday</h4><p>Elafonissi is one of the world's most beautiful beaches and it knows it. Mid-April is shoulder season so crowds are manageable, but arrive before 10 AM regardless. The pink sand is created by crushed seashells — it deepens in color toward the south end of the beach. The water is shallow and warm — your daughter will love the wading lagoons.</p></div>
+  <div class="tip g"><h4>Chania Old Town — best in early morning and evening</h4><p>The Venetian harbor and lighthouse are busiest midday. Walk the harbor at 8 AM before the tourist rush, then again at sunset when the lighthouse and old warehouses glow gold. The best food is in the narrow back streets behind the harbor (Splantzia quarter) — avoid the tourist-facing harbor-front restaurants and duck one block back for dramatically better food and prices.</p></div>
+  <div class="tip t"><h4>Samaria Gorge — check opening date carefully</h4><p>The gorge officially opens for the season around May 1 — exact date varies by year and conditions. In mid-April it is usually still closed for the full 16km through-hike. Check the current status at the Chania KTEL bus station or the official Samaria Gorge site before planning your day around it. If closed, the Imbros Gorge (near Sfakia) is shorter, easier, and often open earlier in the season.</p></div>
+  <div class="tip r"><h4>Balos Beach — verify boat service in April</h4><p>The boat from Kissamos port to Balos typically starts its April schedule around mid-April. Confirm the service is running before driving 60km to Kissamos. Alternatively, the rough 9km dirt road from the Gramvousa peninsula is drivable in a standard car but hard on tires and slow — the boat is far more pleasant.</p></div>
+</div>
+
+<!-- ===== FERRY vs FLIGHT ===== -->
+<div id="tab-ferrvfly" class="panel" style="max-width:880px;margin:0 auto;padding:22px 18px">
+
+  <div style="background:var(--ink);color:var(--paper);border-radius:6px;padding:16px 18px;margin-bottom:18px">
+    <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold-b);margin-bottom:6px">Bottom Line Up Front</div>
+    <div style="font-family:var(--serif);font-size:18px;font-weight:700;line-height:1.3;margin-bottom:8px">Flying is cheaper for 4 people. The ferry is a richer experience — and solves the rental car problem.</div>
+    <div style="font-size:13px;color:rgba(250,248,243,.75);line-height:1.6">The flight wins on pure cost (~€240–360 total vs. ~€470–680 ferry). But the ferry keeps your rental car with you the whole trip, eliminates the need to return and re-rent a car in Crete, and adds a genuinely memorable overnight crossing as part of the adventure. Your call comes down to budget vs. convenience vs. experience.</div>
+  </div>
+
+  <div class="rule">Cost Comparison — Party of 4 · One Direction (Mainland → Crete)</div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px">
+
+    <!-- FERRY CARD -->
+    <div style="background:#fff;border:2px solid var(--sea);border-radius:8px;overflow:hidden">
+      <div style="background:var(--sea);color:#fff;padding:10px 14px">
+        <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;opacity:.8;margin-bottom:2px">Option A</div>
+        <div style="font-family:var(--serif);font-size:17px;font-weight:700">⛴️ Overnight Ferry</div>
+        <div style="font-size:11px;opacity:.8;margin-top:2px">Piraeus → Heraklion · ~9.5 hrs</div>
+      </div>
+      <div style="padding:14px">
+        <table class="ctbl" style="font-size:12px">
+          <thead><tr><th>Item</th><th>Cost</th></tr></thead>
+          <tbody>
+            <tr><td>4 × economy deck seat</td><td>€200–260</td></tr>
+            <tr><td><strong>— OR —</strong> 4-berth private cabin</td><td>€100–180 <span style="font-size:10px;color:var(--ink3)">total</span></td></tr>
+            <tr><td>Vehicle transport (standard car)</td><td>€120–200</td></tr>
+            <tr style="background:var(--sea-l);font-weight:700"><td>Total (cabin + car)</td><td>€220–380</td></tr>
+            <tr style="background:var(--sea-l);font-weight:700"><td>Total (deck seats + car)</td><td>€320–460</td></tr>
+          </tbody>
+        </table>
+        <div style="font-size:11px;color:var(--ink3);margin-top:10px;line-height:1.6">
+          <strong>Cabin strongly recommended</strong> for a family — private room, real beds, private bathroom. Deck seats are airplane recliners and workable but tiring over 9.5 hrs.<br><br>
+          <strong>Book at:</strong> <a href="https://ferryhopper.com" target="_blank" style="color:var(--sea)">ferryhopper.com</a> or directly at <a href="https://www.minoan.gr" target="_blank" style="color:var(--sea)">minoan.gr</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- FLIGHT CARD -->
+    <div style="background:#fff;border:2px solid var(--teal);border-radius:8px;overflow:hidden">
+      <div style="background:var(--teal);color:#fff;padding:10px 14px">
+        <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;opacity:.8;margin-bottom:2px">Option B</div>
+        <div style="font-family:var(--serif);font-size:17px;font-weight:700">✈️ Direct Flight</div>
+        <div style="font-size:11px;opacity:.8;margin-top:2px">ATH → HER · ~50 minutes</div>
+      </div>
+      <div style="padding:14px">
+        <table class="ctbl" style="font-size:12px">
+          <thead><tr><th>Item</th><th>Cost</th></tr></thead>
+          <tbody>
+            <tr><td>4 × one-way flight (budget fare)</td><td>€160–280</td></tr>
+            <tr><td>4 × one-way (average April fare)</td><td>€280–400</td></tr>
+            <tr><td>Checked bags (1 per person, if needed)</td><td>€60–80</td></tr>
+            <tr><td>ATH airport taxi/transfer to terminal</td><td>€0 <span style="font-size:10px;color:var(--ink3)">(you're already in Athens)</span></td></tr>
+            <tr style="background:var(--teal-l);font-weight:700"><td>Total (budget, carry-on only)</td><td>~€160–280</td></tr>
+            <tr style="background:var(--teal-l);font-weight:700"><td>Total (avg fare + bags)</td><td>~€340–480</td></tr>
+          </tbody>
+        </table>
+        <div style="font-size:11px;color:var(--ink3);margin-top:10px;line-height:1.6">
+          <strong>Airlines:</strong> Aegean Airlines (most flights, most reliable) and Sky Express (often cheapest). Both fly direct ATH→HER ~15x/day.<br><br>
+          <strong>Book at:</strong> <a href="https://www.aegeanair.com" target="_blank" style="color:var(--teal)">aegeanair.com</a> or <a href="https://www.skyexpress.gr" target="_blank" style="color:var(--teal)">skyexpress.gr</a> — or compare on Google Flights
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rule">The Hidden Cost: Rental Car Logistics</div>
+  <div class="alert terra"><b>⚠️ This is the most important factor in your decision</b>Your rental car is reserved from April 21. If you fly to Crete, you must either (A) return the car in Athens before flying and pick up a NEW rental in Heraklion, or (B) arrange a one-way rental drop-off in Piraeus and pick-up in Heraklion. Both options add cost and complexity. The ferry eliminates this entirely — your car travels with you.</div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px">
+    <div style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:14px">
+      <div style="font-weight:700;font-size:13px;color:var(--sea);margin-bottom:8px">⛴️ Ferry — Car Logistics</div>
+      <div style="font-size:12px;color:var(--ink2);line-height:1.7">
+        ✅ Drive your Peloponnese rental car onto the ferry in Piraeus<br>
+        ✅ Drive it off in Heraklion the next morning<br>
+        ✅ Same car, same company, no additional pickup<br>
+        ✅ Drop it at Heraklion Airport on Apr 28–29<br>
+        ✅ <strong>Zero extra rental car steps</strong>
+      </div>
+    </div>
+    <div style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:14px">
+      <div style="font-weight:700;font-size:13px;color:var(--teal);margin-bottom:8px">✈️ Flight — Car Logistics (3 options)</div>
+      <div style="font-size:12px;color:var(--ink2);line-height:1.7">
+        <strong>Option 1:</strong> Return car in Athens Apr 23 · Pick up new rental in Heraklion Apr 24<br>
+        → Extra rental cost: €60–120 for 4 days in Crete<br><br>
+        <strong>Option 2:</strong> One-way rental Athens→Piraeus, one-way Heraklion→Heraklion Airport<br>
+        → One-way drop fee: €50–150 extra<br><br>
+        <strong>Option 3:</strong> No car in Crete — use taxis/buses<br>
+        → Limits Elafonissi, Balos, Falassarna access significantly
+      </div>
+    </div>
+  </div>
+
+  <div class="rule">Full Trip Cost Comparison — Both Legs (To + From Crete, Party of 4)</div>
+  <div style="background:#fff;border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-bottom:20px">
+    <table class="ctbl">
+      <thead><tr><th>Scenario</th><th>To Crete (Apr 23)</th><th>From Crete (Apr 28–29)</th><th>Extra Car Cost</th><th style="color:var(--gold)">Total Est.</th></tr></thead>
+      <tbody>
+        <tr style="background:var(--sea-l)">
+          <td><strong>⛴️ Ferry both ways</strong><br><span class="n">Cabin + car each direction</span></td>
+          <td>€220–380</td>
+          <td>€220–380<br><span class="n">Return ferry HER→PIR</span></td>
+          <td>€0<br><span class="n">Same car throughout</span></td>
+          <td><strong>€440–760</strong></td>
+        </tr>
+        <tr>
+          <td><strong>⛴️ Ferry in / ✈️ Fly out</strong><br><span class="n">Most popular combo</span></td>
+          <td>€220–380<br><span class="n">Cabin + car</span></td>
+          <td>€160–280<br><span class="n">4x HER→ATH flights</span></td>
+          <td>€0–50<br><span class="n">Drop car at HER airport</span></td>
+          <td><strong>€380–710</strong></td>
+        </tr>
+        <tr style="background:var(--teal-l)">
+          <td><strong>✈️ Fly both ways</strong><br><span class="n">Cheapest transport, most complex car logistics</span></td>
+          <td>€160–280<br><span class="n">4x ATH→HER flights</span></td>
+          <td>€160–280<br><span class="n">4x HER→ATH flights</span></td>
+          <td>€60–150<br><span class="n">New Crete rental car</span></td>
+          <td><strong>€380–710</strong></td>
+        </tr>
+        <tr style="background:var(--gold-l)">
+          <td><strong>✈️ Fly in / ⛴️ Ferry out</strong><br><span class="n">Gets you there fast, relaxed return overnight</span></td>
+          <td>€160–280<br><span class="n">4x ATH→HER flights</span></td>
+          <td>€220–380<br><span class="n">Cabin + car HER→PIR</span></td>
+          <td>€60–150<br><span class="n">New Crete rental</span></td>
+          <td><strong>€440–810</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="rule">Pros & Cons at a Glance</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px">
+    <div style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:14px">
+      <div style="font-weight:700;font-size:13px;color:var(--sea);margin-bottom:10px">⛴️ Ferry — Pros & Cons</div>
+      <div style="font-size:12px;line-height:1.8">
+        <span style="color:var(--olive)">✅</span> Car travels with you — no re-rental needed<br>
+        <span style="color:var(--olive)">✅</span> Saves a hotel night (overnight crossing)<br>
+        <span style="color:var(--olive)">✅</span> No luggage limits, no bag fees<br>
+        <span style="color:var(--olive)">✅</span> A memorable experience in itself<br>
+        <span style="color:var(--olive)">✅</span> No airport hassle, no security queues<br>
+        <span style="color:var(--olive)">✅</span> Arrive in Crete rested with a full day ahead<br>
+        <span style="color:var(--terra)">❌</span> 9.5 hours vs. 50 minutes<br>
+        <span style="color:var(--terra)">❌</span> Can be rough in bad weather (April is generally calm)<br>
+        <span style="color:var(--terra)">❌</span> Must drive to Piraeus from Peloponnese first<br>
+        <span style="color:var(--terra)">❌</span> More expensive if you price just transport (no car)
+      </div>
+    </div>
+    <div style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:14px">
+      <div style="font-weight:700;font-size:13px;color:var(--teal);margin-bottom:10px">✈️ Flight — Pros & Cons</div>
+      <div style="font-size:12px;line-height:1.8">
+        <span style="color:var(--olive)">✅</span> 50 minutes door to door (once at airport)<br>
+        <span style="color:var(--olive)">✅</span> Cheaper for pure transport (4 people, no car)<br>
+        <span style="color:var(--olive)">✅</span> Many daily departures — flexible timing<br>
+        <span style="color:var(--olive)">✅</span> Arrive in Crete with a full afternoon<br>
+        <span style="color:var(--terra)">❌</span> Must return rental car + pick up new one in Crete<br>
+        <span style="color:var(--terra)">❌</span> Checked bag fees add up for 4 people<br>
+        <span style="color:var(--terra)">❌</span> Airport check-in + security + wait time (~2.5 hrs total)<br>
+        <span style="color:var(--terra)">❌</span> Weight/size limits — harder with full vacation luggage<br>
+        <span style="color:var(--terra)">❌</span> April 23 flight after a full Peloponnese driving day is tiring
+      </div>
+    </div>
+  </div>
+
+  <div class="rule">Our Recommendation</div>
+  <div class="alert teal"><b>💡 Best value combo: Ferry in (Apr 23 night) → Fly out (Apr 28–29)</b>Take the overnight ferry from Piraeus to Heraklion with your car — it solves every car logistics problem, saves a hotel night, and is genuinely one of the best travel experiences in Greece. On the way back, fly HER→ATH (50 min, ~€40–70/person) and return your car at Heraklion Airport before the flight. This is the most popular itinerary structure among travelers doing exactly your route. Total transport cost estimate: €380–660 for the party of 4 both directions.</div>
+  <div class="alert"><b>📱 Book these NOW — don't wait</b>The 4-berth cabin on the Piraeus→Heraklion overnight ferry is the most important thing to book first. <a href="https://ferryhopper.com" target="_blank" style="color:var(--gold)">ferryhopper.com</a> shows real-time availability. April is shoulder season so it won't sell out tomorrow, but good cabin categories go fast. Flights for the return can be booked on <a href="https://www.aegeanair.com" target="_blank" style="color:var(--gold)">aegeanair.com</a> or Google Flights — April fares are currently ~€77–87/person one-way.</div>
+
+</div>
+
+<script>
+// ================================================================
+// ALL DAYS DATA
+// ================================================================
+const DAYS = [
+ {id:'apr16',label:'Apr 16',title:'Arrival — Jet Lag Recovery',date:'Thursday, April 16',meta:'Fly in · Neos Kosmos · Easy first evening',region:'athens',badge:{bg:'#1c1a16',color:'#f7efc8'},stops:[
+  {n:1,time:'~2 PM',name:'Land at Athens Airport (ATH)',stag:'si',stagL:'Transfer',num:'nk',desc:"Land at Eleftherios Venizelos. Pre-book a taxi (flat rate ~€38–45 to Neos Kosmos) or take the X96 express bus (€5.50/person, 70 min to Syntagma). The metro Line 3 connects to Monastiraki in 40 min (€10/person). Your VRBO in Neos Kosmos is about 1.5km south of the Acropolis.",mq:'Athens International Airport Eleftherios Venizelos',lat:37.9364,lng:23.9444},
+  {n:2,time:'3:00 PM',name:'Check In — Neos Kosmos VRBO',stag:'si',stagL:'Check-in: 3:00 PM · Check-out: Apr 21 @ 11 AM',num:'no',desc:"Check-in is 3:00 PM. If your flight lands ~2:30 PM and you clear customs quickly, a taxi (~€38–45, 30–40 min from ATH) could get you there right at 3 PM — but it will be tight with luggage. More realistically plan on 3:30–4:00 PM arrival. If you're early, store bags with the host and walk the 15 minutes to Dionysiou Areopagitou promenade for your first Acropolis view. CHECKOUT: April 21 at 11:00 AM — factor this into your car rental pickup and Peloponnese departure timing.",mq:'Neos Kosmos Athens',lat:37.9585,lng:23.7348},
+  {n:3,time:'5:00 PM',name:'First Look — Dionysiou Areopagitou Promenade',stag:'sf',stagL:'Free',num:'nt',desc:"The marble-paved pedestrian walkway running below the south face of the Acropolis is a 15-minute walk from your VRBO. Grab a coffee at one of the outdoor cafés, take in your first view of the illuminated Acropolis rock, and let the jet lag begin its departure. No ticket, no crowds — just the most beautiful evening walk in Athens.",mq:'Dionysiou Areopagitou Athens',lat:37.9694,lng:23.7278},
+  {n:4,time:'7:00 PM',name:'Dinner — Koukaki / Neos Kosmos Taverna',stag:'si',stagL:'~€15–25/person',num:'nk',desc:"Your neighborhood has excellent tavernas one step off the tourist trail. Ask your host for a personal recommendation — that's always the best intel. Order the htipiti (spicy feta dip), gigantes beans, fresh bread, and grilled paidakia (lamb chops). Early to bed — big day tomorrow.",mq:'Koukaki Athens taverna',lat:37.9620,lng:23.7280},
+ ]},
+ {id:'apr17',label:'Apr 17',title:'Athens Monuments Blitz',date:'Friday, April 17',meta:'19 stops · 8:00 AM – Sunset · Moderate pace with rest stops built in',region:'athens',badge:{bg:'#a07c1e',color:'#fff'},stops:[
+  {n:1,time:'8:00 AM',name:'Acropolis — Beule Gate & Propylaea',stag:'sb',stagL:'€30 (Slopes)',num:'ng',desc:"Enter through the Roman Beule Gate and ascend to the grand Propylaea gateway. The first light of an April morning on white Pentelic marble is extraordinary. Timed entry — be here 5 minutes before your slot. The Propylaea took 9 years to build (437–428 BC) and was never fully completed due to the Peloponnesian War.",mq:'Acropolis of Athens',lat:37.9715,lng:23.7257},
+  {n:2,time:'8:20 AM',name:'Parthenon',stag:'sb',stagL:'Included',num:'ng',desc:"Walk the full perimeter of the 447 BC Doric masterpiece. The scaffolding that obscured the north colonnade for decades was fully removed in 2025 — this may be the clearest view of the Parthenon in a generation. The frieze carvings visible high on the walls are mostly 19th-century casts (originals in the Acropolis Museum below). Allow 30 minutes.",mq:'Parthenon Athens',lat:37.9715,lng:23.7267},
+  {n:3,time:'8:55 AM',name:'Erechtheion & Porch of the Caryatids',stag:'sb',stagL:'Included',num:'ng',desc:"The sacred Ionic temple housing Athena's sacred olive tree and the tomb of the mythical King Cecrops. The six sculpted maiden columns (Caryatids) are replicas — the originals are in the Acropolis Museum. Stand below the south porch and look up for the best view of the draped figures.",mq:'Erechtheion Athens',lat:37.9718,lng:23.7263},
+  {n:4,time:'9:15 AM',name:'Temple of Athena Nike',stag:'sb',stagL:'Included',num:'ng',desc:"The small but perfectly proportioned Ionic temple at the southwest corner commands views toward the sea and the Saronic Gulf on a clear April day. Recently restored — scaffolding finally removed in 2022. Dedicated to Athena as Bringer of Victory.",mq:'Temple of Athena Nike Athens',lat:37.9712,lng:23.7250},
+  {n:5,time:'9:35 AM',name:'Areopagus Hill (Mars Hill) — Free',stag:'sf',stagL:'Free',num:'no',desc:"The bare rock between the Acropolis entrance and the Ancient Agora. No ticket. The most dramatic eye-level view of the Propylaea in Athens — and where St. Paul preached his famous sermon to the Athenians in 51 AD. The bronze plaque quoting his speech is embedded in the rock. Caution: polished marble is extremely slippery when wet.",mq:'Areopagus Hill Athens',lat:37.9725,lng:23.7233},
+  {n:6,time:'9:50 AM',name:'National Archaeological Museum 🏛️',stag:'sp',stagL:'€12/person',num:'na',desc:"The greatest collection of ancient Greek art on earth. Allow 2 hours. Unmissable highlights: the Mask of Agamemnon (gold death mask from Mycenae, 16th century BC), the Artemision Bronze (Zeus or Poseidon hurling a thunderbolt, 460 BC), the Antikythera Youth, the Jockey of Artemision. Take a taxi from the Areopagus (~€8, 10 min) — it's 2km north. Note: open regular hours on Fridays — check current hours at namuseum.gr before visiting.",mq:'National Archaeological Museum Athens',lat:37.9890,lng:23.7328},
+  {n:7,time:'12:00 PM',name:'Lunch Break — Exarchia or Omonia Square',stag:'si',stagL:'~€15–25/person',num:'nk',desc:"The NAM sits in the Exarchia neighborhood, one of Athens' most authentic areas far from the tourist trail. Dozens of excellent local tavernas within 5 min walk. Ask any local or the museum café staff for a recommendation. This is a genuine Athenian lunch experience.",mq:'Exarchia Athens taverna',lat:37.9854,lng:23.7327},
+  {n:8,time:'1:30 PM',name:'Return to Acropolis Area — South Slope',stag:'sb',stagL:'Included (Slopes)',num:'ng',desc:"Taxi back (~€8, 10 min) to continue your Acropolis & Slopes ticket. Head to the Theatre of Dionysus on the south slope — birthplace of European drama, 5th century BC. The carved marble thrones of honor in the front row are astonishing. Look for the throne of the Priest of Dionysus.",mq:'Theatre of Dionysus Athens',lat:37.9703,lng:23.7278},
+  {n:9,time:'2:00 PM',name:'Odeon of Herodes Atticus',stag:'sb',stagL:'Included (Slopes)',num:'ng',desc:"The vast Roman concert hall built in 161 AD, still hosting performances. Walk the full length of the exterior wall along Dionysiou Areopagitou promenade — the scale is extraordinary even from outside.",mq:'Odeon of Herodes Atticus Athens',lat:37.9706,lng:23.7258},
+  {n:10,time:'2:25 PM',name:'Acropolis Museum ☕ Rest Stop',stag:'sp',stagL:'€15/person',num:'na',desc:"One of the world's finest archaeological museums — and your planned rest stop. Excellent café inside. Highlights: five original Caryatids, Parthenon Frieze with the haunting gaps where Elgin Marbles were removed, and glass floors over an excavated ancient Athenian neighborhood below. Open until 5 PM on Thursdays. Allow 90 minutes.",mq:'Acropolis Museum Athens',lat:37.9684,lng:23.7285},
+  {n:11,time:'4:05 PM',name:"Hadrian's Arch — Free",stag:'sf',stagL:'Free',num:'no',desc:"The massive marble Roman gateway built in 131 AD, marking the boundary between ancient Athens and Hadrian's new city. Viewable from the street at any time. Frame a photo through the arch with the Temple of Olympian Zeus immediately behind it.",mq:"Arch of Hadrian Athens",lat:37.9702,lng:23.7320},
+  {n:12,time:'4:15 PM',name:'Temple of Olympian Zeus',stag:'sp',stagL:'€8/person',num:'nt',desc:"Greece's largest ancient temple — 15 of its original 104 Corinthian columns still stand, 17 meters tall. The sheer scale is staggering. Building began in 515 BC and took 640 years to complete (finished by Emperor Hadrian in 131 AD). Allow 35 minutes.",mq:'Temple of Olympian Zeus Athens',lat:37.9693,lng:23.7331},
+  {n:13,time:'5:00 PM',name:'National Garden 🌿 Rest Stop',stag:'sf',stagL:'Free',num:'no',desc:"A 38-acre oasis in the city center, formerly the royal garden of Queen Amalia. For your daughter: koi ponds, a small zoo with exotic parrots and goats, ancient Roman mosaics, peacocks roaming freely, and wild green parrots in the palms. Mid-April is peak bloom. Benches everywhere. Allow 60 minutes.",mq:'Athens National Garden',lat:37.9726,lng:23.7374},
+  {n:14,time:'6:05 PM',name:'Zappeion Megaron & Café Terrace',stag:'sf',stagL:'Free (café ~€5–10)',num:'no',desc:"The neoclassical colonnaded exhibition hall surrounded by formal gardens directly adjacent to the National Garden. Outstanding café on the terrace — cold drinks, shade, and a genuine rest. The Ionic colonnade is one of Athens' most elegant structures.",mq:'Zappeion Athens',lat:37.9704,lng:23.7379},
+  {n:15,time:'6:45 PM',name:'Panathenaic Stadium (Kallimarmaro)',stag:'sp',stagL:'€12/person — gate only',num:'nt',desc:"The world's only full-scale stadium built entirely of white Pentelic marble. Site of the first modern Olympics in 1896. Walk the track, stand at the finish line, explore the underground athlete's tunnel, and climb to the top tier for sweeping city views. Audio guide included. Allow 45 minutes. Cash/card at the gate — no online tickets.",mq:'Panathenaic Stadium Athens',lat:37.9683,lng:23.7411},
+  {n:16,time:'7:45 PM',name:'Prison of Socrates — Philopappou Hill',stag:'sf',stagL:'Free',num:'no',desc:"A cave traditionally identified as where Socrates awaited execution in 399 BC, on the western slope of Philopappou Hill. Free, untickcted, and often totally uncrowded. The hill provides some of the most dramatic close-up views of the Acropolis at sunset — the Parthenon at the same elevation, caught in golden hour light. One of Athens' most underrated experiences.",mq:'Prison of Socrates Philopappou Hill Athens',lat:37.9680,lng:23.7205},
+  {n:17,time:'8:30 PM',name:'Kolonaki — Lycabettus Funicular Station',stag:'sp',stagL:'€10 RT funicular',num:'ng',desc:"Take a taxi from Philopappou Hill to the Teleferik (funicular) station on Aristippou Street in Kolonaki (~10 min, €8). The cable car runs through a lit tunnel and deposits you at the summit in 3 minutes. Alternatively, hike up via the path through the pine forest (30 min) and take the funicular down after dark.",mq:'Lycabettus Funicular Station Athens',lat:37.9796,lng:23.7447},
+  {n:18,time:'~9:00 PM',name:'Mount Lycabettus — Sunset & City Views',stag:'sf',stagL:'Summit free · Funicular €10 RT',num:'ng',desc:"Athens at your feet from 277 meters — the illuminated Acropolis below, Temple of Zeus, the Aegean sea catching the last light to the southwest. Sunset on April 17 is approximately 8:10 PM local time. Allow 45–60 minutes on the summit. The small whitewashed Chapel of St. George is beautiful at dusk. Restaurant Orizontes Lycabettus requires reservations — ask your VRBO host to book ahead.",mq:'Mount Lycabettus Athens summit',lat:37.9818,lng:23.7431},
+  {n:19,time:'10:00 PM',name:'Dinner — Kolonaki or delivery back at VRBO',stag:'si',stagL:'~€20–35/person',num:'nk',desc:"You've earned it. Kolonaki has excellent restaurants. Options: Spovida (Greek contemporary), Papadakis (outstanding seafood), or simply order delivery back at the VRBO. Feet up — Delphi is tomorrow and it's a free monuments day.",mq:'Kolonaki Athens restaurants',lat:37.9795,lng:23.7420},
+ ]},
+ {id:'apr18',label:'Apr 18 🎉',title:'Delphi Day Trip — FREE Monuments Day',date:'Saturday, April 18',meta:'International Monuments Day · All state sites FREE · Depart 6:45 AM · Hosios Loukas en route · Saves ~€64 for party of 4',region:'athens',badge:{bg:'#1a6355',color:'#fff'},stops:[
+  {n:1,time:'⭐ ALL DAY',name:'🎉 International Monuments Day — Every State Site is FREE',stag:'sf',stagL:'All state sites free today',num:'no',desc:"April 18 is International Monuments Day (ICOMOS) — every state-owned archaeological site and museum in Greece is free, including Ancient Delphi, the Acropolis, the National Archaeological Museum, Mycenae, and dozens more. This saves your party of 4 approximately €48–64 in Delphi ticket costs alone. Crowds will be higher than a normal day, especially at the Acropolis in Athens — but Delphi being 2.5 hrs from Athens typically draws fewer day-trippers than the city sites. NOTE: Hosios Loukas Monastery is privately managed and NOT part of the state free-day program — the €4/person fee still applies.",mq:'Delphi Archaeological Site Greece',lat:38.4824,lng:22.5011},
+  {n:2,time:'6:45 AM',name:'Depart Athens — Drive toward Levadia',stag:'sf',stagL:'Free today',num:'nt',desc:"Depart by 6:45 AM — slightly earlier than a normal Delphi day to beat the extra crowds that free-entry days attract. Take the E65 highway north toward Levadia (~2 hrs). The road is modern and straightforward. Optional: stop at a roadside café in Levadia for coffee before the final push up to Delphi.",mq:'Athens to Delphi drive route',lat:38.3294,lng:22.5023},
+  {n:3,time:'8:15 AM',name:'Hosios Loukas Monastery ⛪',stag:'sp',stagL:'€4/person (private — not free today)',num:'np',desc:"A 45-minute detour off the E65 before Delphi leads to one of the finest Byzantine monasteries in Greece. The 11th-century mosaics inside the Catholicon church are among the best in the Byzantine world — gold-ground figures of astounding beauty and subtlety. Your daughter will be drawn to the peaceful cloister courtyard and gardens. Allow 45–60 minutes. Note: as a privately managed monastery, the €4/person fee applies even on free-monument days.",mq:'Hosios Loukas Monastery Greece',lat:38.3959,lng:22.7419},
+  {n:4,time:'10:00 AM',name:'Delphi — Archaeological Site 🎉 FREE',stag:'sf',stagL:'FREE today (normally €12)',num:'nt',desc:"The most sacred site in the ancient Greek world — home of the Oracle of Apollo, the 'navel of the world' (omphalos). Ascend the Sacred Way past the treasuries to the Temple of Apollo where Pythia delivered her prophecies. Continue up to the ancient theatre (outstanding valley views) and then the stadium at the very top. Allow 2 hours for the site. Pick up your free ticket at the gate.",mq:'Delphi Archaeological Site Greece',lat:38.4824,lng:22.5011},
+  {n:5,time:'12:00 PM',name:'Delphi Archaeological Museum 🎉 FREE',stag:'sf',stagL:'FREE today (normally included)',num:'nt',desc:"Also free today as a state-run museum. Highlights: the Charioteer of Delphi (478 BC — arguably the most perfect surviving bronze statue of antiquity), the Sphinx of the Naxians, and the reconstructed Siphnian Treasury frieze. Allow 60–75 minutes.",mq:'Delphi Archaeological Museum',lat:38.4830,lng:22.4989},
+  {n:6,time:'1:30 PM',name:'Sanctuary of Athena Pronaia — The Tholos 🎉 FREE',stag:'sf',stagL:'FREE today',num:'nt',desc:"Walk 300m downhill from the main site entrance to find the famous circular Tholos — three remaining columns of a mysterious circular temple set against a vertical cliff face. The most-photographed structure at Delphi. Takes only 20 minutes. Do not skip it.",mq:'Tholos Delphi Sanctuary of Athena Pronaia',lat:38.4796,lng:22.5028},
+  {n:7,time:'2:00 PM',name:'Lunch — Delphi Village',stag:'si',stagL:'~€15–20/person',num:'nk',desc:"The modern village of Delphi (Delfi) sits just above the archaeological zone. Taverna Vakhos and To Patriko Mas are consistently recommended. Order the local lamb dishes and Parnassus mountain greens. Allow 45–60 minutes.",mq:'Delphi village taverna restaurant',lat:38.4820,lng:22.4990},
+  {n:8,time:'3:15 PM',name:'Arachova Village — Mountain Stop',stag:'sf',stagL:'Free (shopping/café)',num:'no',desc:"10 minutes east of Delphi on the E65, Arachova is one of the most charming mountain villages in Greece. Browse the shops for local honey, formaella cheese (a Greek mountain specialty), and Parnassus wines. The main street café scene is beautiful in the afternoon light. Allow 45–60 minutes.",mq:'Arachova village Greece',lat:38.4718,lng:22.5919},
+  {n:9,time:'4:30 PM',name:'Drive back to Athens',stag:'si',stagL:'~2.5 hrs',num:'nk',desc:"Return via the E65 south. Arrive Athens ~7 PM. Quiet evening at the VRBO — Sunday neighborhood crawl tomorrow. Consider picking up groceries in Neos Kosmos for a low-key dinner at home.",mq:'Delphi to Athens drive',lat:37.9715,lng:23.7257},
+ ]},
+ {id:'apr19',label:'Apr 19',title:'Athens Sunday — Crawl, Markets & Neighbourhoods',date:'Sunday, April 19',meta:'Full ceremonial Guard Change 11 AM · Monastiraki Flea Market · Psyrri lunch · Anafiotika · Plaka · Rooftop sunset',region:'athens',badge:{bg:'#1c1a16',color:'#e8c94a'},stops:[
+  {n:1,time:'9:00 AM',name:'Slow Morning — Neos Kosmos Neighbourhood',stag:'sf',stagL:'Free',num:'no',desc:"After two big days, ease in. Walk to a local kafeneio for Greek coffee and a spanakopita. Sunday morning in Neos Kosmos is quiet and unhurried — locals read newspapers at outdoor tables. Do any laundry or re-packing you need. Head out by 10:30 AM to reach Syntagma.",mq:'Neos Kosmos Athens neighborhood',lat:37.9585,lng:23.7348},
+  {n:2,time:'11:00 AM',name:'Syntagma Square — Full Ceremonial Guard Change 🎖️',stag:'sf',stagL:'Free',num:'no',desc:"Sunday is the one day the full ceremonial Evzone parade runs — the entire regiment marches from the Hellenic Parliament barracks at 11 AM with traditional dress, military band, and fanfare. Far more impressive than the hourly mini-change. Arrive by 10:45 AM for a good spot.",mq:'Syntagma Square Athens',lat:37.9754,lng:23.7355},
+  {n:3,time:'11:30 AM',name:'Athens Central Market — Varvakios Agora',stag:'sf',stagL:'Free',num:'no',desc:"The covered indoor market on Athinas Street, unchanged since 1886. One hall is fish (extraordinary variety of Mediterranean seafood), the other is meat. Not for the faint of heart but genuinely one of the most atmospheric markets in Southern Europe. Browse the spice and olive stalls on the surrounding streets.",mq:'Varvakios Market Athens',lat:37.9786,lng:23.7258},
+  {n:4,time:'12:30 PM',name:'Monastiraki Flea Market — Sunday Edition',stag:'sf',stagL:'Free',num:'no',desc:"Sunday is the best day to visit — the Avyssinias Square overflow market adds antique dealers, vintage clothing, old maps, and collectibles alongside the permanent shops. Great for olive wood items, Byzantine icon reproductions, and traditional pottery.",mq:'Monastiraki Flea Market Athens',lat:37.9757,lng:23.7256},
+  {n:5,time:'1:30 PM',name:'Lunch — Psyrri Neighbourhood',stag:'si',stagL:'~€15–25/person',num:'nk',desc:"Psyrri is Athens' artistic/bohemian quarter just north of Monastiraki with excellent mezedopoleio restaurants. Try Dipotto tis Psyrris or any taverna with tables spilling onto the cobblestones. Order a shared mezedes spread: dakos, tzatziki, melizanosalata, dolmades, and grilled octopus.",mq:'Psyrri Athens taverna',lat:37.9776,lng:23.7225},
+  {n:6,time:'3:00 PM',name:'Anafiotika Quarter',stag:'sf',stagL:'Free',num:'no',desc:"The tiny Cycladic village hidden on the north slope of the Acropolis rock, built by workers from the island of Anafi in the 1800s. Whitewashed walls, blue doors, bougainvillea, and cats make it feel like Santorini without the tourists. Enter from Stratonos Street in Plaka.",mq:'Anafiotika Athens Plaka',lat:37.9728,lng:23.7268},
+  {n:7,time:'3:45 PM',name:'Plaka Neighbourhood Wander',stag:'sf',stagL:'Free',num:'no',desc:"The oldest continuously inhabited neighbourhood in Athens. Wind through narrow marble streets, browse the side lanes (avoid tourist traps on main streets), and admire the neoclassical houses. Sunday afternoons in Plaka are lively without being overwhelming.",mq:'Plaka Neighborhood Athens',lat:37.9738,lng:23.7293},
+  {n:8,time:'5:00 PM',name:"Hadrian's Library — Exterior View",stag:'sf',stagL:'Free (exterior)',num:'no',desc:"Even from outside the fence the scale of Hadrian's restored Roman colonnade impresses — the courtyard pond glows at dusk. Built AD 132. Save the entrance fee for a site you haven't seen yet.",mq:"Hadrian's Library Athens",lat:37.9758,lng:23.7258},
+  {n:9,time:'5:30 PM',name:'Rooftop Sunset Drinks — Monastiraki',stag:'si',stagL:'€10–18/person',num:'nk',desc:"The rooftop bars around Monastiraki Square offer dramatic direct views of the Acropolis at golden hour. A for Athens, Bios Rooftop, and 360° Cocktail Bar are all excellent. Arrive by 5:30 PM to secure a table before the sunset crowd.",mq:'A for Athens rooftop bar Monastiraki',lat:37.9758,lng:23.7246},
+  {n:10,time:'8:00 PM',name:'Dinner — Thissio or Kolonaki',stag:'si',stagL:'~€20–35/person',num:'nk',desc:"Last dinner in Athens. Thissio has excellent restaurants with Acropolis views — Strofi or Athinaion Politeia for a memorable final evening. Alternatively Kolonaki has Papadakis for outstanding seafood. Early to bed — tomorrow is checkout and Peloponnese departure day.",mq:'Thissio Athens restaurant acropolis view',lat:37.9772,lng:23.7215},
+ ]},
+  {id:'apr21',label:'Apr 21',title:'Drive to Peloponnese — Arrival Day',date:'Tuesday, April 21',meta:'Check out Athens 11 AM · Pick up rental car · Athens → Corinth Canal → Nafplio · Check in Arkadiko Chorio 4 PM',region:'pelo',badge:{bg:'#8c3a1e',color:'#fff'},stops:[
+  {n:1,time:'9:30 AM',name:'Pack & Final Prep — Athens VRBO',stag:'si',stagL:'Checkout: 11:00 AM sharp',num:'nk',desc:"Checkout is 11:00 AM. Have everything packed and the property tidy by 10:45 AM. Leave keys as instructed by your host. Last chance to grab anything you need — pharmacy, supermarket, Greek coffee at the neighborhood café — before 5 days away from Athens.",mq:'Neos Kosmos Athens',lat:37.9585,lng:23.7348},
+  {n:2,time:'11:00 AM',name:'Check Out — Athens VRBO',stag:'si',stagL:'11:00 AM checkout',num:'nr',desc:"Out the door at 11 AM with all luggage. Car rental pickup is next — either walking distance from Neos Kosmos or a short taxi hop. With bags loaded you are road-trip ready by 11:30 AM.",mq:'Neos Kosmos Athens',lat:37.9585,lng:23.7348},
+  {n:3,time:'11:30 AM',name:'Pick Up Rental Car — Athens',stag:'si',stagL:'Pre-booked — pick up after checkout',num:'nr',desc:"Pick up your pre-reserved rental car. Book with a major international operator (Hertz, Avis, Enterprise) for reliability. Confirm Google Maps offline maps are downloaded for the Peloponnese and have your International Driving Permit ready alongside your US license — Greek law requires both.",mq:'Athens car rental',lat:37.9715,lng:23.7257},
+  {n:4,time:'12:00 PM',name:'Depart Athens — Drive to Peloponnese',stag:'si',stagL:'~1.5 hrs to Nafplio',num:'nk',desc:"Head south on the A8 toward Corinth. With an 11 AM checkout and 4 PM check-in you have a comfortable 5-hour window — plenty of time for the canal stop and lunch in Nafplio before arriving at your VRBO on the dot.",mq:'Athens to Nafplio drive route',lat:37.9715,lng:23.7257},
+  {n:5,time:'12:45 PM',name:'Corinth Canal — Photo Stop',stag:'sf',stagL:'Free',num:'no',desc:"An unmissable 15-minute stop on the A8. The canal cuts 6.3km through the Isthmus with near-vertical limestone walls 80m high and only 21m wide. Glass-floor suspension bridge (optional fee), café with canal views. Completed 1893.",mq:'Corinth Canal Greece',lat:37.9376,lng:22.9870},
+  {n:6,time:'2:00 PM',name:'Nafplio — Lunch & Old Town Walk',stag:'si',stagL:'Lunch ~€18–25/person',num:'nr',desc:"Nafplio is the most beautiful seaside town in mainland Greece and your first real taste of the Peloponnese. Park at the free lot on the edge of town. Cobblestone alleys, Venetian architecture, a stunning waterfront. Lunch at Savouras or Taverna Paleo Archontiko. Allow 75 minutes — you need to leave by 3:15 PM to reach your VRBO at 4 PM. Save Palamidi Fortress for tomorrow morning.",mq:'Nafplio Old Town Greece',lat:37.5675,lng:22.8010},
+  {n:7,time:'3:15 PM',name:'Drive South — Nafplio to Arkadiko Chorio',stag:'si',stagL:'~45 min · Arrive at 4 PM',num:'nk',desc:"Head south on the coastal road through Xiropigado and Astros. The road winds between the Arcadian mountains and the Argolic Gulf — one of the most beautiful drives in Greece. This 45-minute leg lands you at your front door right at check-in time.",mq:'Nafplio to Arkadiko Chorio coastal drive',lat:37.4001,lng:22.7523},
+  {n:8,time:'4:00 PM',name:'Check In — Arkadiko Chorio VRBO',stag:'si',stagL:'Check-in: 4:00 PM · Check-out: Apr 23 @ 10 AM',num:'no',desc:"Check-in is 4:00 PM. Settle in, unpack properly, and take a breath — your most relaxed base of the whole trip. CHECKOUT: April 23 at 10:00 AM. You need to be packed and out by 10 AM that morning for the drive north to Piraeus, so plan your Apr 23 morning accordingly.",mq:'Arkadiko Chorio beach Astros',lat:37.4001,lng:22.7523},
+  {n:9,time:'5:00 PM',name:'Swim — Kryoneri Beach',stag:'sf',stagL:'Free · 0.1km from VRBO',num:'no',desc:"Kryoneri beach is steps from your door — pebbled, picturesque, clear Aegean water. A perfect decompression after a full travel day. The late afternoon light on the mountains above the coast is extraordinary.",mq:'Kryoneri Beach Tyros Arcadia Peloponnese',lat:37.3989,lng:22.7534},
+  {n:10,time:'8:00 PM',name:'Dinner — Paralio Astros Harbor',stag:'si',stagL:'~€15–22/person',num:'nk',desc:"6km north — the charming harbor village of Paralio Astros. Fresh fish at a harbor taverna. Order grilled sea bream (tsipoura) or sea bass (lavraki) whole. Castle ruins above the port glow at dusk.",mq:'Paralio Astros fish taverna beach',lat:37.4251,lng:22.7637},
+ ]},
+ {id:'apr22',label:'Apr 22',title:'Palamidi, Mycenae, Epidaurus & Beaches',date:'Wednesday, April 22',meta:'Palamidi Fortress · Two UNESCO sites · Afternoon beach · Checkout tomorrow 10 AM',region:'pelo',badge:{bg:'#8c3a1e',color:'#fff'},stops:[
+  {n:1,time:'8:00 AM',name:'Drive to Nafplio — Palamidi Fortress',stag:'sp',stagL:'€20/person',num:'nr',desc:"Start the day with Palamidi — the Venetian fortress crowning the massive limestone hill above Nafplio. Drive or taxi up the back road (€5–8) rather than climbing all 999 steps — save your legs for Mycenae and Epidaurus. The views from the top over the harbor, Bourtzi island, and the Argolid plain are among the finest in Greece. Allow 60 minutes.",mq:'Palamidi Fortress Nafplio',lat:37.5671,lng:22.8066},
+  {n:2,time:'9:30 AM',name:'Drive to Mycenae',stag:'si',stagL:'~20 min from Nafplio',num:'nk',desc:"From Nafplio, Mycenae is only 20 minutes northwest toward Mykines village. Pre-book your tickets online to skip the queue — April is busy season and the Lion Gate entrance can back up.",mq:'Mycenae Archaeological Site Greece',lat:37.7306,lng:22.7560},
+  {n:3,time:'10:00 AM',name:'Mycenae — Lion Gate & Citadel',stag:'sp',stagL:'€20/person (combined)',num:'nr',desc:"The Bronze Age citadel of Agamemnon — home of the civilization that launched the Trojan War. The Lion Gate (1250 BC), the Cyclopean walls built of stones so large Greeks thought giants placed them, the royal grave circles, and the palace at the summit. Allow 90 minutes for the site. The on-site museum is excellent and included in the combined ticket.",mq:'Lion Gate Mycenae Greece',lat:37.7306,lng:22.7560},
+  {n:4,time:'10:30 AM',name:'Treasury of Atreus (Tomb of Agamemnon)',stag:'sp',stagL:'Included with Mycenae ticket',num:'nr',desc:"A 5-minute drive from the main site entrance, this massive beehive tomb (tholos) from 1250 BC is one of the most remarkable engineering achievements of the ancient world. The corbeled stone dome — 14m high, built without mortar — remained the largest unsupported dome in the world for over a thousand years. Walk in, stand at the center, and let your eyes adjust to the darkness.",mq:'Treasury of Atreus Mycenae',lat:37.7281,lng:22.7535},
+  {n:4,time:'11:15 AM',name:'Drive to Epidaurus',stag:'si',stagL:'~30 min',num:'nk',desc:"Head southeast toward the Saronic Gulf coast. The road through the Argolid hills is beautiful and the drive takes about 30 minutes.",mq:'Epidaurus Archaeological Site Greece',lat:37.5967,lng:23.0783},
+  {n:5,time:'11:45 AM',name:'Epidaurus Theatre & Sanctuary of Asclepius',stag:'sp',stagL:'€20/person',num:'nr',desc:"The 14,000-seat theatre from 360 BC with legendary perfect acoustics — a whisper at the circular orchestra center can be heard in the top row. Have one person stand at the exact center while the others climb to the highest tier. Also explore the extensive Sanctuary of Asclepius — the ancient healing center with stadium, baths, abaton, and more. Allow 90–120 minutes.",mq:'Epidaurus Ancient Theatre Greece',lat:37.5967,lng:23.0783},
+  {n:6,time:'1:30 PM',name:'Lunch near Epidaurus',stag:'si',stagL:'~€15–20/person',num:'nk',desc:"Several tavernas near the Epidaurus site entrance. Alternatively, drive 15 min to Porto Heli on the coast for lunch by the sea — one of the most upscale beach villages in the Argolid.",mq:'taverna near Epidaurus Greece',lat:37.5967,lng:23.0783},
+  {n:7,time:'3:00 PM',name:'Drive back — Coastal Route via Xiropigado',stag:'si',stagL:'~1.5 hrs back to VRBO',num:'nk',desc:"Take the scenic coastal road south through Xiropigado — stop for a swim if you find a good cove. The drive back to Arkadiko Chorio along the Argolic Gulf coast is genuinely one of the most beautiful in Greece.",mq:'Xiropigado beach Arcadia Greece',lat:37.5052,lng:22.8478},
+  {n:8,time:'4:30 PM',name:'Loukou Monastery & Cloister Garden 🌿',stag:'sf',stagL:'Free',num:'no',desc:"The Monastery of Agios Ioannis Prodromos Loukou is 5 minutes from your VRBO inland toward Astros. A 12th-century Byzantine convent with a stunning cloister garden built over an ancient sanctuary — wild roses, citrus trees, Byzantine frescoes, and mosaic floors. Quiet, beautiful, and virtually tourist-free. Your daughter will love the garden.",mq:'Loukou Monastery Astros Arcadia',lat:37.4150,lng:22.7520},
+  {n:9,time:'5:30 PM',name:'Beach Afternoon — Kryoneri or Tyros Beach',stag:'sf',stagL:'Free',num:'no',desc:"Kryoneri beach (0.1km from your VRBO) is picturesque with small pebbles and clear blue water. Tyros beach (1.1km) is slightly larger with a beach bar. The Aegean water in late April is cold but refreshingly swimmable for the brave. Sunset over the mountains from the beach is extraordinary.",mq:'Kryoneri Beach Tyros Arcadia Peloponnese',lat:37.3989,lng:22.7534},
+  {n:10,time:'8:00 PM',name:'Dinner — VRBO or Local Taverna',stag:'si',stagL:'~€15–20/person',num:'nk',desc:"Simple final evening in the Peloponnese. Cook at home using ingredients from the local market, or return to Paralio Astros for another harbor dinner. Packing tonight — tomorrow is a big logistics day.",mq:'Astros Arcadia restaurants',lat:37.4251,lng:22.7637},
+ ]},
+ {id:'apr23',label:'Apr 23',title:'Drive to Piraeus — Night Ferry to Crete',date:'Thursday, April 23',meta:'Relaxed morning · Drive Arkadiko → Piraeus · Board night ferry',region:'pelo',badge:{bg:'#1a4e8a',color:'#fff'},stops:[
+  {n:1,time:'7:30 AM',name:'Final Morning — Pack & Kryoneri Beach',stag:'sf',stagL:'Checkout: 10:00 AM sharp',num:'nk',desc:"Checkout is 10:00 AM — not 11 AM. Set an alarm. Quick last walk to Kryoneri beach at 7:30 AM, then pack and clean the property. Have everything ready and keys prepared by 9:45 AM.",mq:'Kryoneri Beach Arkadiko Chorio',lat:37.3989,lng:22.7534},
+  {n:2,time:'10:00 AM',name:'Check Out — Arkadiko Chorio VRBO',stag:'si',stagL:'10:00 AM checkout',num:'nr',desc:"Out the door at 10 AM. With a 10 AM departure you have a very relaxed run to Piraeus — arrive ~12:30 PM, giving you nearly 8 hours before ferry boarding. No stress at all.",mq:'Arkadiko Chorio Astros Arcadia Greece',lat:37.4001,lng:22.7523},
+  {n:3,time:'2:30 PM',name:'Arrive Piraeus — Afternoon Free Time',stag:'si',stagL:'Free',num:'ns',desc:"You have several hours before ferry boarding. Options: explore Piraeus harbor, walk the Zea Marina area (beautiful yacht harbor), or take the Metro into central Athens for a final afternoon. The NAM is a 20-min metro ride if anyone wants one last museum stop. Return to Piraeus by 7:00 PM.",mq:'Zea Marina Piraeus Athens',lat:37.9390,lng:23.6494},
+  {n:4,time:'6:30 PM',name:'Dinner at Piraeus Port',stag:'si',stagL:'~€15–25/person',num:'nk',desc:"Piraeus has excellent fresh seafood restaurants along the Mikrolimano harbor (20 min walk or 5 min taxi from the ferry gates). This is your last meal in mainland Greece — order grilled fish, fresh octopus, and a glass of Assyrtiko. Arrive back at Gates E2/E3 by 8:15 PM.",mq:'Mikrolimano Piraeus seafood restaurant',lat:37.9365,lng:23.6529},
+  {n:5,time:'8:30 PM',name:'Board Night Ferry — Piraeus to Heraklion',stag:'si',stagL:'Pre-booked (see Logistics tab)',num:'ns',desc:"Arrive at Gate E2 or E3 by 8:30 PM — confirm your exact gate from your ticket as it can change. With a car: follow port signage to the vehicle staging area; staff will direct you to your lane. Keep documents accessible. Boarding typically opens 1 hour before departure. Your cabin key/card is collected at the purser's desk on board.",mq:'Piraeus ferry port Gate E2 E3',lat:37.9467,lng:23.6324},
+  {n:6,time:'~10:00 PM',name:'Overnight Crossing — 9.5 Hours',stag:'si',stagL:'Cabin pre-booked',num:'ns',desc:"Departs ~9:30–10:00 PM, arrives Heraklion ~6:00–7:00 AM. With a family 4-berth cabin this is genuinely comfortable — real beds, private space. The ship has a restaurant, café, bar, and deck seating. Lights out early — you have a full Crete day starting at arrival.",mq:'Minoan Lines Piraeus Heraklion ferry',lat:37.9467,lng:23.6324},
+ ]},
+ {id:'apr24',label:'Apr 24',title:'Arrive Crete — Drive to Chania',date:'Friday, April 24',meta:'Ferry arrives ~6 AM · Drive Heraklion → Chania · Settle in · Old Town',region:'crete',badge:{bg:'#1a6355',color:'#fff'},stops:[
+  {n:1,time:'~6:00 AM',name:'Arrive Heraklion Ferry Port',stag:'si',stagL:'Drive off ferry',num:'nt',desc:"Drive your car off the vehicle deck as directed by crew. The Heraklion port is in the center of the city — follow signs to the E75 coastal highway heading west toward Chania. Stop at a bakery or café near the port for breakfast first — you've earned it.",mq:'Heraklion Ferry Port Crete',lat:35.3421,lng:25.1412},
+  {n:2,time:'6:30 AM',name:'Heraklion Old Town — Optional Quick Look',stag:'sf',stagL:'Free',num:'no',desc:"Optional: if arriving before 8 AM with energy, the Venetian Koules Fortress and harbor are beautiful in early morning light. The famous Morosini Lion Fountain (1628) is a 10-min walk from the port. Heraklion has its own excellent Archaeological Museum (€20) if the group wants another day here — but for now, Chania awaits.",mq:'Heraklion Old Town Venetian Harbor Crete',lat:35.3396,lng:25.1342},
+  {n:3,time:'7:30 AM',name:'Drive Heraklion → Chania via E75',stag:'si',stagL:'~2 hrs',num:'nk',desc:"The northern coastal highway is modern and fast. The drive west hugs the Mediterranean for stretches with beautiful sea views. Rethymno (halfway point, ~1 hr) is worth a 30-minute stop if the group has energy — the Old Venetian Harbor is gorgeous and smaller/less visited than Chania.",mq:'Rethymno Old Town Crete optional stop',lat:35.3667,lng:24.4750},
+  {n:4,time:'9:30 AM',name:'Arrive Chania — Store Luggage with Host',stag:'si',stagL:'Check-in: 2:00 PM',num:'nt',desc:"Arrive in Chania around 9:30 AM. Check-in is 2:00 PM — you have a 4.5-hour gap before you can access the apartment. Contact your host ahead of time to arrange luggage storage at the property so you can explore unburdened. Chania's Old Town is entirely walkable from most central rentals.",mq:'Chania Old Town Crete',lat:35.5138,lng:24.0180},
+  {n:5,time:'10:00 AM',name:'Chania Old Town & Venetian Harbor Walk',stag:'sf',stagL:'Free',num:'nt',desc:"The Venetian harbor and lighthouse are the most photographed scene in Crete. Walk the full length of the harbor wall to the Egyptian lighthouse, explore the restored Venetian shipyards (neoria), and wander into the narrow Ottoman-era lanes of Splantzia quarter. The architecture layers Venetian, Ottoman, and Cretan styles in extraordinary density.",mq:'Chania Venetian Harbor Lighthouse',lat:35.5180,lng:24.0155},
+  {n:6,time:'12:00 PM',name:'Lunch — Splantzia Quarter (not the harbor front)',stag:'si',stagL:'~€15–25/person',num:'nk',desc:"The harbor-front restaurants are tourist traps. Duck one block back into the Splantzia quarter for dramatically better food and prices. Top recommendations: Mikro Kelari (excellent Cretan wine list and mezedes), Tamam Restaurant (in a converted Ottoman bath), or To Xani Restaurant. Order dakos (Cretan rusk salad with tomato and graviera cheese) and fresh grilled seafood.",mq:'Splantzia quarter Chania restaurant',lat:35.5150,lng:24.0188},
+  {n:7,time:'2:00 PM',name:'Chania Municipal Market 🌿',stag:'sf',stagL:'Free',num:'no',desc:"The 1913 covered market in a cruciform building — Cretan honey, thyme, sage, local herbs, graviera and anthotyros cheeses, olives of 20 varieties, and fresh produce. Your daughter will be enchanted by the colors and smells. Pick up local products to bring home: Cretan olive oil, Cretan honey, and herbal teas.",mq:'Chania Municipal Market Agora',lat:35.5142,lng:24.0180},
+  {n:8,time:'2:00 PM',name:'Check In — Chania VRBO',stag:'si',stagL:'Check-in: 2:00 PM · Check-out: Apr 28 @ 11 AM',num:'nt',desc:"Check-in is 2:00 PM. Unpack properly — this is your final base and you have 3 nights here. CHECKOUT: April 28 at 11:00 AM. On Apr 28 morning you'll need to be packed and out by 11 AM before driving to Heraklion for your Apr 29 flight. Plan your Apr 27 evening with this in mind — no late nights on the last day.",mq:'Chania town center',lat:35.5138,lng:24.0180},
+  {n:9,time:'6:00 PM',name:'Sunset Walk — Venetian Harbor & Lighthouse',stag:'sf',stagL:'Free',num:'no',desc:"The Chania lighthouse and harbor at sunset is one of the iconic images of the Greek islands. Walk out on the harbor wall to the lighthouse for an unobstructed view of the town reflected in the calm water. The golden hour light on the Venetian walls is extraordinary.",mq:'Chania Lighthouse Venetian Harbor sunset',lat:35.5192,lng:24.0149},
+ ]},
+ {id:'apr25',label:'Apr 25',title:'Elafonissi Beach & Falassarna',date:'Friday, April 25',meta:'Full beach day · Pink sand lagoon + long sandy shore',region:'crete',badge:{bg:'#1a6355',color:'#fff'},stops:[
+  {n:1,time:'8:00 AM',name:'Early Departure — Drive to Elafonissi',stag:'si',stagL:'~1.5 hrs each way',num:'nk',desc:"Depart by 8:00 AM to beat the crowds at Elafonissi. The 82km drive southwest on the E75 and then the mountain road through the White Mountains is one of the most scenic drives in Crete. The final descent to the coast is breathtaking.",mq:'Elafonissi Beach Crete drive route',lat:35.2668,lng:23.5332},
+  {n:2,time:'9:45 AM',name:'Elafonissi Beach 🏖️',stag:'sf',stagL:'Free (parking €3–5)',num:'nt',desc:"One of the world's most beautiful beaches. The pink-tinged sand comes from crushed seashells and deepens in color toward the south. The beach is effectively a tidal island — wade across the shallow lagoon to the island at the far end. The shallow turquoise wading pools are perfect for children and relaxed swimmers. In mid-April the water is cold but swimmable (18–20°C). Plan 2.5–3 hours here.",mq:'Elafonissi Beach Crete',lat:35.2668,lng:23.5332},
+  {n:3,time:'12:30 PM',name:'Monastery of the Virgin Chrysoskalitissa 🌿',stag:'sf',stagL:'Free (donation)',num:'no',desc:"The monastery sits on a rocky outcrop above the sea, 5km north of Elafonissi on the same road. A small museum inside has Byzantine icons and rare manuscripts. The clifftop location and views over the Libyan Sea are spectacular. Your daughter will love the dramatic setting. 20 minutes.",mq:'Chrysoskalitissa Monastery Crete',lat:35.2872,lng:23.5516},
+  {n:4,time:'1:15 PM',name:'Lunch — Paleochora or en route',stag:'si',stagL:'~€15–20/person',num:'nk',desc:"Several tavernas near the Elafonissi parking area. Alternatively, the charming little beach town of Paleochora is 20 min south and has excellent waterfront tavernas with fresh catch.",mq:'Paleochora Crete taverna',lat:35.2327,lng:23.6827},
+  {n:5,time:'3:00 PM',name:'Falassarna Beach 🏖️',stag:'sf',stagL:'Free',num:'nt',desc:"A different beach experience — wide, long, and sandy with good organization (sun loungers, beach bars). 58km west of Chania, 45 min from Elafonissi heading north along the west coast road. One of the top-rated beaches in Crete for families. The water here is calmer than Elafonissi and the beach is more spacious. Plan 1.5–2 hours.",mq:'Falassarna Beach Crete',lat:35.5245,lng:23.5712},
+  {n:6,time:'5:30 PM',name:'Drive back to Chania',stag:'si',stagL:'~1 hr',num:'nk',desc:"Return north on the coastal road toward Kissamos and then east on E75 to Chania. Stop in Kissamos town for a quick look at the small museum or a coffee.",mq:'Chania Crete',lat:35.5138,lng:24.0180},
+  {n:7,time:'7:30 PM',name:'Dinner — Chania Harbor Area',stag:'si',stagL:'~€20–30/person',num:'nk',desc:"Final full evening in Chania. Splurge a little — Oinoa Wine Restaurant (outstanding Cretan wine selection and modern Cretan cuisine) or Astrea Garden (romantic garden setting in the Old Town) are both consistently excellent. Order the Cretan dakos, lamb with stamnagathi (wild Cretan greens), and local cheeses.",mq:'Oinoa Wine Restaurant Chania',lat:35.5138,lng:24.0180},
+ ]},
+ {id:'apr26',label:'Apr 26',title:'Balos Boat & Chania Old Town',date:'Saturday, April 26',meta:'Morning Balos boat trip · Afternoon culture · Cretan cooking',region:'crete',badge:{bg:'#1a6355',color:'#fff'},stops:[
+  {n:1,time:'7:30 AM',name:'Drive to Kissamos Port — Balos Boat',stag:'sp',stagL:'€16–18/person RT boat',num:'ns',desc:"The boat to Balos departs from Kissamos (Kastelli) port, 42km west of Chania. Boats depart at 10:00 AM and 10:30 AM typically — verify the April timetable directly with Gramvousa Boat (gramvousa.com) before planning this day. Depart Chania by 8:30 AM to reach Kissamos by 9:15 AM with time for tickets. Note: April departure schedules should be confirmed — early season service may be limited.",mq:'Kissamos Port Kastelli Crete',lat:35.5001,lng:23.6488},
+  {n:2,time:'10:00 AM',name:'Boat to Gramvousa Island & Balos Lagoon 🏖️',stag:'sp',stagL:'€16–18/person RT',num:'ns',desc:"The 45-minute boat ride to the Gramvousa peninsula passes sea caves and dramatic cliffs. The boat stops first at Gramvousa island to explore the Venetian castle (1579), then continues to the Balos lagoon — Caribbean-blue water, white sand, and shallow paddling pools in a completely wild and unspoiled setting. 2–3 hours at Balos before the return boat.",mq:'Balos Lagoon Crete',lat:35.6035,lng:23.5744},
+  {n:3,time:'2:30 PM',name:'Return Boat to Kissamos — Drive back',stag:'si',stagL:'~1 hr drive',num:'nk',desc:"Return boat to Kissamos, then drive east back to Chania. Stop in Kolympari (20 min from Kissamos) for a quick look at the Gonias Monastery overlooking the sea.",mq:'Kissamos to Chania drive',lat:35.5138,lng:24.0180},
+  {n:4,time:'4:00 PM',name:'Archaeological Museum of Chania 🏛️',stag:'sp',stagL:'€15/person',num:'na',desc:"Housed in the 14th-century Franciscan monastery, this excellent museum covers Chania's history from the Neolithic through Roman times. Well-curated and not overcrowded. The Minoan finds from western Crete are particularly strong. Allow 75 minutes. If museum fatigue has set in after 12 days, this is the one to skip.",mq:'Archaeological Museum of Chania',lat:35.5154,lng:24.0171},
+  {n:5,time:'5:30 PM',name:'Chania Covered Market & Last Shopping',stag:'sf',stagL:'Free',num:'no',desc:"Final opportunity for shopping — Cretan products make excellent souvenirs that won't get confiscated at customs: local honey, olive oil, sage/thyme herbal teas, graviera cheese (vacuum-sealed), thyme honey, and Cretan wine. The market closes around 7 PM.",mq:'Chania Municipal Market',lat:35.5142,lng:24.0180},
+  {n:6,time:'7:30 PM',name:'Final Dinner — Chania Old Town',stag:'si',stagL:'~€25–40/person',num:'nk',desc:"Your last dinner in Greece. Make it memorable — book ahead at one of Chania's top restaurants. Recommendations: Mikro Kelari (intimate, excellent wine, neighborhood feel), Tamam (historic setting in converted Ottoman hammam), or To Xani (outstanding traditional Cretan cuisine). Toast to the trip.",mq:'Tamam Restaurant Chania',lat:35.5150,lng:24.0188},
+ ]},
+ {id:'apr27',label:'Apr 27–29',title:'Final Days — Return',date:'Sunday Apr 27 → Tuesday Apr 29',meta:'Relaxed departure · Drive to Heraklion · Fly home Apr 29',region:'athens2',badge:{bg:'#4a5c2a',color:'#fff'},stops:[
+  {n:1,time:'Apr 27 Morning',name:'Final Chania Day — Beach or Explore',stag:'sf',stagL:'Free',num:'no',desc:"Your last full day in Crete before the Apr 28 checkout. No hard schedule — use it however the group wants. A final morning swim at Nea Chora beach (1km walk from Old Town) is perfect. Or drive 11km to Platanias for a longer organized beach with cafés. Pack everything tonight — checkout tomorrow is 11 AM sharp.",mq:'Nea Chora Beach Chania',lat:35.5147,lng:24.0086},
+  {n:2,time:'Apr 28 · 9:00 AM',name:'Pack & Check Out — Chania VRBO',stag:'si',stagL:'Check-out: 11:00 AM sharp',num:'nk',desc:"Checkout is 11:00 AM on April 28. Have everything packed and the property clean by 10:45 AM. This is your last morning in Greece — take 10 minutes to stand at the harbor one final time before loading the car.",mq:'Chania Old Town Crete',lat:35.5138,lng:24.0180},
+  {n:3,time:'Apr 28 · 11:00 AM',name:'Drive Chania → Heraklion Airport',stag:'si',stagL:'~2 hrs · Drop rental car',num:'nk',desc:"Depart Chania at 11 AM. The E75 east to Heraklion takes about 2 hours. Optional stop: Lake Kournas (40km east of Chania near Georgioupoli) — the only freshwater lake in Crete, with pedal boats and a lakeside taverna. Allow 45 min if stopping. Return your rental car at Heraklion Airport (HER) — budget 30 minutes for the return process. Overnight in Heraklion for a relaxed Apr 29 morning departure.",mq:'Heraklion Airport Crete car rental return',lat:35.3397,lng:25.1804},
+  {n:4,time:'Apr 28 · Afternoon',name:'Heraklion — Palace of Knossos (Optional)',stag:'sp',stagL:'€20/person',num:'na',desc:"If you have energy for one final site — Knossos, the center of Minoan civilization (2700–1450 BC), is 5km from Heraklion Airport and 15 min from the city center. The reconstructed palace complex brings the Bronze Age world to vivid color. Allow 90 minutes. Skip if the group has reached full museum saturation after 12 days.",mq:'Palace of Knossos Heraklion Crete',lat:35.2985,lng:25.1635},
+  {n:6,time:'Apr 29 AM',name:'Fly Home from Heraklion (HER) or Athens (ATH)',stag:'si',stagL:'Confirm your routing',num:'nk',desc:"Your Apr 29 return flight — confirm whether it departs from Heraklion Airport (HER) or if you need to connect through Athens first. If flying via Athens, allow 60–90 minutes for the ATH–HER hop (or budget 2 hrs Chania→Heraklion→ATH with a layover). Arrive at the airport 2.5–3 hours before international departure.",mq:'Heraklion Airport HER Crete departure',lat:35.3397,lng:25.1804},
+ ]},
+];
+
+// ================================================================
+// RENDER
+// ================================================================
+let currentDay=0, currentKmlDay=0, currentDirDay=0, currentCopyDay=0;
+
+function renderAll(){
+  const tc=document.getElementById('dtabs');
+  tc.innerHTML='';
+  DAYS.forEach((d,i)=>{
+    const t=document.createElement('div');
+    t.className='dtab'+(i===0?' active':'');
+    t.textContent=d.label;
+    t.onclick=()=>{selectDay(i);};
+    tc.appendChild(t);
+  });
+  renderDay(0);
+  renderMapTabs();
+  updatePill();
+}
+
+function selectDay(i){
+  currentDay=i;
+  document.querySelectorAll('#dtabs .dtab').forEach((t,j)=>t.classList.toggle('active',j===i));
+  renderDay(i);
+}
+
+function renderDay(i){
+  const d=DAYS[i];
+  const cont=document.getElementById('day-content');
+  let html=`<div class="day-hd"><div class="day-badge" style="background:${d.badge.bg};color:${d.badge.color}">${d.date}</div><div><div class="day-title">${d.title}</div><div class="day-meta">${d.meta}</div></div></div>`;
+  d.stops.forEach((s,si)=>{
+    const isDone = !!s.done;
+    html+=`<div class="stop${isDone?' stop-done':''}" id="stop-${i}-${si}" draggable="true" data-day="${i}" data-si="${si}">
+      <div class="stop-hd" onclick="toggleStop(${i},${si})">
+        <div class="drag-handle" title="Drag to reorder" onclick="event.stopPropagation()"><span></span><span></span><span></span></div>
+        <input type="checkbox" class="stop-check" ${isDone?'checked':''} onclick="event.stopPropagation();toggleDone(${i},${si})" title="Mark as done">
+        <div class="snum ${s.num}">${s.n}</div>
+        <div class="stop-info"><div class="stop-name">${s.name}</div><div class="stop-sub">${s.time} · ${s.stag==='sf'?'<span style="color:var(--olive)">Free</span>':s.stagL}</div></div>
+        <span class="stag ${s.stag}">${s.stagL}</span>
+        <span class="chev">▼</span>
+      </div>
+      <div class="stop-body">
+        <p class="sdesc" id="desc-${i}-${si}">${s.desc}</p>
+        <div class="acts">
+          <button class="btn-sm btn-edit" onclick="toggleEdit(${i},${si})">✏️ Edit</button>
+          <a class="btn-sm btn-maps" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(s.mq)}" target="_blank">📍 Maps</a>
+          <button class="btn-sm btn-shuffle" id="shuf-btn-${i}-${si}" onclick="shuffleStop(${i},${si})">🔀 Shuffle Idea</button>
+          <button class="btn-sm btn-delete" onclick="event.stopPropagation();showDeleteConfirm(${i},${si})">🗑️ Delete</button>
+        </div>
+        <div class="shuffle-panel" id="shuf-${i}-${si}"></div>
+        <div class="del-confirm" id="dc-${i}-${si}">
+          <p>Delete "${s.name}"?</p>
+          <div class="del-btns">
+            <button class="btn-del-yes" onclick="deleteStop(${i},${si})">Yes, delete</button>
+            <button class="btn-del-no" onclick="hideDeleteConfirm(${i},${si})">Cancel</button>
+          </div>
+        </div>
+        <div class="eform" id="ef-${i}-${si}" style="display:none">
+          <div class="erow"><div class="ef"><label>Stop Name</label><input id="en-${i}-${si}" value="${s.name.replace(/"/g,'&quot;')}"></div><div class="ef"><label>Time</label><input id="et-${i}-${si}" value="${s.time}"></div></div>
+          <div class="erow"><div class="ef"><label>Price / Info Label</label><input id="ep-${i}-${si}" value="${s.stagL}"></div></div>
+          <div class="erow"><div class="ef" style="min-width:100%"><label>Description / Notes</label><textarea id="ed-${i}-${si}">${s.desc}</textarea></div></div>
+          <button class="btn-save" onclick="saveStop(${i},${si})">Save</button>
+          <span class="save-ok" id="sok-${i}-${si}">✓ Saved</span>
+        </div>
+      </div>
+    </div>`;
+  });
+  cont.innerHTML=html;
+  initDragAndDrop(i);
+}
+
+function toggleStop(i,si){
+  const el=document.getElementById(`stop-${i}-${si}`);
+  el.classList.toggle('open');
+}
+function toggleEdit(i,si){
+  const el=document.getElementById(`ef-${i}-${si}`);
+  el.style.display=el.style.display==='none'?'block':'none';
+}
+function saveStop(i,si){
+  DAYS[i].stops[si].name=document.getElementById(`en-${i}-${si}`).value;
+  DAYS[i].stops[si].time=document.getElementById(`et-${i}-${si}`).value;
+  DAYS[i].stops[si].stagL=document.getElementById(`ep-${i}-${si}`).value;
+  DAYS[i].stops[si].desc=document.getElementById(`ed-${i}-${si}`).value;
+  const ok=document.getElementById(`sok-${i}-${si}`);
+  ok.style.display='inline';
+  setTimeout(()=>ok.style.display='none',2000);
+  document.getElementById(`desc-${i}-${si}`).textContent=DAYS[i].stops[si].desc;
+  document.querySelector(`#stop-${i}-${si} .stop-name`).textContent=DAYS[i].stops[si].name;
+}
+
+// ================================================================
+// DELETE / MOVE / DRAG-DROP
+// ================================================================
+function toggleDone(dayIdx, si) {
+  const s = DAYS[dayIdx].stops[si];
+  s.done = !s.done;
+  const el = document.getElementById(`stop-${dayIdx}-${si}`);
+  el.classList.toggle('stop-done', s.done);
+  // Update checkbox without full re-render (keeps expand state)
+  const cb = el.querySelector('.stop-check');
+  if (cb) cb.checked = s.done;
+}
+
+function showDeleteConfirm(i,si){
+  document.getElementById(`dc-${i}-${si}`).classList.add('show');
+}
+function hideDeleteConfirm(i,si){
+  document.getElementById(`dc-${i}-${si}`).classList.remove('show');
+}
+function deleteStop(i,si){
+  DAYS[i].stops.splice(si,1);
+  // renumber
+  DAYS[i].stops.forEach((s,idx)=>s.n=idx+1);
+  updatePill();
+  renderDay(i);
+  showToast('Stop deleted');
+}
+
+function moveStop(i,si,dir){
+  const stops=DAYS[i].stops;
+  const newIdx=si+dir;
+  if(newIdx<0||newIdx>=stops.length) return;
+  [stops[si],stops[newIdx]]=[stops[newIdx],stops[si]];
+  // renumber
+  stops.forEach((s,idx)=>s.n=idx+1);
+  renderDay(i);
+  // re-open the moved stop if it was open
+  setTimeout(()=>{
+    const el=document.getElementById(`stop-${i}-${newIdx}`);
+    if(el) el.classList.add('open');
+    el && el.scrollIntoView({behavior:'smooth',block:'nearest'});
+  },50);
+}
+
+
+// ================================================================
+// SHUFFLE — RESULT STORE (avoids inline JSON in onclick attributes)
+// ================================================================
+const _shuffleStore = new Map();
+const _shuffleHistory = new Map(); // key: "dayIdx-si" → Set of already-suggested names
+
+// Haversine distance in km between two lat/lng pairs
+function haversineKm(lat1, lng1, lat2, lng2) {
+  const R = 6371;
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLng = (lng2 - lng1) * Math.PI / 180;
+  const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+            Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+            Math.sin(dLng/2) * Math.sin(dLng/2);
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+}
+
+// ================================================================
+// SHUFFLE — TYPE DETECTION
+// ================================================================
+function detectStopKind(s) {
+  const t = (s.name + ' ' + s.desc).toLowerCase();
+  if (/dinner|lunch|breakfast|taverna|restaurant|café|cafe|meal|food|eat|meze|souvlaki|seafood|gyro|eatery|tavern/.test(t)) return 'dining';
+  if (/cocktail|rooftop bar|wine bar|beer|nightlife|aperitif|sundowner/.test(t)) return 'drinks';
+  if (/coffee|espresso|frappé|frappe|pastry|bakery|patisserie|café stop|coffee stop/.test(t)) return 'coffee';
+  if (/museum|gallery|exhibition|collection|pinakothiki/.test(t)) return 'museum';
+  if (/acropolis|parthenon|ancient agora|agora|temple|oracle|sanctuary|theatre of dionysus|odeon|stadium|citadel|mycenae|epidaurus|delphi|olympia|lion gate|treasury|tholos|archaeological site|ancient site|ruins|classical|byzantine|minoan|bronze age/.test(t)) return 'ancient-site';
+  if (/monastery|convent|church|cathedral|chapel|orthodox|byzantine church|hosios|loukou/.test(t)) return 'monastery';
+  if (/fortress|castle|palamidi|bourtzi|acrocorinth|venetian|tower|walls/.test(t)) return 'fortress';
+  if (/viewpoint|view|panorama|hilltop|lycabettus|philopappou|sunset|overlook|summit/.test(t)) return 'viewpoint';
+  if (/neighbourhood|neighborhood|quarter|flea market|market|bazaar|plaka|anafiotika|psyrri|monastiraki|kolonaki|thissio|exarchia|wander|stroll|old town|venetian harbor|chania harbor/.test(t)) return 'neighbourhood';
+  if (/beach|swim|lagoon|snorkel|elafonissi|balos|falassarna|kryoneri|coast|cove|sea swimming/.test(t)) return 'beach';
+  if (/gorge|hike|trail|nature|mountain|walk|imbros|samaria|outdoor|forest/.test(t)) return 'outdoor';
+  if (/ferry|boat|port|piraeus|boarding|ship|crossing/.test(t)) return 'transport';
+  if (/hotel|vrbo|airbnb|check.in|check.out|accommodation|pack|checkout|checkin/.test(t)) return 'logistics';
+  if (s.stag === 'sf' || s.stagL === 'Free' || s.stagL.includes('free')) return 'free-attraction';
+  if (s.stag === 'sp' || s.stag === 'sb') return 'paid-attraction';
+  return 'attraction';
+}
+
+function buildShufflePrompt(d, s, si, kind, region, lat, lng, history) {
+  const prev = si > 0 ? d.stops[si-1] : null;
+  const next = si < d.stops.length-1 ? d.stops[si+1] : null;
+  const prevCtx = prev ? `Before: "${prev.name}" at ${prev.time}` : 'First stop of the day';
+  const nextCtx = next ? `After: "${next.name}" at ${next.time}` : 'Last stop of the day';
+  const flowCtx = `${prevCtx} → [THIS STOP] → ${nextCtx}`;
+  const isFree = s.stag === 'sf' || s.stagL === 'Free' || (s.stagL||'').toLowerCase().includes('free');
+
+  const hasCoords = lat && lng;
+  const coordStr = hasCoords ? `Exact coordinates of current stop: ${lat.toFixed(4)}, ${lng.toFixed(4)}. Suggest something within 3 km of these coordinates where possible (up to 8 km for rural/island areas with fewer options).` : '';
+  const latLngFields = hasCoords ? `
+  "lat": latitude of the suggested place as a number,
+  "lng": longitude of the suggested place as a number,` : '';
+  const alreadySeen = [s.name, ...(history ? [...history] : [])];
+  const excludeStr = `IMPORTANT — do NOT suggest any of these, they have already been shown: ${alreadySeen.map(n => '"'+n+'"').join(', ')}. You MUST pick a genuinely different place each time.`;
+  const sys = `You are a Greece expert travel planner. Respond ONLY with a single valid JSON object — no markdown fences, no commentary, no extra text. Family: 2 adults + 1 child. Trip: April 2026. Day: ${d.date}. Region: ${region}. Day flow: ${flowCtx}. Replacing: "${s.name}" at ${s.time}. ${coordStr} ${excludeStr}`;
+
+  if (kind === 'dining') {
+    return `${sys}
+
+Suggest ONE real named restaurant or taverna in ${region} that is DIFFERENT from "${s.name}". It must be open for service around ${s.time} in April 2026, family-friendly, and similar in price to "${s.stagL}".
+
+JSON schema (all fields required):
+{
+  "name": "Exact establishment name",
+  "address": "Street and neighborhood in ${region}",
+  "time": "${s.time}",
+  "cost": "Price per person with € symbol, e.g. €18–28/person",
+  "hours": "Service hours for April, e.g. Daily 12:00–15:30 & 19:00–23:30",
+  "cuisine": "Style, e.g. Cretan mezedes / Grilled seafood / Modern Greek",
+  "stag": "si",
+  "mapsQuery": "Exact name + neighborhood + city, Greece",
+  "lat": latitude of suggested place as decimal number,
+  "lng": longitude of suggested place as decimal number,
+  "desc": "What to order, the atmosphere, and whether reservations are recommended.",
+  "tip": "One insider detail: signature dish, best seat in the house, parking, or local secret."
+}`;
+  }
+
+  if (kind === 'drinks' || kind === 'coffee') {
+    const vtype = kind === 'coffee' ? 'café or coffee bar' : 'rooftop bar, wine bar, or cocktail bar';
+    const vibe = kind === 'coffee' ? 'good for a family mid-morning or afternoon stop' : 'atmospheric for evening drinks with a view';
+    return `${sys}
+
+Suggest ONE real named ${vtype} in ${region}, different from "${s.name}", that is ${vibe}. Must be open around ${s.time} in April 2026.
+
+JSON schema (all fields required):
+{
+  "name": "Exact name",
+  "address": "Street and neighborhood in ${region}",
+  "time": "${s.time}",
+  "cost": "Price for drinks/coffees, e.g. €4–8/coffee or €12–18/cocktail",
+  "hours": "Opening hours in April",
+  "cuisine": "${kind === 'coffee' ? 'Coffee style, e.g. Specialty espresso / Greek frappé bar' : 'Drinks focus, e.g. Natural wines / Classic cocktails / Local spirits'}",
+  "stag": "si",
+  "mapsQuery": "Exact name + neighborhood + city, Greece",
+  "lat": latitude of suggested place as decimal number,
+  "lng": longitude of suggested place as decimal number,
+  "desc": "What makes this place special and why it suits a family at this point in the day.",
+  "tip": "Best thing to order or a detail most visitors miss."
+}`;
+  }
+
+  if (kind === 'museum') {
+    return `${sys}
+
+Suggest ONE real named museum or cultural collection in ${region}, different from "${s.name}". Must be genuinely open in April 2026 (note Monday closures common in Greece). Similar cost to "${s.stagL}". Must have something engaging for a child.
+
+JSON schema (all fields required):
+{
+  "name": "Exact museum name",
+  "address": "Street address and neighborhood",
+  "time": "${s.time}",
+  "cost": "Adult ticket price / family rate if available",
+  "hours": "Full opening hours in April including closed days, e.g. Tue–Sun 08:30–15:30, closed Mon",
+  "stag": "sp",
+  "mapsQuery": "Exact museum name + city, Greece",
+  "lat": latitude of suggested place as decimal number,
+  "lng": longitude of suggested place as decimal number,
+  "desc": "Top 2–3 highlights of the collection and what a child will find most memorable.",
+  "tip": "Best strategy: what to see first, which rooms to skip if time is short, or an April-specific perk."
+}`;
+  }
+
+  if (kind === 'ancient-site') {
+    return `${sys}
+
+Suggest ONE real named ancient Greek or Roman site, archaeological area, or historic ruin in ${region}, different from "${s.name}". Must be accessible in April 2026. Can be free or paid.
+
+JSON schema (all fields required):
+{
+  "name": "Official site name",
+  "address": "Location reference: street, village, or road landmark near ${region}",
+  "time": "${s.time}",
+  "cost": "${isFree ? 'Free (confirm if state-managed) or entry price' : 'Entry price per adult'}",
+  "hours": "Site opening hours in April — note if closed on Tuesdays or Mondays",
+  "stag": "${s.stag}",
+  "mapsQuery": "Site name + nearest town + Greece",
+  "lat": latitude of suggested place as decimal number,
+  "lng": longitude of suggested place as decimal number,
+  "desc": "What period it dates from, what you can see, and one thing that makes it genuinely spectacular.",
+  "fact": "One fascinating historical fact about this site that most visitors don't know."
+}`;
+  }
+
+  if (kind === 'monastery') {
+    return `${sys}
+
+Suggest ONE real named monastery, Byzantine church, or Orthodox religious site in ${region}, different from "${s.name}". Must be open to visitors in April 2026.
+
+JSON schema (all fields required):
+{
+  "name": "Official monastery or church name",
+  "address": "Village or road reference near ${region}",
+  "time": "${s.time}",
+  "cost": "Entry cost or Free — note if donation expected",
+  "hours": "Visitor hours in April — monasteries often close midday 13:00–15:30, reopen 15:30–sunset",
+  "stag": "${s.stag}",
+  "mapsQuery": "Monastery name + region + Greece",
+  "lat": latitude of suggested place as decimal number,
+  "lng": longitude of suggested place as decimal number,
+  "desc": "What makes it architecturally or spiritually significant, and what to look for inside (frescoes, mosaics, gardens).",
+  "fact": "One surprising historical fact or legend attached to this place."
+}`;
+  }
+
+  if (kind === 'fortress') {
+    return `${sys}
+
+Suggest ONE real named fortress, castle, or Venetian/Ottoman defensive structure in ${region}, different from "${s.name}". Must be accessible in April 2026.
+
+JSON schema (all fields required):
+{
+  "name": "Fortress or castle name",
+  "address": "Location in ${region}",
+  "time": "${s.time}",
+  "cost": "Entry price or Free",
+  "hours": "Opening hours in April",
+  "stag": "${s.stag}",
+  "mapsQuery": "Fortress name + city + Greece",
+  "lat": latitude of suggested place as decimal number,
+  "lng": longitude of suggested place as decimal number,
+  "desc": "Who built it, when, and what makes the views or architecture worth the climb.",
+  "fact": "One little-known historical detail — a siege, a famous prisoner, or an architectural quirk."
+}`;
+  }
+
+  if (kind === 'viewpoint') {
+    return `${sys}
+
+Suggest ONE real named viewpoint, hilltop, rooftop terrace, or panoramic spot in ${region}, different from "${s.name}". Must be accessible around ${s.time} and great for families.
+
+JSON schema (all fields required):
+{
+  "name": "Viewpoint or location name",
+  "address": "How to reach it from the city center — street or landmark",
+  "time": "${s.time}",
+  "cost": "Free or any access cost",
+  "hours": "Always accessible / daylight hours / or specific hours if gated",
+  "stag": "sf",
+  "mapsQuery": "Viewpoint name + city + Greece",
+  "lat": latitude of suggested place as decimal number,
+  "lng": longitude of suggested place as decimal number,
+  "desc": "Exactly what you can see from here and why the timing (${s.time}) makes it especially good.",
+  "fact": "One piece of local knowledge: best camera position, a hidden bench, or what the locals call this spot."
+}`;
+  }
+
+  if (kind === 'neighbourhood') {
+    return `${sys}
+
+Suggest ONE real named neighbourhood, historic quarter, market, or walkable district in ${region}, different from "${s.name}". Must be interesting to walk at around ${s.time} in April.
+
+JSON schema (all fields required):
+{
+  "name": "Neighbourhood or district name",
+  "address": "Main entry point or landmark street, ${region}",
+  "time": "${s.time}",
+  "cost": "Free to explore",
+  "hours": "Best visiting window — e.g. 'Most lively 10:00–14:00' or 'Perfect for evening stroll'",
+  "stag": "sf",
+  "mapsQuery": "Neighbourhood name + city + Greece",
+  "lat": latitude of suggested place as decimal number,
+  "lng": longitude of suggested place as decimal number,
+  "desc": "What you'll find here: architecture style, local vibe, specific streets or squares to seek out.",
+  "fact": "One thing that surprises first-time visitors about this neighbourhood — hidden landmark, unusual history, or local tradition."
+}`;
+  }
+
+  if (kind === 'beach') {
+    return `${sys}
+
+Suggest ONE real named beach or coastal swimming spot in ${region}, different from "${s.name}". Must be reachable by car in April 2026 and safe for a child. Describe April conditions honestly.
+
+JSON schema (all fields required):
+{
+  "name": "Beach name",
+  "address": "Nearest village and approximate drive time from the day's base",
+  "time": "${s.time}",
+  "cost": "Free / parking cost / sunbed rental if applicable",
+  "hours": "Always accessible or seasonal facility hours",
+  "stag": "${s.stag}",
+  "mapsQuery": "Beach name + nearest town + region + Greece",
+  "lat": latitude of suggested place as decimal number,
+  "lng": longitude of suggested place as decimal number,
+  "desc": "Sand or pebble, water clarity, facilities (taverna, toilets), and what conditions are like in mid-April.",
+  "tip": "Best spot on the beach, earliest arrival recommended, or a warning about facilities not being open yet in April."
+}`;
+  }
+
+  if (kind === 'outdoor') {
+    return `${sys}
+
+Suggest ONE real named outdoor experience — gorge walk, nature trail, scenic drive stop, or wildlife spot — in ${region}, different from "${s.name}". Must be accessible in April 2026 with a child.
+
+JSON schema (all fields required):
+{
+  "name": "Trail, gorge, or natural feature name",
+  "address": "Trailhead location or nearest village, ${region}",
+  "time": "${s.time}",
+  "cost": "Entry or parking cost, or Free",
+  "hours": "Accessible hours — note if seasonal (some gorges close Oct–May)",
+  "stag": "${s.stag}",
+  "mapsQuery": "Feature name + region + Greece",
+  "lat": latitude of suggested place as decimal number,
+  "lng": longitude of suggested place as decimal number,
+  "desc": "Distance, difficulty, what you'll see, and whether it's realistic for a child in April conditions.",
+  "tip": "What to bring, best starting point, or a warning about terrain or April closures."
+}`;
+  }
+
+  if (kind === 'free-attraction') {
+    return `${sys}
+
+Suggest ONE real named free attraction, public monument, open-air site, or square in ${region}, different from "${s.name}". Must be freely accessible around ${s.time} in April 2026.
+
+JSON schema (all fields required):
+{
+  "name": "Exact place name",
+  "address": "Street address or landmark reference, ${region}",
+  "time": "${s.time}",
+  "cost": "Free",
+  "hours": "Always accessible / daylight / or specific hours",
+  "stag": "sf",
+  "mapsQuery": "Place name + neighborhood + city + Greece",
+  "lat": latitude of suggested place as decimal number,
+  "lng": longitude of suggested place as decimal number,
+  "desc": "What it is, what you can see, and why it's worth the detour for a family.",
+  "fact": "One interesting historical or architectural fact most visitors walk past without knowing."
+}`;
+  }
+
+  if (kind === 'paid-attraction') {
+    return `${sys}
+
+Suggest ONE real named ticketed attraction, cultural experience, or guided activity in ${region}, different from "${s.name}". Must be open in April 2026. Similar cost to "${s.stagL}".
+
+JSON schema (all fields required):
+{
+  "name": "Exact attraction name",
+  "address": "Street address and neighborhood, ${region}",
+  "time": "${s.time}",
+  "cost": "Ticket price per adult — note any child/family discount",
+  "hours": "Opening hours in April, including closed days",
+  "stag": "sp",
+  "mapsQuery": "Attraction name + city + Greece",
+  "lat": latitude of suggested place as decimal number,
+  "lng": longitude of suggested place as decimal number,
+  "desc": "What makes it worth the entry price and what a child will remember most.",
+  "tip": "Booking advice: online vs gate, best arrival time, or what to do first inside."
+}`;
+  }
+
+  // Fallback
+  return `${sys}
+
+Suggest ONE real, named place or experience in ${region} as an alternative to "${s.name}" at ${s.time}. It should be accessible in April 2026, family-friendly, and geographically compatible with the surrounding day stops.
+
+JSON schema (all fields required):
+{
+  "name": "Place or experience name",
+  "address": "Location in ${region}",
+  "time": "${s.time}",
+  "cost": "${isFree ? 'Free' : 'Cost estimate'}",
+  "hours": "When accessible in April",
+  "stag": "${s.stag}",
+  "mapsQuery": "Name + city + Greece",
+  "lat": latitude of suggested place as decimal number,
+  "lng": longitude of suggested place as decimal number,
+  "desc": "What it is and why it makes a great alternative at this point in the day.",
+  "fact": "One surprising or little-known fact about this place."
+}`;
+}
+
+async function shuffleStop(dayIdx, si) {
+  const d = DAYS[dayIdx];
+  const s = d.stops[si];
+  const panel = document.getElementById(`shuf-${dayIdx}-${si}`);
+  const btn = document.getElementById(`shuf-btn-${dayIdx}-${si}`);
+
+  const regionMap = {athens:'Athens, Greece',pelo:'Peloponnese, Greece',ferry:'Piraeus, Athens',crete:'Chania, Crete',athens2:'Athens, Greece'};
+  const region = regionMap[d.region] || 'Greece';
+  const kind = detectStopKind(s);
+
+  const loadingMessages = {
+    dining:           '🍽️ Finding a real restaurant nearby…',
+    drinks:           '🥂 Scouting rooftop bars and wine bars…',
+    coffee:           '☕ Finding the best café for this stop…',
+    museum:           '🏛️ Searching nearby museums and galleries…',
+    'ancient-site':   '🏺 Digging up an alternative ancient site…',
+    monastery:        '⛪ Locating a nearby monastery or church…',
+    fortress:         '🏰 Scouting an alternative fortress or castle…',
+    viewpoint:        '🌅 Finding the best viewpoint for this time…',
+    neighbourhood:    '🗺️ Exploring alternative neighbourhoods…',
+    beach:            '🏖️ Finding a better beach option…',
+    outdoor:          '🥾 Searching outdoor trails and nature spots…',
+    'free-attraction':'✨ Finding a free alternative nearby…',
+    'paid-attraction':'🎟️ Looking for ticketed alternatives…',
+    default:          '🔀 Finding an alternative for this slot…'
+  };
+
+  panel.className = 'shuffle-panel show';
+  panel.innerHTML = `<div class="shuffle-loading"><span class="spin">⏳</span> ${loadingMessages[kind] || loadingMessages.default}</div>`;
+  btn.disabled = true;
+
+  const key = `${dayIdx}-${si}`;
+  if (!_shuffleHistory.has(key)) _shuffleHistory.set(key, new Set());
+  const history = _shuffleHistory.get(key);
+
+  const prompt = buildShufflePrompt(d, s, si, kind, region, s.lat, s.lng, history);
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 800,
+        temperature: 1.0,
+        messages: [{role: 'user', content: prompt}]
+      })
+    });
+    const data = await res.json();
+    const raw = data.content?.find(b => b.type === 'text')?.text || '';
+    const json = raw.replace(/```json|```/g, '').trim();
+    const alt = JSON.parse(json);
+    alt._kind = kind;
+    // Record this suggestion so it won't be repeated
+    history.add(alt.name);
+    // Compute distance from original stop if suggestion includes coordinates
+    if (alt.lat && alt.lng && s.lat && s.lng) {
+      const km = haversineKm(s.lat, s.lng, alt.lat, alt.lng);
+      const miles = km * 0.621371;
+      alt._distKm = miles < 0.1 ? Math.round(miles * 5280) + ' ft away'
+                                 : miles.toFixed(1) + ' mi away';
+    }
+    showShuffleResult(dayIdx, si, alt);
+  } catch(err) {
+    panel.innerHTML = `<div class="shuffle-loading" style="color:var(--terra)">⚠️ Couldn't load a suggestion. Check your connection and try again.<br><button class="btn-shuffle-again" style="margin-top:8px" onclick="shuffleStop(${dayIdx},${si})">Retry</button></div>`;
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+function showShuffleResult(dayIdx, si, alt) {
+  const panel = document.getElementById(`shuf-${dayIdx}-${si}`);
+  const kind = alt._kind || 'attraction';
+  const tagColors = {sf:'var(--olive)',sp:'var(--teal)',si:'var(--azure)',sb:'var(--gold)'};
+
+  const hdLabels = {
+    dining:'🍽️ Alternative Restaurant', drinks:'🥂 Alternative Bar',
+    coffee:'☕ Alternative Café', museum:'🏛️ Alternative Museum',
+    'ancient-site':'🏺 Alternative Ancient Site', monastery:'⛪ Alternative Monastery',
+    fortress:'🏰 Alternative Fortress', viewpoint:'🌅 Alternative Viewpoint',
+    neighbourhood:'🗺️ Alternative Neighbourhood', beach:'🏖️ Alternative Beach',
+    outdoor:'🥾 Alternative Outdoor Stop', 'free-attraction':'✨ Free Alternative',
+    'paid-attraction':'🎟️ Alternative Attraction'
+  };
+  const hdLabel = hdLabels[kind] || '✨ Alternative Idea';
+
+  // Pills: hours first, then cuisine/type badge, then address
+  let pills = '';
+  if (alt._distKm) pills += `<span class="shuf-pill shuf-pill-dist">📍 ${alt._distKm}</span>`;
+  if (alt.hours) pills += `<span class="shuf-pill">🕐 ${alt.hours}</span>`;
+  if (alt.cuisine) pills += `<span class="shuf-pill">🍴 ${alt.cuisine}</span>`;
+  if (alt.address) pills += `<span class="shuf-pill">🗺️ ${alt.address}</span>`;
+
+  // tip OR fact (ancient sites, free attractions, viewpoints use 'fact')
+  const calloutIcon = (alt.fact && !alt.tip) ? '🏺' : '💡';
+  const calloutText = alt.tip || alt.fact || '';
+
+  // Store alt safely — no inline JSON in onclick
+  _shuffleStore.set(`${dayIdx}-${si}`, alt);
+
+  panel.innerHTML = `
+    <div class="shuffle-result">
+      <div class="shuffle-result-hd">${hdLabel}</div>
+      <div class="shuffle-result-name">${alt.name}</div>
+      <div class="shuffle-result-meta">
+        <span style="color:${tagColors[alt.stag]||'var(--ink2)'};font-weight:700">${alt.cost}</span>
+        ${alt.time ? ` · ${alt.time}` : ''}
+      </div>
+      ${pills ? `<div class="shuf-pills">${pills}</div>` : ''}
+      <div class="shuffle-result-desc">${alt.desc}</div>
+      ${calloutText ? `<div class="shuf-tip">${calloutIcon} ${calloutText}</div>` : ''}
+      <div class="shuffle-result-acts">
+        <button class="btn-shuffle-accept" onclick="acceptShuffle(${dayIdx},${si})">✅ Use This</button>
+        <button class="btn-shuffle-again" onclick="shuffleStop(${dayIdx},${si})">🔀 Try Another</button>
+        <a class="btn-sm btn-maps" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(alt.mapsQuery || alt.name)}" target="_blank">📍 Maps</a>
+        <button class="btn-shuffle-dismiss" onclick="dismissShuffle(${dayIdx},${si})">✕</button>
+      </div>
+    </div>`;
+}
+
+function acceptShuffle(dayIdx, si) {
+  const alt = _shuffleStore.get(`${dayIdx}-${si}`);
+  if (!alt) { showToast('No suggestion to apply'); return; }
+  const s = DAYS[dayIdx].stops[si];
+  s.name = alt.name;
+  s.time = alt.time || s.time;
+  s.stagL = alt.cost || s.stagL;
+  s.stag = alt.stag || s.stag;
+  // Build rich description preserving all returned detail
+  const parts = [alt.desc];
+  if (alt.tip) parts.push('💡 ' + alt.tip);
+  if (alt.fact) parts.push('🏺 ' + alt.fact);
+  if (alt.hours) parts.push('Hours: ' + alt.hours + '.');
+  if (alt.address) parts.push('Address: ' + alt.address + '.');
+  if (alt.cuisine) parts.push('Cuisine: ' + alt.cuisine + '.');
+  s.desc = parts.filter(Boolean).join(' ');
+  s.mq = alt.mapsQuery || alt.name;
+  renderDay(dayIdx);
+  showToast('Stop updated ✅');
+}
+
+function dismissShuffle(dayIdx, si) {
+  const panel = document.getElementById(`shuf-${dayIdx}-${si}`);
+  if (panel) { panel.className = 'shuffle-panel'; panel.innerHTML = ''; }
+}
+
+function showToast(msg){
+  const t=document.getElementById('offline-toast');
+  t.textContent=msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2000);
+}
+
+// ================================================================
+// DRAG AND DROP (mouse + touch)
+// ================================================================
+let dragSrcDay=null, dragSrcSi=null, touchDragEl=null, touchClone=null, touchOffX=0, touchOffY=0;
+
+function initDragAndDrop(dayIdx){
+  const stops=document.querySelectorAll(`[data-day="${dayIdx}"]`);
+
+  stops.forEach(el=>{
+    const handle=el.querySelector('.drag-handle');
+
+    // ---- MOUSE DRAG ----
+    el.addEventListener('dragstart',e=>{
+      if(!e.target.closest('.drag-handle')) { e.preventDefault(); return; }
+      dragSrcDay=+el.dataset.day;
+      dragSrcSi=+el.dataset.si;
+      setTimeout(()=>el.classList.add('dragging'),0);
+      e.dataTransfer.effectAllowed='move';
+    });
+    el.addEventListener('dragend',()=>{
+      el.classList.remove('dragging');
+      document.querySelectorAll('.stop').forEach(s=>s.classList.remove('drag-over','drag-over-below'));
+    });
+    el.addEventListener('dragover',e=>{
+      e.preventDefault();
+      if(dragSrcDay===null) return;
+      document.querySelectorAll('.stop').forEach(s=>s.classList.remove('drag-over','drag-over-below'));
+      const rect=el.getBoundingClientRect();
+      const mid=rect.top+rect.height/2;
+      if(e.clientY<mid) el.classList.add('drag-over');
+      else el.classList.add('drag-over-below');
+    });
+    el.addEventListener('drop',e=>{
+      e.preventDefault();
+      const targetSi=+el.dataset.si;
+      const rect=el.getBoundingClientRect();
+      const mid=rect.top+rect.height/2;
+      const dropAfter=e.clientY>=mid;
+      if(dragSrcSi===targetSi) return;
+      const stops=DAYS[dayIdx].stops;
+      const [moved]=stops.splice(dragSrcSi,1);
+      let insertAt=targetSi;
+      if(dragSrcSi<targetSi) insertAt=dropAfter?targetSi:targetSi-1;
+      else insertAt=dropAfter?targetSi+1:targetSi;
+      stops.splice(Math.max(0,Math.min(stops.length,insertAt)),0,moved);
+      stops.forEach((s,idx)=>s.n=idx+1);
+      dragSrcDay=null; dragSrcSi=null;
+      renderDay(dayIdx);
+      showToast('Stop moved');
+    });
+
+    // ---- TOUCH DRAG ----
+    if(!handle) return;
+    handle.addEventListener('touchstart',e=>{
+      const touch=e.touches[0];
+      touchDragEl=el;
+      const rect=el.getBoundingClientRect();
+      touchOffX=touch.clientX-rect.left;
+      touchOffY=touch.clientY-rect.top;
+      // create visual clone
+      touchClone=el.cloneNode(true);
+      touchClone.style.cssText=`position:fixed;left:${rect.left}px;top:${rect.top}px;width:${rect.width}px;opacity:.75;pointer-events:none;z-index:9999;box-shadow:0 8px 24px rgba(0,0,0,.2);border-radius:6px;`;
+      document.body.appendChild(touchClone);
+      setTimeout(()=>el.classList.add('dragging'),0);
+      e.preventDefault();
+    },{passive:false});
+
+    handle.addEventListener('touchmove',e=>{
+      if(!touchDragEl) return;
+      const touch=e.touches[0];
+      const x=touch.clientX-touchOffX;
+      const y=touch.clientY-touchOffY;
+      touchClone.style.left=x+'px';
+      touchClone.style.top=y+'px';
+      // find element under finger
+      touchClone.style.display='none';
+      const under=document.elementFromPoint(touch.clientX,touch.clientY);
+      touchClone.style.display='';
+      document.querySelectorAll('.stop').forEach(s=>s.classList.remove('drag-over','drag-over-below'));
+      const overStop=under&&under.closest('.stop[data-day]');
+      if(overStop&&overStop!==touchDragEl){
+        const rect=overStop.getBoundingClientRect();
+        if(touch.clientY<rect.top+rect.height/2) overStop.classList.add('drag-over');
+        else overStop.classList.add('drag-over-below');
+      }
+      e.preventDefault();
+    },{passive:false});
+
+    handle.addEventListener('touchend',e=>{
+      if(!touchDragEl) return;
+      const touch=e.changedTouches[0];
+      touchClone.remove(); touchClone=null;
+      touchDragEl.classList.remove('dragging');
+      document.querySelectorAll('.stop').forEach(s=>s.classList.remove('drag-over','drag-over-below'));
+      // find drop target
+      const under=document.elementFromPoint(touch.clientX,touch.clientY);
+      const overStop=under&&under.closest('.stop[data-day]');
+      if(overStop&&overStop!==touchDragEl){
+        const srcSi=+touchDragEl.dataset.si;
+        const tgtSi=+overStop.dataset.si;
+        const rect=overStop.getBoundingClientRect();
+        const dropAfter=touch.clientY>=rect.top+rect.height/2;
+        const stops=DAYS[dayIdx].stops;
+        const [moved]=stops.splice(srcSi,1);
+        let insertAt=tgtSi;
+        if(srcSi<tgtSi) insertAt=dropAfter?tgtSi:tgtSi-1;
+        else insertAt=dropAfter?tgtSi+1:tgtSi;
+        stops.splice(Math.max(0,Math.min(stops.length,insertAt)),0,moved);
+        stops.forEach((s,idx)=>s.n=idx+1);
+        renderDay(dayIdx);
+        showToast('Stop moved');
+      }
+      touchDragEl=null;
+    });
+  });
+}
+
+function updatePill(){
+  let total=0;
+  DAYS.forEach(d=>total+=d.stops.length);
+  document.getElementById('total-stops-pill').textContent=`${total} total stops`;
+}
+
+// ================================================================
+// MAPS TABS
+// ================================================================
+function renderMapTabs(){
+  ['kml','dir','copy'].forEach(prefix=>{
+    const cont=document.getElementById(`${prefix}-dtabs`);
+    cont.innerHTML='';
+    DAYS.forEach((d,i)=>{
+      const t=document.createElement('div');
+      t.className='dtab'+(i===0?' active':'');
+      t.textContent=d.label;
+      t.onclick=()=>{
+        cont.querySelectorAll('.dtab').forEach(x=>x.classList.remove('active'));
+        t.classList.add('active');
+        if(prefix==='kml') currentKmlDay=i;
+        if(prefix==='dir') {currentDirDay=i;updateDirBtn();}
+        if(prefix==='copy') {currentCopyDay=i;updateCopyBox();}
+      };
+      cont.appendChild(t);
+    });
+  });
+  document.getElementById('kml-btn').onclick=()=>downloadKML(currentKmlDay);
+  updateDirBtn();
+  updateCopyBox();
+}
+
+function updateDirBtn(){
+  const d=DAYS[currentDirDay];
+  const stops=d.stops.slice(0,10);
+  const origin=encodeURIComponent(stops[0].mq);
+  const dest=encodeURIComponent(stops[stops.length-1].mq);
+  const wps=stops.slice(1,-1).map(s=>encodeURIComponent(s.mq)).join('|');
+  const mode=d.region==='crete'||d.region==='pelo'?'driving':'walking';
+  const url=`https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${dest}&waypoints=${wps}&travelmode=${mode}`;
+  document.getElementById('dir-btn').onclick=()=>window.open(url,'_blank');
+}
+function updateCopyBox(){
+  const d=DAYS[currentCopyDay];
+  document.getElementById('copy-box').textContent=d.stops.map((s,i)=>`${i+1}. ${s.name} — ${s.mq}`).join('\n');
+}
+function copyNames(){
+  navigator.clipboard.writeText(document.getElementById('copy-box').textContent).then(()=>{
+    const b=event.target;b.textContent='✓ Copied!';setTimeout(()=>b.textContent='📋 Copy Stop Names',2000);
+  });
+}
+
+function downloadKML(di){
+  const d=DAYS[di];
+  let kml=`<?xml version="1.0" encoding="UTF-8"?>\n<kml xmlns="http://www.opengis.net/kml/2.2">\n<Document>\n<name>${escX(d.date+' — '+d.title)}</name>\n`;
+  d.stops.forEach(s=>{
+    kml+=`<Placemark><name>${escX(s.n+'. '+s.name)}</name><description>${escX(s.time+' · '+s.stagL+'\n\n'+s.desc)}</description><Point><coordinates>${s.lng},${s.lat},0</coordinates></Point></Placemark>\n`;
+  });
+  kml+=`</Document>\n</kml>`;
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([kml],{type:'application/vnd.google-earth.kml+xml'}));
+  a.download=`Greece_${d.label.replace(' ','_')}_Itinerary.kml`;
+  a.click();
+}
+function escX(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+// ================================================================
+// TRAVEL INFO
+// ================================================================
+function saveInfo(key,fields){
+  const data={};
+  fields.forEach(id=>{const el=document.getElementById(id);if(el)data[id]=el.value;});
+  try{localStorage.setItem('greece_'+key,JSON.stringify(data));}catch(e){}
+  const ok=document.getElementById('ok-'+key);
+  if(ok){ok.style.display='inline';setTimeout(()=>ok.style.display='none',2500);}
+}
+function loadInfo(key,fields){
+  try{
+    const saved=localStorage.getItem('greece_'+key);
+    if(!saved)return;
+    const data=JSON.parse(saved);
+    fields.forEach(id=>{const el=document.getElementById(id);if(el&&data[id]!==undefined)el.value=data[id];});
+  }catch(e){}
+}
+
+// ================================================================
+// TABS
+// ================================================================
+function showTab(name,el){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-i').forEach(n=>n.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  el.classList.add('active');
+}
+
+// ================================================================
+// INIT
+// ================================================================
+document.addEventListener('DOMContentLoaded',()=>{
+  renderAll();
+  ['f1','f2','v1','v2','v3','fe'].forEach(k=>{
+    const fields={
+      f1:['f1-date','f1-airport','f1-flight','f1-dtime','f1-adate','f1-aairport','f1-atime','f1-conf'],
+      f2:['f2-date','f2-airport','f2-flight','f2-dtime','f2-conn','f2-conf'],
+      v1:['v1-name','v1-conf','v1-addr','v1-ci','v1-co','v1-host','v1-wifi','v1-door'],
+      v2:['v2-name','v2-conf','v2-addr','v2-ci','v2-co','v2-host','v2-wifi','v2-door'],
+      v3:['v3-name','v3-conf','v3-addr','v3-ci','v3-co','v3-host','v3-wifi','v3-door'],
+      fe:['fe-op','fe-conf','fe-date','fe-dtime','fe-gate','fe-atime','fe-cabin','fe-car'],
+    };
+    loadInfo(k,fields[k]);
+  });
+});
+
+// ================================================================
+// PWA — SERVICE WORKER + INSTALL PROMPT
+// ================================================================
+let deferredPrompt = null;
+
+// Register service worker (inline via blob so no separate file needed)
+if ('serviceWorker' in navigator) {
+  const swCode = `
+const CACHE = 'greece-v1';
+const CORE = [location.pathname || '/'];
+self.addEventListener('install', e => {
+  e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE)));
+  self.skipWaiting();
+});
+self.addEventListener('activate', e => {
+  e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k=>k!==CACHE).map(k=>caches.delete(k)))));
+  self.clients.claim();
+});
+self.addEventListener('fetch', e => {
+  if(e.request.method !== 'GET') return;
+  e.respondWith(
+    fetch(e.request).then(r => {
+      const clone = r.clone();
+      caches.open(CACHE).then(c => c.put(e.request, clone));
+      return r;
+    }).catch(() => caches.match(e.request).then(r => r || new Response('Offline', {status: 503})))
+  );
+});
+`;
+  const blob = new Blob([swCode], {type: 'application/javascript'});
+  const swUrl = URL.createObjectURL(blob);
+  navigator.serviceWorker.register(swUrl).catch(()=>{});
+}
+
+// Intercept the browser's install prompt
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredPrompt = e;
+  // Show banner after a short delay so page loads first
+  setTimeout(() => {
+    if (!localStorage.getItem('pwa-dismissed')) {
+      document.getElementById('install-banner').classList.add('show');
+    }
+  }, 2500);
+});
+
+function installPWA() {
+  document.getElementById('install-banner').classList.remove('show');
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(() => { deferredPrompt = null; });
+  }
+}
+
+function dismissInstall() {
+  document.getElementById('install-banner').classList.remove('show');
+  localStorage.setItem('pwa-dismissed', '1');
+}
+
+// Offline / online detection
+function updateOnlineStatus() {
+  const toast = document.getElementById('offline-toast');
+  if (!navigator.onLine) {
+    toast.textContent = '📵 Offline — itinerary still works!';
+    toast.classList.add('show');
+  } else {
+    toast.classList.remove('show');
+  }
+}
+window.addEventListener('online', updateOnlineStatus);
+window.addEventListener('offline', updateOnlineStatus);
+
+
+// Create manifest dynamically (avoids needing a separate manifest.json file)
+(function(){
+  const manifest = {
+    name: "Greece Family Itinerary — April 2026",
+    short_name: "Greece 2026",
+    description: "12-day Greece family trip itinerary",
+    start_url: "./",
+    display: "standalone",
+    background_color: "#faf8f3",
+    theme_color: "#1c1a16",
+    orientation: "portrait-primary",
+    icons: [
+      {src: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' fill='%231c1a16' rx='24'/><text y='.85em' font-size='150' x='20'>🏛️</text></svg>", sizes: "192x192", type: "image/svg+xml"},
+      {src: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' fill='%231c1a16' rx='60'/><text y='.85em' font-size='400' x='50'>🏛️</text></svg>", sizes: "512x512", type: "image/svg+xml"}
+    ]
+  };
+  const blob = new Blob([JSON.stringify(manifest)], {type:'application/manifest+json'});
+  document.querySelector('link[rel="manifest"]').href = URL.createObjectURL(blob);
+})();
+
+// ================================================================
+// FIREBASE SYNC — uses REST API, no external SDK required
+// ================================================================
+let isEditor = false;
+let syncConfigured = false;
+let fbDbUrl = null;       // e.g. https://xxx-default-rtdb.firebaseio.com
+let pollTimer = null;
+let lastEtag = null;
+const SYNC_PATH = 'itinerary/v1.json';
+
+function loadSyncConfig() {
+  try {
+    const cfg = localStorage.getItem('fb_config');
+    const pin = localStorage.getItem('fb_pin');
+    if (!cfg) return null;
+    return { config: JSON.parse(cfg), pin: pin || '0000' };
+  } catch(e) { return null; }
+}
+
+function initFirebase() {
+  const saved = loadSyncConfig();
+  if (!saved || !saved.config.databaseURL) {
+    setSyncLabel('not-configured');
+    return;
+  }
+  fbDbUrl = saved.config.databaseURL.replace(/\/$/, '');
+  syncConfigured = true;
+  setSyncLabel('connecting');
+  startPolling();
+}
+
+// ── REST HELPERS ────────────────────────────────────────────────
+function restUrl() {
+  return `${fbDbUrl}/${SYNC_PATH}`;
+}
+
+async function fbGet() {
+  const res = await fetch(restUrl());
+  if (!res.ok) throw new Error('GET failed: ' + res.status);
+  return res.json();
+}
+
+async function fbSet(data) {
+  const res = await fetch(restUrl(), {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  });
+  if (!res.ok) throw new Error('PUT failed: ' + res.status);
+  return res.json();
+}
+
+// ── POLLING (every 4s for family, paused while editor is active) ─
+function startPolling() {
+  stopPolling();
+  poll(); // immediate first check
+  pollTimer = setInterval(poll, 4000);
+}
+
+function stopPolling() {
+  if (pollTimer) { clearInterval(pollTimer); pollTimer = null; }
+}
+
+async function poll() {
+  if (isEditor) return; // editor drives state, don't overwrite mid-edit
+  try {
+    const data = await fbGet();
+    if (!data) { setSyncLabel('live'); return; }
+    applyRemoteState(data);
+    setSyncLabel('live');
+  } catch(e) {
+    setSyncLabel(navigator.onLine ? 'error' : 'offline');
+  }
+}
+
+// ── PUSH STATE ─────────────────────────────────────────────────
+async function pushState() {
+  if (!fbDbUrl || !isEditor) return;
+  setSyncLabel('pushing');
+  const payload = {
+    ts: Date.now(),
+    days: DAYS.map(day => ({
+      ...day,
+      stops: day.stops.map(s => {
+        const clean = Object.assign({}, s);
+        delete clean._kind; delete clean._distKm;
+        return clean;
+      })
+    }))
+  };
+  try {
+    await fbSet(payload);
+    setSyncLabel('live');
+  } catch(e) {
+    setSyncLabel('error');
+  }
+}
+
+// ── APPLY REMOTE STATE ──────────────────────────────────────────
+function applyRemoteState(data) {
+  if (!data || !data.days) return;
+  data.days.forEach((remoteDay, i) => {
+    if (!DAYS[i]) return;
+    DAYS[i].stops = remoteDay.stops || DAYS[i].stops;
+  });
+  renderDay(currentDay);
+  updatePill();
+}
+
+// ── STATUS LABEL ────────────────────────────────────────────────
+function setSyncLabel(state) {
+  const dot = document.getElementById('sync-dot');
+  const label = document.getElementById('sync-label');
+  if (!dot || !label) return;
+  dot.className = 'sync-dot';
+  const states = {
+    'not-configured': [''        , '⚙️ Tap Setup to enable live sync'],
+    'connecting':     ['pending' , '🔄 Connecting…'],
+    'live':           ['live'    , '🟢 Live — syncing with family'],
+    'offline':        [''        , '📵 Offline — changes saved locally'],
+    'error':          ['error'   , '⚠️ Sync error — check config'],
+    'pushing':        ['pending' , '⬆️ Saving…'],
+  };
+  const [cls, text] = states[state] || ['', state];
+  if (cls) dot.classList.add(cls);
+  label.textContent = text;
+}
+
+// ── WRAP STATE-MUTATING FUNCTIONS ───────────────────────────────
+const _origSaveStop = saveStop;
+saveStop = function(i, si) { _origSaveStop(i, si); if(isEditor) pushState(); };
+
+const _origDeleteStop = deleteStop;
+deleteStop = function(i, si) { _origDeleteStop(i, si); if(isEditor) pushState(); };
+
+const _origMoveStop = moveStop;
+moveStop = function(i, si, dir) { _origMoveStop(i, si, dir); if(isEditor) pushState(); };
+
+const _origToggleDone = toggleDone;
+toggleDone = function(dayIdx, si) { _origToggleDone(dayIdx, si); if(isEditor) pushState(); };
+
+const _origAcceptShuffle = acceptShuffle;
+acceptShuffle = function(dayIdx, si) { _origAcceptShuffle(dayIdx, si); if(isEditor) pushState(); };
+
+// ── EDITOR MODE ─────────────────────────────────────────────────
+function toggleEditorMode() {
+  if (isEditor) {
+    isEditor = false;
+    document.body.classList.remove('is-editor');
+    document.getElementById('btn-editor-mode').classList.remove('active');
+    document.getElementById('btn-editor-mode').textContent = '🔒 Editor';
+    startPolling(); // resume listening for remote changes
+    showToast('Editor mode locked');
+    return;
+  }
+  const saved = loadSyncConfig();
+  if (!saved) { showSetup(); return; }
+  document.getElementById('pin-modal').classList.add('show');
+  setTimeout(() => document.getElementById('pin-input').focus(), 100);
+}
+
+function checkPin() {
+  const saved = loadSyncConfig();
+  const entered = document.getElementById('pin-input').value;
+  if (entered === saved.pin) {
+    closePinModal();
+    isEditor = true;
+    stopPolling(); // editor drives state, stop overwriting
+    document.body.classList.add('is-editor');
+    document.getElementById('btn-editor-mode').classList.add('active');
+    document.getElementById('btn-editor-mode').textContent = '✏️ Editing';
+    showToast('Editor mode unlocked ✏️');
+    pushState(); // push current state immediately
+  } else {
+    document.getElementById('pin-error').textContent = 'Incorrect PIN — try again';
+    document.getElementById('pin-input').value = '';
+    document.getElementById('pin-input').focus();
+  }
+}
+
+function closePinModal() {
+  document.getElementById('pin-modal').classList.remove('show');
+  document.getElementById('pin-input').value = '';
+  document.getElementById('pin-error').textContent = '';
+}
+
+// ── SETUP MODAL ─────────────────────────────────────────────────
+function showSetup() {
+  const saved = loadSyncConfig();
+  if (saved) {
+    document.getElementById('cfg-input').value = JSON.stringify(saved.config, null, 2);
+    document.getElementById('pin-set-input').value = saved.pin || '';
+  }
+  document.getElementById('setup-modal').classList.add('show');
+}
+
+function closeSetup() {
+  document.getElementById('setup-modal').classList.remove('show');
+}
+
+function saveConfig() {
+  const raw = document.getElementById('cfg-input').value.trim();
+  const pin = document.getElementById('pin-set-input').value.trim();
+  if (!pin || pin.length < 4) {
+    alert('Please enter a PIN of at least 4 digits.');
+    return;
+  }
+  try {
+    const cleaned = raw
+      .replace(/^const\s+firebaseConfig\s*=\s*/, '')
+      .replace(/;\s*$/, '')
+      .replace(/([{,]\s*)([a-zA-Z_][\w]*)\s*:/g, '$1"$2":');
+    const cfg = JSON.parse(cleaned);
+    if (!cfg.databaseURL) {
+      alert('Config is missing "databaseURL". Go back to Firebase \u2192 Realtime Database, copy the URL at the top of that page, and add it to the config as: "databaseURL": "https://your-project-default-rtdb.firebaseio.com"');
+      return;
+    }
+    localStorage.setItem('fb_config', JSON.stringify(cfg));
+    localStorage.setItem('fb_pin', pin);
+    document.getElementById('cfg-saved').style.display = 'block';
+    setTimeout(() => { closeSetup(); location.reload(); }, 1500);
+  } catch(e) {
+    alert('Could not parse the config. Make sure you selected "Config" (not npm or CDN) and copied the { } object. Error: ' + e.message);
+  }
+}
+
+// ── INIT ────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  // Wire sync bar buttons after all functions are defined
+  document.getElementById('btn-editor-mode').addEventListener('click', toggleEditorMode);
+  document.getElementById('btn-setup-sync').addEventListener('click', showSetup);
+  // PIN modal enter key
+  document.getElementById('pin-input').addEventListener('keydown', e => { if(e.key === 'Enter') checkPin(); });
+  initFirebase();
+});
+
+</script>
+</body>
+</html>
