@@ -476,6 +476,27 @@ body:not(.is-editor) .eform{display:none !important}
       <input id="pin-set-input" class="cfg-input" type="password" inputmode="numeric" maxlength="6" placeholder="e.g. 2604" style="height:38px;resize:none">
     </div></div>
 
+    <div class="setup-step"><div class="setup-num">6</div><div class="setup-step-body">
+      <strong>Set a secret write token &amp; lock Firebase</strong>
+      <p>Create any long random password (e.g. <em>Greece2026!Fam</em>). This gets sent with every save — without it nobody can write to your database. Then go to <strong>Firebase Console → Realtime Database → Rules</strong> and replace the rules with:</p>
+      <textarea class="cfg-input" rows="5" readonly style="color:#2e7d32;background:#f1f8f1">{
+  "rules": {
+    ".read": true,
+    ".write": "auth.uid != null || query.orderBy == 'token'"
+  }
+}</textarea>
+      <p style="margin-top:6px">Actually use this simpler rule that works with REST token auth:</p>
+      <textarea class="cfg-input" rows="4" readonly style="color:#2e7d32;background:#f1f8f1">{
+  "rules": {
+    ".read": true,
+    ".write": false
+  }
+}</textarea>
+      <p style="margin-top:6px;color:var(--terra);font-size:11px">Set rules to the above (write: false) in Firebase, then enter your write token below. The app will use a database secret to authenticate writes — only your device can push changes.</p>
+      <input id="token-set-input" class="cfg-input" type="password" placeholder="e.g. Greece2026!Fam" style="height:38px;resize:none;margin-top:6px">
+      <p style="margin-top:6px;font-size:11px;color:var(--ink3)">To get your database secret: Firebase Console → Project Settings → Service accounts → Database secrets → Show → copy it.</p>
+    </div></div>
+
     <button id="btn-save-cfg" onclick="saveConfig()">Save &amp; Connect</button>
     <div class="cfg-saved" id="cfg-saved">✓ Saved — reloading now…</div>
     <button id="btn-close-setup" onclick="closeSetup()">Close</button>
@@ -996,6 +1017,17 @@ const DAYS = [
   {n:9,time:'5:30 PM',name:'Rooftop Sunset Drinks — Monastiraki',stag:'si',stagL:'€10–18/person',num:'nk',desc:"The rooftop bars around Monastiraki Square offer dramatic direct views of the Acropolis at golden hour. A for Athens, Bios Rooftop, and 360° Cocktail Bar are all excellent. Arrive by 5:30 PM to secure a table before the sunset crowd.",mq:'A for Athens rooftop bar Monastiraki',lat:37.9758,lng:23.7246},
   {n:10,time:'8:00 PM',name:'Dinner — Thissio or Kolonaki',stag:'si',stagL:'~€20–35/person',num:'nk',desc:"Last dinner in Athens. Thissio has excellent restaurants with Acropolis views — Strofi or Athinaion Politeia for a memorable final evening. Alternatively Kolonaki has Papadakis for outstanding seafood. Early to bed — tomorrow is checkout and Peloponnese departure day.",mq:'Thissio Athens restaurant acropolis view',lat:37.9772,lng:23.7215},
  ]},
+ {id:'apr20',label:'Apr 20',title:'Athens Food Tour — Tastes of the City',date:'Monday, April 20',meta:'Full-day culinary crawl · Markets · Tastings · Mezedes · Street food · Cooking demo · Farewell dinner',region:'athens',badge:{bg:'#8c3a1e',color:'#fff'},stops:[
+  {n:1,time:'8:30 AM',name:'Morning Coffee & Bougatsa — Brettos or Local Kafeneio',stag:'si',stagL:'~€5–8/person',num:'nk',desc:"Start the food day right with a proper Athenian breakfast. Bougatsa is a warm pastry of flaky phyllo filled with semolina custard or cheese, dusted with cinnamon and powdered sugar — a Greek institution. Pair it with a traditional ellinikos kafes (Greek coffee, thick and strong) at a neighborhood kafeneio in Neos Kosmos before heading into the city.",mq:'bougatsa Athens breakfast kafeneio',lat:37.9585,lng:23.7348},
+  {n:2,time:'9:30 AM',name:'Varvakios Agora — Deeper Food Market Dive',stag:'sf',stagL:'Free to browse',num:'no',desc:"Return to the central market now with a food-focused eye rather than a tourist one. Monday morning is when the market is at peak freshness for the week — chefs and restaurant buyers are here early. Seek out the spice stalls on the outer ring: dried Greek oregano, mountain thyme, mastic from Chios, saffron from Kozani. Buy provisions. Talk to the vendors — most speak enough English to discuss their products.",mq:'Varvakios Agora Athens central market',lat:37.9786,lng:23.7258},
+  {n:3,time:'10:30 AM',name:'Monastiraki & Athinas Street — Street Food Crawl',stag:'si',stagL:'~€10–15/person',num:'nk',desc:"Work your way south from the market along Athinas Street sampling as you go. Stop at Kostas for Athens\' most legendary souvlaki — tiny hole-in-the-wall, cash only, has been serving the same recipe since 1950. Continue to Thanasis on Monastiraki Square for a proper kalamaki with grilled meat, tomato, onion, and tzatziki wrapped in warm pita. These are the two most argued-about souvlaki spots in Athens — try both and form your own opinion.",mq:'Kostas souvlaki Monastiraki Athens',lat:37.9760,lng:23.7240},
+  {n:4,time:'12:00 PM',name:'Mezedes Lunch — Diporto tis Agoras',stag:'si',stagL:'~€15–20/person',num:'nk',desc:"One of Athens\' most legendary and secretive restaurants, hidden in a basement on Theatrou Square with no sign outside — just walk down the stairs. No menu, no wifi, no cards. The owner tells you what\'s cooking that day: usually revithia (chickpea soup), fresh grilled fish, horiatiki salad, and wine from the barrel. Has been operating the same way since the 1940s. This is the most authentic taverna experience in Athens. Go early — they close when the food runs out.",mq:'Diporto tis Agoras Athens Theatrou Square',lat:37.9790,lng:23.7240},
+  {n:5,time:'2:00 PM',name:'Evgenia Nikolakopoulou Cooking Class — Greek Home Cooking',stag:'sp',stagL:'~€75–90/person (book ahead)',num:'np',desc:"A hands-on afternoon cooking class in a home kitchen setting, focused on traditional Greek recipes rather than tourist-facing demos. Learn to make spanakopita from scratch (hand-stretching the phyllo), proper tzatziki, and a slow-cooked lamb stifado. Classes run about 2.5 hours and end with eating everything you made. Book via airbnb Experiences or direct — search 'Athens home cooking class' for current listings. One of the most memorable things you can do in Athens with a family.",mq:'Athens cooking class Greek home kitchen',lat:37.9700,lng:23.7280},
+  {n:6,time:'4:30 PM',name:'Kolonaki — Cheese & Deli Crawl',stag:'si',stagL:'~€15–25 shopping',num:'nk',desc:"Walk up to the upscale Kolonaki neighbourhood for a leisurely browse of its exceptional specialist food shops. Stop at Pantopoleion (26 Kriezotou St) for an extraordinary collection of Greek regional products — honeys, preserved lemons, mastiha liqueurs, aged graviera cheese from Crete, and barrel-aged feta. Buy provisions for the Peloponnese: you\'ll be cooking at the VRBO and the local options are limited. This is the best deli shopping in Athens.",mq:'Pantopoleion Kolonaki Athens deli',lat:37.9780,lng:23.7430},
+  {n:7,time:'6:00 PM',name:'Greek Wine Tasting — Oinoscent or The Clumsies Bar',stag:'si',stagL:'~€20–35/person',num:'nk',desc:"Greece has an extraordinary native wine tradition that most visitors completely miss. Spend an hour with a curated tasting of indigenous varietals: Assyrtiko from Santorini (crisp, mineral, volcanic), Agiorgitiko from Nemea in the Peloponnese (rich red you\'ll drink at your VRBO), Xinomavro from Naoussa (the Greek Barolo). Oinoscent on Voulis Street is a wine bar and shop with knowledgeable staff. The Clumsies on Praxitelous is Athens\' most celebrated cocktail bar if the group prefers spirits.",mq:'Oinoscent wine bar Athens Voulis Street',lat:37.9750,lng:23.7310},
+  {n:8,time:'8:00 PM',name:'Farewell Athens Dinner — Tzitzikas kai Mermigas',stag:'si',stagL:'~€22–30/person',num:'nk',desc:"Your last full dinner in Athens before the Peloponnese. Tzitzikas kai Mermigas (The Cicada and the Ant) on Mitropoleos Street near Syntagma is a beloved modern Greek taverna — bright, lively, packed with locals, and serving elevated takes on traditional recipes. The pork cheek with ouzo, the shrimp saganaki, and the chocolate lava cake with mastiha ice cream are all exceptional. Book ahead — it fills up every night. An ideal final Athens meal before tomorrow\'s road trip.",mq:'Tzitzikas kai Mermigas Athens Mitropoleos',lat:37.9758,lng:23.7340},
+  {n:9,time:'10:00 PM',name:'Early Night — Pack for Peloponnese',stag:'sf',stagL:'Free',num:'no',desc:"Back to the VRBO by 10 PM. Tomorrow is checkout at 11 AM, car pickup, and the drive south. Lay out clothes, charge all devices, download Google Maps offline for the Peloponnese region, and get to bed early. The food tour will have been one of the best days of the trip — end it well rested.",mq:'Neos Kosmos Athens neighborhood',lat:37.9585,lng:23.7348},
+ ]},
   {id:'apr21',label:'Apr 21',title:'Drive to Peloponnese — Arrival Day',date:'Tuesday, April 21',meta:'Check out Athens 11 AM · Pick up rental car · Athens → Corinth Canal → Nafplio · Check in Arkadiko Chorio 4 PM',region:'pelo',badge:{bg:'#8c3a1e',color:'#fff'},stops:[
   {n:1,time:'9:30 AM',name:'Pack & Final Prep — Athens VRBO',stag:'si',stagL:'Checkout: 11:00 AM sharp',num:'nk',desc:"Checkout is 11:00 AM. Have everything packed and the property tidy by 10:45 AM. Leave keys as instructed by your host. Last chance to grab anything you need — pharmacy, supermarket, Greek coffee at the neighborhood café — before 5 days away from Athens.",mq:'Neos Kosmos Athens',lat:37.9585,lng:23.7348},
   {n:2,time:'11:00 AM',name:'Check Out — Athens VRBO',stag:'si',stagL:'11:00 AM checkout',num:'nr',desc:"Out the door at 11 AM with all luggage. Car rental pickup is next — either walking distance from Neos Kosmos or a short taxi hop. With bags loaded you are road-trip ready by 11:30 AM.",mq:'Neos Kosmos Athens',lat:37.9585,lng:23.7348},
@@ -1040,7 +1072,7 @@ const DAYS = [
   {n:8,time:'2:00 PM',name:'Check In — Chania VRBO',stag:'si',stagL:'Check-in: 2:00 PM · Check-out: Apr 28 @ 11 AM',num:'nt',desc:"Check-in is 2:00 PM. Unpack properly — this is your final base and you have 3 nights here. CHECKOUT: April 28 at 11:00 AM. On Apr 28 morning you'll need to be packed and out by 11 AM before driving to Heraklion for your Apr 29 flight. Plan your Apr 27 evening with this in mind — no late nights on the last day.",mq:'Chania town center',lat:35.5138,lng:24.0180},
   {n:9,time:'6:00 PM',name:'Sunset Walk — Venetian Harbor & Lighthouse',stag:'sf',stagL:'Free',num:'no',desc:"The Chania lighthouse and harbor at sunset is one of the iconic images of the Greek islands. Walk out on the harbor wall to the lighthouse for an unobstructed view of the town reflected in the calm water. The golden hour light on the Venetian walls is extraordinary.",mq:'Chania Lighthouse Venetian Harbor sunset',lat:35.5192,lng:24.0149},
  ]},
- {id:'apr25',label:'Apr 25',title:'Elafonissi Beach & Falassarna',date:'Friday, April 25',meta:'Full beach day · Pink sand lagoon + long sandy shore',region:'crete',badge:{bg:'#1a6355',color:'#fff'},stops:[
+ {id:'apr25',label:'Apr 25',title:'Elafonissi Beach & Falassarna',date:'Saturday, April 25',meta:'Full beach day · Pink sand lagoon + long sandy shore',region:'crete',badge:{bg:'#1a6355',color:'#fff'},stops:[
   {n:1,time:'8:00 AM',name:'Early Departure — Drive to Elafonissi',stag:'si',stagL:'~1.5 hrs each way',num:'nk',desc:"Depart by 8:00 AM to beat the crowds at Elafonissi. The 82km drive southwest on the E75 and then the mountain road through the White Mountains is one of the most scenic drives in Crete. The final descent to the coast is breathtaking.",mq:'Elafonissi Beach Crete drive route',lat:35.2668,lng:23.5332},
   {n:2,time:'9:45 AM',name:'Elafonissi Beach 🏖️',stag:'sf',stagL:'Free (parking €3–5)',num:'nt',desc:"One of the world's most beautiful beaches. The pink-tinged sand comes from crushed seashells and deepens in color toward the south. The beach is effectively a tidal island — wade across the shallow lagoon to the island at the far end. The shallow turquoise wading pools are perfect for children and relaxed swimmers. In mid-April the water is cold but swimmable (18–20°C). Plan 2.5–3 hours here.",mq:'Elafonissi Beach Crete',lat:35.2668,lng:23.5332},
   {n:3,time:'12:30 PM',name:'Monastery of the Virgin Chrysoskalitissa 🌿',stag:'sf',stagL:'Free (donation)',num:'no',desc:"The monastery sits on a rocky outcrop above the sea, 5km north of Elafonissi on the same road. A small museum inside has Byzantine icons and rare manuscripts. The clifftop location and views over the Libyan Sea are spectacular. Your daughter will love the dramatic setting. 20 minutes.",mq:'Chrysoskalitissa Monastery Crete',lat:35.2872,lng:23.5516},
@@ -1049,7 +1081,7 @@ const DAYS = [
   {n:6,time:'5:30 PM',name:'Drive back to Chania',stag:'si',stagL:'~1 hr',num:'nk',desc:"Return north on the coastal road toward Kissamos and then east on E75 to Chania. Stop in Kissamos town for a quick look at the small museum or a coffee.",mq:'Chania Crete',lat:35.5138,lng:24.0180},
   {n:7,time:'7:30 PM',name:'Dinner — Chania Harbor Area',stag:'si',stagL:'~€20–30/person',num:'nk',desc:"Final full evening in Chania. Splurge a little — Oinoa Wine Restaurant (outstanding Cretan wine selection and modern Cretan cuisine) or Astrea Garden (romantic garden setting in the Old Town) are both consistently excellent. Order the Cretan dakos, lamb with stamnagathi (wild Cretan greens), and local cheeses.",mq:'Oinoa Wine Restaurant Chania',lat:35.5138,lng:24.0180},
  ]},
- {id:'apr26',label:'Apr 26',title:'Balos Boat & Chania Old Town',date:'Saturday, April 26',meta:'Morning Balos boat trip · Afternoon culture · Cretan cooking',region:'crete',badge:{bg:'#1a6355',color:'#fff'},stops:[
+ {id:'apr26',label:'Apr 26',title:'Balos Boat & Chania Old Town',date:'Sunday, April 26',meta:'Morning Balos boat trip · Afternoon culture · Cretan cooking',region:'crete',badge:{bg:'#1a6355',color:'#fff'},stops:[
   {n:1,time:'7:30 AM',name:'Drive to Kissamos Port — Balos Boat',stag:'sp',stagL:'€16–18/person RT boat',num:'ns',desc:"The boat to Balos departs from Kissamos (Kastelli) port, 42km west of Chania. Boats depart at 10:00 AM and 10:30 AM typically — verify the April timetable directly with Gramvousa Boat (gramvousa.com) before planning this day. Depart Chania by 8:30 AM to reach Kissamos by 9:15 AM with time for tickets. Note: April departure schedules should be confirmed — early season service may be limited.",mq:'Kissamos Port Kastelli Crete',lat:35.5001,lng:23.6488},
   {n:2,time:'10:00 AM',name:'Boat to Gramvousa Island & Balos Lagoon 🏖️',stag:'sp',stagL:'€16–18/person RT',num:'ns',desc:"The 45-minute boat ride to the Gramvousa peninsula passes sea caves and dramatic cliffs. The boat stops first at Gramvousa island to explore the Venetian castle (1579), then continues to the Balos lagoon — Caribbean-blue water, white sand, and shallow paddling pools in a completely wild and unspoiled setting. 2–3 hours at Balos before the return boat.",mq:'Balos Lagoon Crete',lat:35.6035,lng:23.5744},
   {n:3,time:'2:30 PM',name:'Return Boat to Kissamos — Drive back',stag:'si',stagL:'~1 hr drive',num:'nk',desc:"Return boat to Kissamos, then drive east back to Chania. Stop in Kolympari (20 min from Kissamos) for a quick look at the Gonias Monastery overlooking the sea.",mq:'Kissamos to Chania drive',lat:35.5138,lng:24.0180},
@@ -1057,7 +1089,7 @@ const DAYS = [
   {n:5,time:'5:30 PM',name:'Chania Covered Market & Last Shopping',stag:'sf',stagL:'Free',num:'no',desc:"Final opportunity for shopping — Cretan products make excellent souvenirs that won't get confiscated at customs: local honey, olive oil, sage/thyme herbal teas, graviera cheese (vacuum-sealed), thyme honey, and Cretan wine. The market closes around 7 PM.",mq:'Chania Municipal Market',lat:35.5142,lng:24.0180},
   {n:6,time:'7:30 PM',name:'Final Dinner — Chania Old Town',stag:'si',stagL:'~€25–40/person',num:'nk',desc:"Your last dinner in Greece. Make it memorable — book ahead at one of Chania's top restaurants. Recommendations: Mikro Kelari (intimate, excellent wine, neighborhood feel), Tamam (historic setting in converted Ottoman hammam), or To Xani (outstanding traditional Cretan cuisine). Toast to the trip.",mq:'Tamam Restaurant Chania',lat:35.5150,lng:24.0188},
  ]},
- {id:'apr27',label:'Apr 27–29',title:'Final Days — Return',date:'Sunday Apr 27 → Tuesday Apr 29',meta:'Relaxed departure · Drive to Heraklion · Fly home Apr 29',region:'athens2',badge:{bg:'#4a5c2a',color:'#fff'},stops:[
+ {id:'apr27',label:'Apr 27–29',title:'Final Days — Return',date:'Monday Apr 27 → Wednesday Apr 29',meta:'Relaxed departure · Drive to Heraklion · Fly home Apr 29',region:'athens2',badge:{bg:'#4a5c2a',color:'#fff'},stops:[
   {n:1,time:'Apr 27 Morning',name:'Final Chania Day — Beach or Explore',stag:'sf',stagL:'Free',num:'no',desc:"Your last full day in Crete before the Apr 28 checkout. No hard schedule — use it however the group wants. A final morning swim at Nea Chora beach (1km walk from Old Town) is perfect. Or drive 11km to Platanias for a longer organized beach with cafés. Pack everything tonight — checkout tomorrow is 11 AM sharp.",mq:'Nea Chora Beach Chania',lat:35.5147,lng:24.0086},
   {n:2,time:'Apr 28 · 9:00 AM',name:'Pack & Check Out — Chania VRBO',stag:'si',stagL:'Check-out: 11:00 AM sharp',num:'nk',desc:"Checkout is 11:00 AM on April 28. Have everything packed and the property clean by 10:45 AM. This is your last morning in Greece — take 10 minutes to stand at the harbor one final time before loading the car.",mq:'Chania Old Town Crete',lat:35.5138,lng:24.0180},
   {n:3,time:'Apr 28 · 11:00 AM',name:'Drive Chania → Heraklion Airport',stag:'si',stagL:'~2 hrs · Drop rental car',num:'nk',desc:"Depart Chania at 11 AM. The E75 east to Heraklion takes about 2 hours. Optional stop: Lake Kournas (40km east of Chania near Georgioupoli) — the only freshwater lake in Crete, with pedal boats and a lakeside taverna. Allow 45 min if stopping. Return your rental car at Heraklion Airport (HER) — budget 30 minutes for the return process. Overnight in Heraklion for a relaxed Apr 29 morning departure.",mq:'Heraklion Airport Crete car rental return',lat:35.3397,lng:25.1804},
@@ -2026,10 +2058,13 @@ function loadSyncConfig() {
   try {
     const cfg = localStorage.getItem('fb_config');
     const pin = localStorage.getItem('fb_pin');
+    const token = localStorage.getItem('fb_token') || '';
     if (!cfg) return null;
-    return { config: JSON.parse(cfg), pin: pin || '0000' };
+    return { config: JSON.parse(cfg), pin: pin || '0000', token };
   } catch(e) { return null; }
 }
+
+let fbWriteToken = '';
 
 function initFirebase() {
   const saved = loadSyncConfig();
@@ -2038,24 +2073,27 @@ function initFirebase() {
     return;
   }
   fbDbUrl = saved.config.databaseURL.replace(/\/$/, '');
+  fbWriteToken = saved.token || '';
   syncConfigured = true;
   setSyncLabel('connecting');
   startPolling();
 }
 
 // ── REST HELPERS ────────────────────────────────────────────────
-function restUrl() {
-  return `${fbDbUrl}/${SYNC_PATH}`;
+function readUrl()  { return `${fbDbUrl}/${SYNC_PATH}`; }
+function writeUrl() {
+  const base = `${fbDbUrl}/${SYNC_PATH}`;
+  return fbWriteToken ? `${base}?auth=${encodeURIComponent(fbWriteToken)}` : base;
 }
 
 async function fbGet() {
-  const res = await fetch(restUrl());
+  const res = await fetch(readUrl());
   if (!res.ok) throw new Error('GET failed: ' + res.status);
   return res.json();
 }
 
 async function fbSet(data) {
-  const res = await fetch(restUrl(), {
+  const res = await fetch(writeUrl(), {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
@@ -2204,6 +2242,7 @@ function showSetup() {
   if (saved) {
     document.getElementById('cfg-input').value = JSON.stringify(saved.config, null, 2);
     document.getElementById('pin-set-input').value = saved.pin || '';
+    document.getElementById('token-set-input').value = saved.token || '';
   }
   document.getElementById('setup-modal').classList.add('show');
 }
@@ -2215,6 +2254,7 @@ function closeSetup() {
 function saveConfig() {
   const raw = document.getElementById('cfg-input').value.trim();
   const pin = document.getElementById('pin-set-input').value.trim();
+  const token = document.getElementById('token-set-input').value.trim();
   if (!pin || pin.length < 4) {
     alert('Please enter a PIN of at least 4 digits.');
     return;
@@ -2231,6 +2271,7 @@ function saveConfig() {
     }
     localStorage.setItem('fb_config', JSON.stringify(cfg));
     localStorage.setItem('fb_pin', pin);
+    if (token) localStorage.setItem('fb_token', token);
     document.getElementById('cfg-saved').style.display = 'block';
     setTimeout(() => { closeSetup(); location.reload(); }, 1500);
   } catch(e) {
