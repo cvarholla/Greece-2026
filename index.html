@@ -1001,12 +1001,12 @@ body:not(.is-editor) .eform { display:none !important; }
   <div class="icard">
     <div class="icard-t">✈️ Outbound Flight</div>
     <div class="igrid">
-      <div class="ii"><label>Departure Date</label><input id="f1-date" value="April 15, 2026"></div>
+      <div class="ii"><label>Departure Date</label><input id="f1-date"></div>
       <div class="ii"><label>Departure Airport</label><input id="f1-airport" placeholder="e.g. SEA – Seattle-Tacoma"></div>
       <div class="ii"><label>Airline & Flight #</label><input id="f1-flight" placeholder="e.g. Delta DL 402"></div>
       <div class="ii"><label>Departure Time</label><input id="f1-dtime" placeholder="e.g. 6:00 PM"></div>
-      <div class="ii"><label>Arrival Date</label><input id="f1-adate" value="April 16, 2026"></div>
-      <div class="ii"><label>Arrival Airport</label><input id="f1-aairport" value="ATH – Eleftherios Venizelos"></div>
+      <div class="ii"><label>Arrival Date</label><input id="f1-adate"></div>
+      <div class="ii"><label>Arrival Airport</label><input id="f1-aairport"></div>
       <div class="ii"><label>Arrival Time</label><input id="f1-atime" placeholder="e.g. 2:30 PM local"></div>
       <div class="ii"><label>Confirmation #</label><input id="f1-conf" placeholder="Booking reference"></div>
     </div>
@@ -1034,8 +1034,8 @@ body:not(.is-editor) .eform { display:none !important; }
       <div class="ii"><label>Property Name</label><input id="v1-name" placeholder="Listing name"></div>
       <div class="ii"><label>VRBO Confirmation #</label><input id="v1-conf" placeholder="e.g. HA-XXXXXXX"></div>
       <div class="ii"><label>Full Address</label><input id="v1-addr" placeholder="Street address"></div>
-      <div class="ii"><label>Check-In</label><input id="v1-ci" value="April 16, 2026 · 3:00 PM"></div>
-      <div class="ii"><label>Check-Out</label><input id="v1-co" value="April 21, 2026 · 11:00 AM"></div>
+      <div class="ii"><label>Check-In</label><input id="v1-ci"></div>
+      <div class="ii"><label>Check-Out</label><input id="v1-co"></div>
       <div class="ii"><label>Host Name & Phone</label><input id="v1-host" placeholder="Host contact"></div>
       <div class="ii"><label>WiFi Password</label><input id="v1-wifi" placeholder="Network / password"></div>
       <div class="ii"><label>Entry Code / Key Info</label><input id="v1-door" placeholder="Access instructions"></div>
@@ -1049,8 +1049,8 @@ body:not(.is-editor) .eform { display:none !important; }
       <div class="ii"><label>Property Name</label><input id="v2-name" placeholder="Listing name"></div>
       <div class="ii"><label>Confirmation #</label><input id="v2-conf" placeholder="Booking reference"></div>
       <div class="ii"><label>Full Address</label><input id="v2-addr" placeholder="Address near Astros, Arcadia"></div>
-      <div class="ii"><label>Check-In</label><input id="v2-ci" value="April 21, 2026 · 4:00 PM"></div>
-      <div class="ii"><label>Check-Out</label><input id="v2-co" value="April 23, 2026 · 10:00 AM"></div>
+      <div class="ii"><label>Check-In</label><input id="v2-ci"></div>
+      <div class="ii"><label>Check-Out</label><input id="v2-co"></div>
       <div class="ii"><label>Host Name & Phone</label><input id="v2-host" placeholder="Host contact"></div>
       <div class="ii"><label>WiFi Password</label><input id="v2-wifi" placeholder="Network / password"></div>
       <div class="ii"><label>Entry Code / Key Info</label><input id="v2-door" placeholder="Access instructions"></div>
@@ -1064,8 +1064,8 @@ body:not(.is-editor) .eform { display:none !important; }
       <div class="ii"><label>Property Name</label><input id="v3-name" placeholder="Listing name"></div>
       <div class="ii"><label>Confirmation #</label><input id="v3-conf" placeholder="Booking reference"></div>
       <div class="ii"><label>Full Address</label><input id="v3-addr" placeholder="Address in or near Chania Old Town"></div>
-      <div class="ii"><label>Check-In</label><input id="v3-ci" value="April 24, 2026 · 2:00 PM"></div>
-      <div class="ii"><label>Check-Out</label><input id="v3-co" value="April 28, 2026 · 11:00 AM"></div>
+      <div class="ii"><label>Check-In</label><input id="v3-ci"></div>
+      <div class="ii"><label>Check-Out</label><input id="v3-co"></div>
       <div class="ii"><label>Host Name & Phone</label><input id="v3-host" placeholder="Host contact"></div>
       <div class="ii"><label>WiFi Password</label><input id="v3-wifi" placeholder="Network / password"></div>
       <div class="ii"><label>Entry Code / Key Info</label><input id="v3-door" placeholder="Access instructions"></div>
@@ -1080,7 +1080,7 @@ body:not(.is-editor) .eform { display:none !important; }
     <div class="igrid">
       <div class="ii"><label>Operator & Vessel</label><input id="fe-op" placeholder="e.g. Minoan Lines – Knossos Palace"></div>
       <div class="ii"><label>Booking Confirmation #</label><input id="fe-conf" placeholder="Reference number"></div>
-      <div class="ii"><label>Departure Date</label><input id="fe-date" value="April 23, 2026"></div>
+      <div class="ii"><label>Departure Date</label><input id="fe-date"></div>
       <div class="ii"><label>Departure Time</label><input id="fe-dtime" placeholder="e.g. 9:30 PM"></div>
       <div class="ii"><label>Departure Gate</label><input id="fe-gate" placeholder="e.g. Gate E2 or E3, Piraeus"></div>
       <div class="ii"><label>Arrival Time</label><input id="fe-atime" placeholder="e.g. 6:00 AM Heraklion"></div>
@@ -2221,6 +2221,7 @@ let fbDbUrl = null;       // e.g. https://xxx-default-rtdb.firebaseio.com
 let pollTimer = null;
 let lastEtag = null;
 const SYNC_PATH = 'itinerary/v1.json';
+const SENS_PATH = 'sensitive/v1.json';
 
 function loadSyncConfig() {
   try {
@@ -2247,6 +2248,7 @@ function initFirebase() {
   syncConfigured = true;
   setSyncLabel('connecting');
   startPolling();
+  loadSensitive(); // load sensitive travel data (flights, wifi, door codes)
 }
 
 // ── REST HELPERS ────────────────────────────────────────────────
@@ -2318,6 +2320,73 @@ async function pushState() {
   } catch(e) {
     setSyncLabel('error');
   }
+}
+
+
+// ── SENSITIVE DATA SYNC ─────────────────────────────────────────
+// Collects all travel-info fields and pushes to sensitive/v1.json
+// Separate path from itinerary so stops/descriptions can be public
+
+const SENS_FIELD_MAP = {
+  f1: ['f1-date','f1-airport','f1-flight','f1-dtime','f1-adate','f1-aairport','f1-atime','f1-conf'],
+  f2: ['f2-date','f2-airport','f2-flight','f2-dtime','f2-conn','f2-conf'],
+  v1: ['v1-name','v1-conf','v1-addr','v1-ci','v1-co','v1-host','v1-wifi','v1-door'],
+  v2: ['v2-name','v2-conf','v2-addr','v2-ci','v2-co','v2-host','v2-wifi','v2-door'],
+  v3: ['v3-name','v3-conf','v3-addr','v3-ci','v3-co','v3-host','v3-wifi','v3-door'],
+  fe: ['fe-op','fe-conf','fe-date','fe-dtime','fe-gate','fe-atime','fe-cabin','fe-car'],
+};
+
+async function pushSensitive() {
+  if (!fbDbUrl || !isEditor) return;
+  const payload = { ts: Date.now() };
+  Object.entries(SENS_FIELD_MAP).forEach(([key, fields]) => {
+    const group = {};
+    fields.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.value) group[id] = el.value;
+    });
+    payload[key] = group;
+  });
+  if (fbWriteToken) payload.pw = fbWriteToken;
+  try {
+    const url = fbDbUrl.replace(/\/?$/, '/') + SENS_PATH +
+      (fbWriteToken ? '?auth=' + encodeURIComponent(fbWriteToken) : '');
+    await fetch(url, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+  } catch(e) { console.warn('Sensitive push failed', e); }
+}
+
+async function loadSensitive() {
+  if (!fbDbUrl) return;
+  try {
+    const url = fbDbUrl.replace(/\/?$/, '/') + SENS_PATH;
+    const res = await fetch(url);
+    if (!res.ok) return;
+    const data = await res.json();
+    if (!data) return;
+    applySensitive(data);
+  } catch(e) { console.warn('Sensitive load failed', e); }
+}
+
+function applySensitive(data) {
+  if (!data) return;
+  Object.entries(SENS_FIELD_MAP).forEach(([key, fields]) => {
+    const group = data[key];
+    if (!group) return;
+    fields.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && group[id] !== undefined) el.value = group[id];
+    });
+  });
+  // Also persist to localStorage as cache
+  Object.keys(SENS_FIELD_MAP).forEach(key => {
+    if (data[key]) {
+      try { localStorage.setItem('greece_'+key, JSON.stringify(data[key])); } catch(e) {}
+    }
+  });
 }
 
 // ── APPLY REMOTE STATE ──────────────────────────────────────────
@@ -2397,6 +2466,7 @@ function checkPin() {
     document.getElementById('btn-editor-mode').textContent = '✏️ Editing';
     showToast('Editor mode unlocked ✏️');
     pushState(); // push current state immediately
+    pushSensitive(); // push sensitive travel info too
   } else {
     document.getElementById('pin-error').textContent = 'Incorrect PIN — try again';
     document.getElementById('pin-input').value = '';
@@ -2460,6 +2530,21 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('btn-setup-sync').addEventListener('click', showSetup);
   // PIN modal enter key
   document.getElementById('pin-input').addEventListener('keydown', e => { if(e.key === 'Enter') checkPin(); });
+  // Load sensitive data from localStorage cache immediately (fast, offline-friendly)
+  // Firebase will overwrite with fresher data once connected
+  ['f1','f2','v1','v2','v3','fe'].forEach(k => {
+    const fields = SENS_FIELD_MAP[k];
+    if (!fields) return;
+    try {
+      const saved = localStorage.getItem('greece_' + k);
+      if (!saved) return;
+      const data = JSON.parse(saved);
+      fields.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && data[id] !== undefined) el.value = data[id];
+      });
+    } catch(e) {}
+  });
   initFirebase();
 });
 
